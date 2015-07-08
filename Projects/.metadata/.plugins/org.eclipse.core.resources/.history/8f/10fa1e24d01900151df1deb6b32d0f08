@@ -1,0 +1,15 @@
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String templateUrl = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+request.setAttribute("url", templateUrl);
+String username=null;
+
+//获取当前登录用户，并存入session
+if((username=(String)session.getAttribute("username"))==null){
+	if((username=(String)session.getAttribute("expename"))==null){
+		username=(String)session.getAttribute("instname");
+	}
+}
+request.setAttribute("username", username);
+%>

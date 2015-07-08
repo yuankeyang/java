@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!-- 登录窗口的浮动层  -->
+<!----layer---->
+<div id="layer">
+    <div id="layerbox">
+    	<span id="close">&times;</span><!--右上角的关闭乘号-->
+        <div id="head"> 
+            <a>欢迎登录颐健通</a>
+        </div>
+        <div id="login">
+          <form id="loginForm" method="post">
+            <div class="single">
+              <label class="user">用户类型：
+                <select id="usertype">
+                  <option value="user" selected="selected">普通用户</option>
+                  <option value="expe">服务专家</option>
+                  <option value="medical-institutions">服务机构</option>
+                </select>
+              </label>
+           </div>
+           <div class="clear"></div>
+           <div class="single">
+              <label class="user">用&nbsp;户&nbsp;名：</label>
+              <input name="username" type="text" />
+           </div>
+           <div class="clear"></div>
+           <div class="single">
+              <label class="user">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+              <input name="password" type="password" />
+           </div>
+           <div class="clear"></div>
+            <div id="mbutton">
+              <label>
+                <input type="button" value="登录" id="f11"/>
+                <input type="button" value="忘记密码" />
+              </label>
+            </div>
+          </form>
+        </div>
+    </div><!---end layerbox-->
+</div><!---end layer-->
+<!----layer---->

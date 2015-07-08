@@ -1,0 +1,42 @@
+function turnBgPic(){
+	var turnBg = $("turnBg");
+	var turnLi = turnBg.getElementsByTagName("li");
+	var turnLi_len = turnLi.length;
+	Event.add(turnBg,"click",function(event){
+		event = Event.getEvent(event);
+		var target = Event.getTarget(event);
+		for(var i=0;i<turnLi_len;i++){
+			turnLi[i].removeAttribute("class");
+		}
+		switch(target.id){
+			case "choose1" : 
+				turnLi[0].setAttribute("class","addBg");
+				break;
+			case "choose2" :
+				turnLi[1].setAttribute("class","addBg");
+				break;
+			case "choose3" :
+				turnLi[2].setAttribute("class","addBg");
+				break;
+		}
+	});
+}
+
+addEventLoad(turnBgPic);
+
+$(document).ready(function(){
+	$("#searchIn").find('button').click(function(){
+		var item=$("input:radio:checked");
+		if(item.val()=="qiuyi"){
+			$('#searchForm').attr('action','MediKnow');
+		}else if(item.val()=="wenyao"){
+			$('#searchForm').attr('action','SearchMedicine');
+		}else{
+			$('#searchForm').attr('action','SearchRegimen');
+		}
+		if($('#search_str').val()=='')
+			alert('请输入搜索词条！');
+		else{
+		$('#searchForm').submit();}
+	});
+});

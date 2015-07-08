@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="user" namespace="/user" extends="struts-default">
+	
+	    <action name="welcome">
+			<result>index.jsp</result>
+		</action>
+	    
+		<action name="user-regi">
+			<result>/WEB-INF/memb/register.jsp</result>
+		</action>
+		<action name="user-regi-chec" class="com.netmed.action.member.MembRegiAction">
+			<result name="success" type="redirectAction">
+ 			  <param name="namespace">/</param> 
+			  <param name="actionName">welcome</param>
+			</result>
+			<result name="error">/test/error.jsp</result>
+		</action>
+		<action name="user-center">
+			<result>/WEB-INF/center/centerFrame.jsp</result>
+		</action>
+		<!-- 会员中心左边 -->
+		<action name="center-left">
+            <result>/WEB-INF/left/membLeft.jsp</result>
+        </action>
+        <action name="OfflineConsultFormBriefForUserRead"	class="com.netmed.action.member.OfflineConsultAction" method="getBriefListForRead">
+		</action>
+		<action name="ElectronicRecordActionForUserRead" class="com.netmed.action.member.OfflineConsultAction" method="getElectronicRecordForRead"></action>
+		<!-- 获取离线表单详细信息 -->
+		<action name="OfflineConsultFormDetailForUserRead">
+			<result>/WEB-INF/memb/offlineConsultFormForRead.jsp</result>
+		</action>
+         <!-- ***********************会员中心Action结构*********************** -->
+        <!--                   @表示第一级菜单								  -->
+        <!--                   #表示第二级菜单								  -->
+        <!--                   $表示第三级菜单								  -->
+        <!-- ************************************************************ -->
+		<!--@ 我的中心 -->
+		<action name="wodeCen">
+			<result>/WEB-INF/memb/wodeCen.jsp</result>
+		</action>
+		<action name="getMembCenData" class="com.netmed.action.expert.ExpeLoginAction" method="getMembCenData"></action>
+		<action name="upload">
+			<result>/WEB-INF/memb/upload.jsp</result>
+		</action>
+			<!-- #修改我的头像 -->
+			<action name="uploadImg" class="com.netmed.action.member.UserImgUploadAction" method="uploadHeadImg">
+<!-- 			     <param name="savePath">/ImageFile</param>  -->
+		         <param name="fileUpload.maximumSize">512000</param> 
+				<result name="success" type="freemarker">/WEB-INF/memb/uploadSuccess.jsp</result>
+				<result name="input">/WEB-INF/memb/upload.jsp</result>
+			</action>
+			
+        <!-- ********************************************** -->
+		<!--@ 医疗服务 -->
+		<!-- #我的医生 -->
+		<action name="wodeDoc">
+			<result>/WEB-INF/memb/yiliaoSer/wodeDoc.jsp</result>
+		</action>
+				<!-- $全部医生 -->
+				<action name="allDoctor" class="com.netmed.action.member.MyDoctorAction">
+				</action>
+				<!-- $互动医生 -->
+				<action name="hudongDoctor">
+					<result>/WEB-INF/memb/yiliaoSer/opts/hudongDoctor.jsp</result>
+				</action>
+		<!-- #患友会 -->
+		<action name="huanyouSoc">
+			<result>/WEB-INF/memb/yiliaoSer/huanyouSoc.jsp</result>
+		</action>
+		<!-- #就医经验 -->
+		<action name="jiuyiExp">
+			<result>/WEB-INF/memb/yiliaoSer/jiuyiExp/jiuyiExp.jsp</result>
+		</action>
+		<action name="NewJiuyiExpAction">
+			<result>/WEB-INF/memb/yiliaoSer/jiuyiExp/newjiuyiExp.jsp</result>
+		</action>
+		<action name="UpdateJiuyiExpAction">
+			<result>/WEB-INF/memb/yiliaoSer/jiuyiExp/updatejiuyiExp.jsp</result>
+		</action>
+		<action name="JiuyiExpListAction" class="com.netmed.action.member.JiuyiExpAction" method="getBriefListForRead"></action>
+		
+		<action name="AddJiuyiExp" class="com.netmed.action.member.JiuyiExpAction" method="AddJiuyiExp">
+		   <result name="success">/WEB-INF/memb/yiliaoSer/jiuyiExp/jiuyiExp.jsp</result>
+		   <result name="error">/WEB-INF/memb/yiliaoSer/jiuyiExp/newjiuyiExp.jsp</result>
+		</action>
+		<action name="UpdateJiuyiExp" class="com.netmed.action.member.JiuyiExpAction" method="UpdateJiuyiExp">
+<!-- 		   <result name="success">/WEB-INF/memb/yiliaoSer/jiuyiExp/jiuyiExp.jsp</result> -->
+<!-- 		   <result name="error">/WEB-INF/memb/yiliaoSer/jiuyiExp/updatejiuyiExp.jsp</result> -->
+		</action>
+		<action name="DeleteJiuyiExp" class="com.netmed.action.member.JiuyiExpAction" method="DeleteJiuyiExp"></action>
+		<action name="OpenJiuyiExp" >
+		   <result>/WEB-INF/memb/yiliaoSer/jiuyiExp/OpenjiuyiExp.jsp</result>	
+		</action>
+		<action name="JiuyiExpForRead" class="com.netmed.action.member.JiuyiExpAction" method="getJiuyiExpForRead">	</action>
+        <!-- ********************************************** -->
+        <!--@可穿戴设备-->
+        <!--#我的血压-->
+        <action name="myBloodPressure">
+        <result>/WEB-INF/memb/wearableDevices/myBloodPressure.jsp</result>
+        </action>
+		<!--@疾病管理 -->
+		<!--#疾病管理日志 -->
+		<action name="jibingMan">
+			<result>/WEB-INF/memb/jibingMan/JiBMan.jsp</result>
+		</action>
+		
+        <!-- ********************************************** -->
+		<!-- @养生天地 -->
+		<!-- #养生有道 -->
+		<action name="yangshengTao">
+			<result>/WEB-INF/memb/yangshengTao/yangshengTao.jsp</result>
+		</action>
+		<action name="dingyue">
+			<result>/WEB-INF/memb/yangshengTao/dingyue.jsp</result>
+		</action>
+		
+        <!-- ********************************************** -->
+		<!-- @收藏 -->
+		<!-- #我的收藏 -->
+		<!-- 文章收藏 -->
+		<action name="articleCol">
+		    <result>/WEB-INF/memb/collection/articleCol.jsp</result>
+		</action>
+		<action name="wodeCol">
+			<result>/WEB-INF/memb/collection/wodeCol.jsp</result>
+		</action>
+		<!-- #医生动态 -->
+		<action name="yishengAct">
+			<result>/WEB-INF/memb/collection/yishengAct.jsp</result>
+		</action>
+		
+        <!-- ********************************************** -->
+		<!-- @我的账户 -->
+		<!-- #财务管理 -->
+		<action name="caiwuMan">
+			<result>/WEB-INF/memb/wodeCount/caiwuMan.jsp</result>
+		</action>
+		<!-- #积分管理 -->
+		<action name="jifenMan">
+			<result>/WEB-INF/memb/wodeCount/jifenMan.jsp</result>
+		</action>
+		<!-- #个人信息管理 -->
+		<action name="gerenInfo">
+			<result>/WEB-INF/memb/wodeCount/gerenInfo.jsp</result>
+		</action>
+		<action name="GetPersonInfoAction" class="com.netmed.action.member.MembLoginAction" method="getPersonInfo"></action>
+		<action name="UpdatePersonInfoAction" class="com.netmed.action.member.MembLoginAction" method="updatePersonInfo">
+		   <result name="error">/test/error.jsp</result>
+		</action>
+		<!-- #修改密码 -->
+		<action name="passChange">
+			<result>/WEB-INF/memb/wodeCount/passChange.jsp</result>
+		</action>
+		<action name="EnsurePassAction" class="com.netmed.action.member.MembLoginAction" method="ensurePass"></action>
+		<action name="UpdatePassAction" class="com.netmed.action.member.MembLoginAction" method="updatePass"></action>
+		
+        <!-- ********************************************** -->
+		<!-- @通知中心 -->
+		<!-- #收件箱 -->
+		<action name="inBox">
+			<result>/WEB-INF/memb/messages/inBox.jsp</result>
+		</action>
+	    <action name="aticleRecommend">
+	       	<result>/WEB-INF/memb/messages/aticleRecommend.jsp</result>
+	    </action>
+		<!-- ***********************会员中心Action结束*********************** -->
+		<action name="FileDownloadAction" class="com.netmed.action.member.FileDownloadAction">
+          <result type="stream" name="success">
+             <param name="bufferSize">40960</param>   	
+             <param name="contentDisposition">attachment;filename="${downloadFileName}"</param>  
+               <param name="inputName">downloadFile</param> 
+             </result>
+        </action>	
+		<action name="OfflineConsultAction" class="com.netmed.action.member.OfflineConsultAction" method="DealFormAndFile">
+		
+		     <param name="savePath">/MemberUploadFile</param> 
+		     <param name="fileUpload.maximumSize">223434555</param> 
+<!--  		    <interceptor-ref name="defaultStack">  -->
+<!-- 			     <param name="fileUpload.allowedTypes">image/png,image/gif,image/jpeg,image/jpg,application/pdf</param>  -->
+<!-- 		          <param name="fileUpload.maximumSize">223434555</param>   -->
+<!--  			     <param name="fileUpload.allowedExtensions">txt,excel,ppt</param>  -->
+<!--  		    </interceptor-ref>    -->
+		     
+			<result name="success" type="redirectAction">user-center</result>
+			<result name="error" type="redirectAction">user-center</result>
+		</action>
+		
+		<action name="addofflineConsultForm">
+			<result>/WEB-INF/memb/offlineConsultForm.jsp</result>
+		</action>
+	</package>
+</struts>

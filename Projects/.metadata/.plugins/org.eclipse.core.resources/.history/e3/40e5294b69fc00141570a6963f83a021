@@ -1,0 +1,28 @@
+package com.Bean;
+
+import java.io.PrintWriter;
+
+import org.aopalliance.intercept.Invocation;
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.Result;
+import com.opensymphony.xwork2.util.ValueStack;
+
+public class JSONResult implements Result {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6575694923065195002L;
+
+	@Override
+	public void execute(ActionInvocation invocation) throws Exception {
+		// TODO Auto-generated method stub
+		ServletActionContext.getResponse().setContentType("text/plain");
+		PrintWriter responseStream=ServletActionContext.getResponse().getWriter();
+		ValueStack valueStack=invocation.getStack();
+		
+	}
+
+}

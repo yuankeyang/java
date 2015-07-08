@@ -1,0 +1,275 @@
+body{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: "FangSong",仿宋;
+}
+
+#bodycnt{
+	width: 1200px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#head{
+	background:url(../imgs/membercenter/bg-01.jpg) no-repeat;
+	height: 390px;
+}
+#head .nav{
+	height: 170px;
+	background:url(../imgs/membercenter/headerBg.png) repeat-x;
+}
+.logo{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.logo,.nav-1{
+	float: left;
+}
+.nav-1,.nav-2{
+	margin-top: 20px;
+}
+.nav-2{
+	float: right;
+}
+.name,.logout{
+	text-decoration: none;
+	color: #000;
+	line-height: 20px;
+	height: 35px;
+	display: inline-block;
+	background:url(../imgs/membercenter/shadow.png) no-repeat bottom center;
+	padding: 0 5px;
+	margin-right: 10px;
+}
+.logout{
+	margin-right: 70px;
+}
+
+#menu{
+	margin-left: 10px;
+	height: 200px;
+}
+
+#menu .ul-1{
+	list-style: none;
+	overflow: hidden;
+}
+#menu .ul-1 li{
+	margin-left: 30px;
+	float: left;
+	background:url(../imgs/membercenter/menu-bg.png) no-repeat bottom left;
+	padding-left: 20px;
+	height: 200px;
+}
+
+#menu .ul-1 a{
+	background:url(../imgs/membercenter/menu-top2-bg.png) no-repeat top right;
+	display:inline;
+	margin-left:4px;
+	width:20px;
+	display: inline-block;
+	font-size: 20px;
+	text-decoration: none;
+	color: #000;
+	margin-top: 30px;
+	margin-left: 20px;
+	vertical-align: top;
+	font-weight: bold;
+	padding: 7px 0px;
+}
+#menu .ul-1 span{
+	background:url(../imgs/membercenter/menu-bottom2-bg.png) no-repeat bottom left;
+	display: inline-block;
+	padding: 0px 0px 8px 0px;
+}
+
+#menu .ul-1 h2{
+	height: 200px;
+	display:inline;
+	margin-left:4px;
+	width:29px;
+	display: inline-block;
+	font-size: 28px;
+	padding: 0px;
+	margin: 0px;
+	padding-top:8px; 
+	background:url(../imgs/membercenter/menu-top2-bg.png) no-repeat top right;
+}
+.cw{
+	font-size: 36px;
+	margin-top: -40px;
+	margin-left: 500px;
+	font-weight: bold;
+}
+
+#content{
+	margin-top: 50px;
+	overflow: hidden;
+}
+
+#primary,#secondary{
+	float: left;
+}
+
+#primary{
+	width: 290px;
+	border:#C9B28B solid 1px;
+	overflow: hidden;
+	/*margin-left: 50px;*/
+}
+#primary .icon{
+	background:#C9B28B url(../imgs/membercenter/icon.png) no-repeat center center;
+	height: 290px;
+	width: 100%;
+
+}
+#primary #icon{
+	margin:0;
+	padding:0;
+	height: 290px;
+	width: 100%;
+}
+#primary .welcome{
+	height: 120px;
+	font-size: 28px;
+	line-height: 120px;
+	padding-left: 20px;
+}
+#primary .edit{
+	height: 120px;
+	padding-left: 20px;
+}
+#primary .edit-bnt{
+	border-radius: 8px;
+	background-color: #C9B28B;
+	width: 100px;
+	height: 40px;
+	color: #fff;
+	font-size: 24px;
+	text-decoration: none;
+	padding: 10px;
+}
+#primary .ul-2{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border-top: solid 1px #C9B28B; 
+}
+
+.point,.balance{
+	height: 120px;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	background:url(../imgs/membercenter/line.png) no-repeat bottom center;
+}
+.rate{
+	margin-bottom: 50px;
+}
+.point img,.balance img,.rate img{
+	margin-top: 30px;
+	float: left;
+	margin-left: 20px;
+}
+.point div,.balance div,.rate div{
+	padding-top: 30px;
+}
+.point a,.balance a,.rate a{
+	color: #000;
+	font-size: 20px;
+	display: inline-block;
+	height: 62px;
+	line-height: 62px;
+	text-decoration: none;
+	padding-left: 10px;
+	padding-right: 30px;
+	font-weight: bold;
+}
+.point span,.balance span,.rate span{
+	color: #C9B28B;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+#secondry{
+	float: left;
+	width: 800px;
+	margin-left: 50px;
+}
+#secondry iframe{}
+.top-main{
+	background: url(../imgs/membercenter/left.png) no-repeat center left;
+}
+.top-main h2{
+	background: url(../imgs/membercenter/right.png) no-repeat center right;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#footer{
+	background: url(../imgs/membercenter/footer_bg.png) repeat-x center right;
+	width: 100%;
+	height: 80px;
+	text-align: center;
+	padding-top: 100px;
+	color: #fff;
+	margin-top:50px;
+}
+.tab-main .tab .shoucang{
+	width: 67px;
+	height: 67px;
+	display: inline-block;
+	background: url(../imgs/membercenter/tab-unhover.png) no-repeat center right;
+	text-decoration: none;
+	font-size: 28px;
+	color: #000;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+}
+.tab-main .tab .hudong{
+	width: 70px;
+	height: 90px;
+	display: inline-block;
+	background: url(../imgs/membercenter/tab-hover.png) no-repeat center right;
+	text-decoration: none;
+	font-size: 28px;
+	color: #000;
+	font-weight: bold;
+	margin-left: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+.tab-main .inner-main{
+	width: 820px;
+	overflow: hidden;
+	border:solid 1px #C9B28B;
+}
+.tab-main .inner-main ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.tab-main .inner-main li{
+	height: 130px;
+	width: 100%;
+	background: url(../imgs/membercenter/line-2.png) no-repeat bottom center;
+}
+.tab-main .inner-main img{
+	margin-top: 20px;
+	margin-left: 20px;
+	height: 80px;
+	float: left;
+}
+
+.tab-main .inner-main a{
+	text-decoration: none;
+	font-size: 18px;
+	display: block;
+	height: 80px;
+	color: #000;
+	float: left;
+	margin-top: 30px;
+	margin-left: 20px;
+}

@@ -1,0 +1,81 @@
+package com.netmed.action.member;
+
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.netmed.dao.MembRegiDAO;
+import com.netmed.dao.MembRegiDAO;
+import com.netmed.pojo.MembRegi;
+import com.netmed.pojo.MembRegi;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**类<code>MembLoginAction</code>
+ * 会员登录的action
+ * @author yang
+ * @version 1.0
+ *
+ */
+public class MembLoginAction extends ActionSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7714303460118401449L;
+
+//	/**方法<code>isLegal</code>
+//	 * 检查用户、密码是否合法，用户名（5-15位）由英文字母、数字、下划线组成，数字不能打头
+//	 * 返回1表示用户名非法，返回2表示密码非法，否则返回0
+//	 * @param username
+//	 * @param password
+//	 * @return int
+//	 */
+//	public int isLegal(String username,String password) {
+//		String namereg="^[a-zA-Z_][a-zA-Z0-9_]{4,14}$";
+//		String pwdreg="^[a-zA-Z0-9]{5,15}$";
+//		Pattern p1=Pattern.compile(namereg);
+//		Pattern p2=Pattern.compile(pwdreg);
+//		Matcher	m1=p1.matcher(username);
+//		Matcher	m2=p2.matcher(password);
+//		if(!m1.matches()){
+//			return 1;
+//		}
+//		if(!m2.matches()){
+//			return 2;
+//		}
+//		return 0;
+//	}
+
+	/** 方法<code>execute</code>
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
+	@Override
+	public String execute() throws Exception {
+		ApplicationContext otx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		DaoMemb_regi dao=(DaoMemb_regi)otx.getBean("DaoMenb_regi");
+		
+		//MembRegiDAO dao=new MembRegiDAO();
+		HttpServletRequest request=ServletActionContext.getRequest();
+		String username=(String)request.getParameter("username");
+		String password=(String)request.getParameter("password");
+		System.out.println(username);
+		System.out.println(password);
+		if(dao.checkLogin(username, password)){
+			HttpSession session=request.getSession();
+			session.setAttribute("username", username);
+			dao.setState(username, Boolean.TRUE);
+		return SUCCESS;
+		}
+		else
+			return ERROR;
+	}
+}

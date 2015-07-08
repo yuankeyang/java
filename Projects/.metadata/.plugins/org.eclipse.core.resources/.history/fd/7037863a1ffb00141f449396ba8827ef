@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="网医" lastModify="2015-05-15-20:35">
+
+	<member name="杨元科">
+	<modifyPlace id="1">
+	com.netmed.action.member.MembLoginAction，优化</modifyPlace>
+	<modifyPlace id="2">
+	com.netmed.dao.ExpeRegiDAO,方法regiExpe修改
+	</modifyPlace>
+	<modifyPlace id="3">
+	com.netmed.action.expe.ExpeRegiAction,方法execute修改
+	</modifyPlace>
+	<modifyPlace id="4">
+	com.netmed.action.expe.ExpeRegiAction,方法execute修改
+	</modifyPlace>
+	<modifyPlace id="5">
+	com.netmed.action.expe.ExpeRegiAction,方法execute修改
+	</modifyPlace>
+	</member>
+		</project>

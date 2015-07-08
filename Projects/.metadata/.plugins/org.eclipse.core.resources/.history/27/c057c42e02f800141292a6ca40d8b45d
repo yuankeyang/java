@@ -1,0 +1,98 @@
+package com.netmed.action.qiuyi;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
+
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.netmed.dao.CollectionDAO;
+import com.netmed.dao.MediKnowDAO;
+import com.netmed.pojo.Collection;
+import com.netmed.pojo.ExpeRegi;
+import com.netmed.pojo.MembRegi;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * 专家收藏与取消收藏
+ * 
+ * @author larch
+ * 
+ */
+public class CollectAction extends ActionSupport {
+	// 数据处理,把注册表单上传的数据存到数据库中
+	public String execute() {
+		System.out.println("运行到了服务器！");
+		// 取得reqeust对象
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		Map<String, Object> session = ServletActionContext.getContext()
+				.getSession();
+		System.out.println(session.get("username"));
+		PrintWriter out = null;
+		System.out.println("我进来了");
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			
+			System.out.println(new String(request.getParameter("collect").getBytes("iso8859-1"), "utf-8"));
+			String userId = new String(request.getParameter("userId").getBytes("iso8859-1"), "utf-8");
+			System.out.println(userId);
+			//"userId"
+			out = response.getWriter();
+
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String forward = "";
+		
+		//根据获得字段值：用户ID，专家ID和是否收藏，进行选择，收藏or取消收藏
+		ApplicationContext otx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		CollectionDAO dao = (CollectionDAO)otx.getBean("CollectionDAO");
+		
+		String collect;
+		try {
+			collect = new String(request.getParameter("collect").getBytes("iso8859-1"), "utf-8");
+			if(collect.equals("收藏")){
+				MembRegi membRegi=new MembRegi((String) session.get("username"));
+				ExpeRegi expeRegi=new ExpeRegi(new String(request.getParameter("userId").getBytes("iso8859-1"), "utf-8"));
+				Collection co=new Collection(expeRegi,membRegi,true);
+				dao.SaveCollection(co);
+				System.out.println("收藏"+expeRegi.getExpeId()+"成功！！！");
+				out.println("yes");
+			}
+			else{    //collect="取消收藏"
+				dao.CancelCollection(new String(request.getParameter("userId").getBytes("iso8859-1"), "utf-8"), (String) session.get("username"));
+				System.out.println("Action删除收藏成功！！！");
+				out.println("no");
+			}
+			out.flush();
+			out.close();
+			
+			forward = "success";
+					
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			forward = "error";
+		}
+		
+		System.out.println("forward:"+forward);
+		return forward;
+	}
+
+}

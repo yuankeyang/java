@@ -1,0 +1,127 @@
+package com.netmed.action.expert;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.ServletActionContext;
+import org.json.JSONException;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.netmed.dao.ScheduleDAO;
+import com.netmed.pojo.Schedule;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * @author 远客
+ *  专家日程安排表
+ */
+public class ScheduleDataAction extends ActionSupport {
+
+	private static final long serialVersionUID = 2862419854484121482L;
+	
+	public ScheduleDataAction() {
+		
+	}
+
+	@Override
+	public String execute() throws Exception {
+		
+		return SUCCESS;
+	}
+	
+	public String saveData() throws IOException {
+		
+		ApplicationContext otx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ScheduleDAO dao=(ScheduleDAO)otx.getBean("ScheduleDAO");
+		System.out.println("saveData");
+		HttpServletRequest request=ServletActionContext.getRequest();
+		HttpSession session= request.getSession();
+		String s=request.getParameter("jsonData");
+		String expe_id=new String(session.getAttribute("expename").toString().getBytes("iso8859-1"));
+		System.out.println(s);
+		try {
+			DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			org.json.JSONObject obj=new org.json.JSONObject(s);
+			System.out.println(obj);
+			String title=obj.get("title").toString();
+			System.out.println("title="+title);
+			String startStr=obj.get("start").toString();
+			System.out.println(obj);
+			Timestamp end=(Timestamp)obj.get("end");
+			String content=obj.get("description").toString();
+			System.out.println(start);
+			System.out.println(content);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String deleteData() {
+		System.out.println("deleteData");
+		return SUCCESS;
+	}
+	
+	/**获取专家日程安排信息**/
+	public String getData(){
+		
+		/**获取request对象和response对象**/
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		String forward = "success";
+		PrintWriter out = null;
+		
+		JSONObject result=new JSONObject();
+		JSONArray jsonArray=new JSONArray();
+		try{
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			ApplicationContext otx = new ClassPathXmlApplicationContext("applicationContext.xml");
+			ScheduleDAO dao=(ScheduleDAO)otx.getBean("ScheduleDAO");
+			HttpSession session=request.getSession();
+			String expeId=(String)session.getAttribute("expename");
+			String t=request.getParameter("t");
+			
+			System.out.println("t="+t);
+			String expe_id_=t;//预约功能
+			System.out.println(expe_id_);
+			if(expe_id_!=null){
+				expeId=expe_id_;
+			}
+			List<Schedule> list1=dao.getScheludeData(expeId);  /**专家安排信息**/
+			for(int j=0;j<list1.size();j++){
+				JSONObject json = new JSONObject();
+				json.put("id", list1.get(j).getId());
+				json.put("title", list1.get(j).getTitle());
+				json.put("starttime", list1.get(j).getStarttime().toString());
+				json.put("endtime", list1.get(j).getEndtime().toString());
+				json.put("content", list1.get(j).getContent());
+				jsonArray.add(json);
+			}
+			result.put("length", list1.size());
+			result.put("array", jsonArray);
+			out = response.getWriter();
+			out.println(result.toString());
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		out.flush();
+		out.close();
+		return forward;
+	}
+	
+}

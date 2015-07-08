@@ -1,0 +1,16 @@
+package com.netmed.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.Schedule;
+
+public class ScheduleDAO {
+	public List getScheludeData(String expeId){
+	Schedule[] s=null;
+	String hql="from Schedule schedule where schedule.expeRegi='"+expeId+"'";
+	Session session=HibernateSessionFactory.getSession();
+	}
+}

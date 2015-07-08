@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="expe" namespace="/expe" extends="struts-default">
+	
+	
+	<!-- 配置结果类型 -->
+	 <result-types>
+	<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+ 	</result-types> 
+	
+	
+		<action name="expe-regi">
+			<result>/WEB-INF/expe/register.jsp</result>
+		</action>
+		<action name="expe-regi-chec" class="com.netmed.action.expert.ExpeRegiAction">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="error">/test/error.jsp</result>
+		</action>
+		<!-- 专家中心 -->
+		<action name="expe-center">
+			<result>/WEB-INF/center/expeFrame.jsp</result>
+		</action>
+		<action name="center-left">
+			<result>/WEB-INF/left/expeLeft.jsp</result>
+		</action>
+		<!-- 我的中心 -->
+		<action name="wodeCen">
+			<result>/WEB-INF/expe/wodeCen.jsp</result>
+		</action>
+		<!-- 把下面的都放到expe文件夹下面吧，这样更清晰 -->
+		<!-- 日记管理 -->
+		<action name="diaryMan">
+			<result>/WEB-INF/expe/gerenMan/diaryMan/diaryMan.jsp</result>
+		</action>
+		<action name="NewDiaryAction">
+			<result>/WEB-INF/expe/gerenMan/diaryMan/newDiary.jsp</result>
+		</action>
+		<action name="UpdateDiaryAction">
+			<result>/WEB-INF/expe/gerenMan/diaryMan/updateDiary.jsp</result>
+		</action>
+		<action name="DiaryListAction" class="com.netmed.action.expert.ExpertDiaryAction" method="getBriefListForRead"></action>
+		
+		<action name="AddDiary" class="com.netmed.action.expert.ExpertDiaryAction" method="AddDiary">
+		   <result name="success">/WEB-INF/expe/gerenMan/diaryMan/diaryMan.jsp</result>
+		   <result name="error">/WEB-INF/expe/gerenMan/diaryMan/newDiary.jsp</result>
+		</action>
+		<action name="UpdateDiary" class="com.netmed.action.expert.ExpertDiaryAction" method="UpdateDiary">	</action>
+		<action name="DeleteDiary" class="com.netmed.action.expert.ExpertDiaryAction" method="DeleteDiary"></action>
+		<action name="OpenDiary" >
+		   <result>/WEB-INF/expe/gerenMan/diaryMan/openDiary.jsp</result>	
+		</action>
+		<action name="DiaryForRead" class="com.netmed.action.expert.ExpertDiaryAction" method="getDiaryForRead">	</action>
+		
+		<!-- 文章管理 -->
+		<action name="articleMan">
+			<result>/WEB-INF/expe/gerenMan/articleMan/articleMan.jsp</result>
+		</action>
+		<action name="NewArticleAction">
+			<result>/WEB-INF/expe/gerenMan/articleMan/newArticle.jsp</result>
+		</action>
+		<action name="UpdateArticleAction">
+			<result>/WEB-INF/expe/gerenMan/articleMan/updateArticle.jsp</result>
+		</action>
+		<action name="ArticleListAction" class="com.netmed.action.expert.ExpertArticleAction" method="getBriefListForRead"></action>
+		
+		<action name="AddArticle" class="com.netmed.action.expert.ExpertArticleAction" method="AddArticle">
+		   <result name="success">/WEB-INF/expe/gerenMan/articleMan/articleMan.jsp</result>
+		   <result name="error">/WEB-INF/expe/gerenMan/articleMan/newArticle.jsp</result>
+		</action>
+		<action name="UpdateArticle" class="com.netmed.action.expert.ExpertArticleAction" method="UpdateArticle">	</action>
+		<action name="DeleteArticle" class="com.netmed.action.expert.ExpertArticleAction" method="DeleteArticle"></action>
+		<action name="OpenArticle" >
+		   <result>/WEB-INF/expe/gerenMan/articleMan/openArticle.jsp</result>	
+		</action>
+		<action name="ArticleForRead" class="com.netmed.action.expert.ExpertArticleAction" method="getArticleForRead">	</action>
+		<!-- 日程安排 -->
+		<action name="scheduleArr">
+			<result>/WEB-INF/expe/gerenMan/scheduleArr.jsp</result>
+		</action>
+		<!-- 我的服务 -->
+		<action name="myservice">
+			<result>/WEB-INF/expe/gerenMan/myservice.jsp</result>
+		</action>
+
+		<!-- 我的账户 -->
+		<action name="caiwuMan">
+			<result>/WEB-INF/expe/wodeCount/caiwuMan.jsp</result>
+		</action>
+		<!-- #积分管理 -->
+		<action name="jifenMan">
+			<result>/WEB-INF/expe/wodeCount/jifenMan.jsp</result>
+		</action>
+		<!-- #个人信息管理 -->
+		<action name="gerenInfo">
+			<result>/WEB-INF/expe/wodeCount/gerenInfo.jsp</result>
+		</action>
+		<!-- #密码修改 -->
+		<action name="passChange">
+			<result>/WEB-INF/expe/wodeCount/passChange.jsp</result>
+		</action>
+		<!-- 通讯录 -->
+		<action name="huanyouSoc">
+			<result>/WEB-INF/expe/tongXunLu/huanyouSoc.jsp</result>
+		</action>
+		<!-- 通知中心 -->
+		<action name="inBox">
+			<result>/WEB-INF/expe/messages/inBox.jsp</result>
+		</action>
+		<action name="publicAnn">
+			<result>/WEB-INF/expe/messages/publicAnn.jsp</result>
+		</action>
+		<action name="noreadBox">
+			<result>/WEB-INF/expe/messages/noreadBox.jsp</result>
+		</action>
+		<!-- 获取离线表单简略信息 -->
+		<action name="OfflineConsultFormBrief"
+			class="com.netmed.action.expert.DoctorOfflineConsultAction" method="getBriefList">
+		</action>
+		<action name="OfflineConsultFormBriefForRead"
+			class="com.netmed.action.expert.DoctorOfflineConsultAction" method="getBriefListForRead">
+		</action>
+		<!-- 获取离线表单详细信息 -->
+		<action name="OfflineConsultFormDetail">
+			<result>/WEB-INF/expe/DoctorOfflineConsultForm.jsp</result>
+		</action>
+		<!-- 获取离线表单详细信息 -->
+		<action name="OfflineConsultFormDetailForRead">
+			<result>/WEB-INF/expe/DoctorOfflineConsultFormForRead.jsp</result>
+		</action>
+
+		<action name="ElectronicRecordAction" class="com.netmed.action.expert.DoctorOfflineConsultAction" method="getElectronicRecord"></action>
+		<action name="ElectronicRecordActionForRead" class="com.netmed.action.expert.DoctorOfflineConsultAction" method="getElectronicRecordForRead"></action>
+        <action name="MidecalZhengAction" class="com.netmed.action.expert.DoctorOfflineConsultAction" method="getMidecalZheng"></action>
+        <action name="FileDownloadAction" class="com.netmed.action.expert.FileDownloadAction">
+          <result type="stream" name="success">
+             <param name="bufferSize">40960</param>   	
+             <param name="contentDisposition">attachment;filename="${downloadFileName}"</param>  
+               <param name="inputName">downloadFile</param> 
+             </result>
+        </action>	
+		<action name="DoctorOfflineConsultAction"
+			class="com.netmed.action.expert.DoctorOfflineConsultAction">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="error">/test/error.jsp</result>
+		</action>
+		
+		<!-- 专家日程管理，获取后台数据 -->
+		<action name="*ScheduleData" class="com.netmed.action.expert.ScheduleDataAction"
+		method="{1}Data">
+		<result type="json">
+		<param name="root">userList</param>
+		</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,38 @@
+package com.netmed.action.expert;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.netmed.dao.ExpeRegiDAO;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class ExpeLoginAction extends ActionSupport{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4785208146902186608L;
+
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		ExpeRegiDAO dao=new ExpeRegiDAO();
+		HttpServletRequest request=ServletActionContext.getRequest();
+		String username=(String)request.getParameter("username");
+		String password=(String)request.getParameter("password");
+		if(dao.checkLogin(username, password)){
+//			HttpServletRequest request1=ServletActionContext.getRequest();
+			HttpSession session=request.getSession();
+//			session.setAttribute("username", username);
+			session.setAttribute("expename", username);
+//			dao.setState(username, Boolean.TRUE);
+		return SUCCESS;
+		}
+		else{
+			return ERROR;
+			}
+	}
+
+}

@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.sql.*" %>
+<jsp:useBean id="dbmanager" class="com.Bean.db_manager"></jsp:useBean>
+<%
+String username=(String)session.getAttribute("username");
+String sql="select * from memb_regi where memb_id='"+username+"'";
+ResultSet rs=dbmanager.query(sql);
+String phoneNum=null;
+String mail=null;
+if(rs.next()){
+	phoneNum=new String(rs.getString("phon_numb"));
+	mail=new String(rs.getString("memb_emai"));
+	dbmanager.dbclose();
+	session.setAttribute("phoneNum", phoneNum);
+	session.setAttribute("mail", mail);
+	%>
+	<div>
+	<script>
+	function change(){
+		hobj=$.ajax({
+			url:'gerenInfoFix',
+			success:function(){},
+			error:function(){alert("加载信息错误");},
+			async:false
+			});
+		$(".usercenter_con").html(hobj.responseText);
+	}
+	</script>
+<table id="show" border="1" style="font-size:20px">
+	<tr><th>昵称</th><td><label><%=username %></label></td></tr>
+	<tr><th>手机号码</th><td><label><%=phoneNum %></label></td></tr>
+	<tr><th>邮箱</th><td><label><%=mail %></label></td></tr>
+	<tr><td colspan="2"><input onclick="change()" type="button" value="修改"></td></tr>
+</table>
+
+</div>
+	<%}else{%>
+	<div>
+	<h1>查询失败！！！</h1>
+	<p>请稍后再试一下~~~</p>
+	</div>
+<%}%>

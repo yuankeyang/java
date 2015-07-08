@@ -1,0 +1,21 @@
+package com.netmed.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.Collection;
+
+public class ExpeTypeDAO {
+//  保存收藏！！！
+	public int SaveExpeType(ExpeType expetype){
+		Session session=HibernateSessionFactory.getSession();
+		Transaction tran=session.beginTransaction();
+		session.save(collection);
+		tran.commit();
+		session.close();
+		System.out.println("保存收藏成功！！");
+		return collection.getId();
+	}
+	
+}

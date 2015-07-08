@@ -1,0 +1,193 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+String templateUrl = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+request.setAttribute("url", templateUrl);
+String search_str=new String(request.getParameter("search_str").getBytes("iso8859-1"),"utf-8");
+String searchSelect ="qiuyi";
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<jsp:include page="/WEB-INF/include/head.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="${url}/css0623/mediKnowDetail.css"/>
+<script charset="utf-8" type="text/javascript">
+var mediName;
+$(document).ready(function(){
+    //搜索类型为医生时
+	if("<%=search_str%>"!=""&&"<%=searchSelect%>"=="qiuyi"){
+		search_doctor();
+		$("#turnBg li[id=choose1]").attr("class","addBg");
+		$("#searchSelect").val("<%=searchSelect%>");
+	}
+    
+	$("#turnBg li").each(function(){
+		$(this).click(function(){
+		$(this).siblings(".addBg").removeClass("addBg");
+		$(this).attr("class","addBg");
+		$("#searchSelect").val($(this).attr("value"));
+		});
+		});
+	$("#searchIn").find("input[type=button]").click(function(){
+		var item=$("#turnBg .addBg").attr("value");
+		if(item=="qiuyi"){
+			$('#searchIn').attr('action','MediKnow');
+		}else if(item=="wenyao"){
+			$('#searchIn').attr('action','SearchMedicine');
+		}else{
+			$('#searchIn').attr('action','SearchRegimen');
+		}
+		if($('#search_str').val()=='')
+			alert('请输入搜索词条！');
+		else{
+		$('#searchIn').submit();}
+	});
+	$(".experts a").click(function () {
+		//alert($(this).attr("id"));
+		if($(this).attr("id")=="intelligenBtn"){
+			if($('#system_hit1').val()=="失眠")
+			  $(this).attr("href","intelligent_query?search_str=" + $('#system_hit1').val()+"&searchSelect="+$('#searchSelect').val());
+			else{
+			  alert('目前只能咨询失眠');
+			  return;
+			}
+		}else {
+			$(this).attr("href","expert_recommendation?search_str=" + $('#system_hit1').val()+"&searchSelect="+$('#searchSelect').val());
+		}
+		document.getElementById($(this).attr("id")).click();
+	});
+});
+
+function search_doctor(){
+  $.ajax({
+     url : '<%=templateUrl%>/MediKnowServletAction',
+	 type : 'POST',
+	 data:"search_str="+$('#search_str').val(),
+	 contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+	 dataType : 'json',
+	 timeout : 25000,
+	 cache : true,
+	 beforeSend : LoadFunction, //加载执行方法  
+	 error : erryFunction, //错误执行方法  
+	 complete : conFunction,
+	 success : succFunction
+			//成功执行方法  
+	});
+	function LoadFunction() {
+		
+	}
+	function erryFunction() {
+	    //alert("请等待3秒后刷新页面");
+	}
+	function conFunction() {
+	}
+	function succFunction(data) {
+		 
+		 if(data.mediSize==0){
+			 $("#nothing").hide();
+			 $("#system_hit1").val('<%=search_str%>');
+			 document.getElementById("system_hit2").innerHTML=document.getElementById("search_str").value;
+			 $("#mediknowcont").html("<p>"+"无此名词和相应信息，请重新输入正确词条，谢谢"+"</p>");
+		 }else{
+			 mediName=data.mediknow[0].knowName;
+			 //$("#search_str").val(mediName);
+			 document.getElementById("system_hit1").innerHTML=mediName;
+			 $("#system_hit1").val(mediName);
+			 document.getElementById("system_hit2").innerHTML=mediName;
+			 $("#mediknowcont").html("<p>"+data.mediknow[0].knowCont+"</p>");
+		 }
+    }    
+}
+
+</script>
+
+<title>医学解释</title>
+</head>
+<body>
+	<!--顶部背景-->
+	<div class="topCon">
+		<img class="bg-01" src="imgs/bg-01.jpg"/>
+		<span class="headerBg"></span>
+		<!--内容-->
+		<div class="indexCon">
+			<a href="welcome"><img class="logo" src="imgs/logo.png"/></a>
+			<p class="callCen">
+				健康咨询平台
+			</p>
+			<ul>
+<jsp:include page="/WEB-INF/include/topbar.jsp"></jsp:include>
+			</ul>
+		</div>
+		<!--切换-->
+		<div class="indexFind">
+			<ul id="turnBg">
+				<li id="choose1" value="qiuyi">
+					<div id="choose1" class="con" >
+						<img id="choose1" class="top" src="imgs/nav_braceTop.png"/>
+						<span id="choose1">求医</span>
+						<img  id="choose1" class="bottom" src="imgs/nav_bracebottom.png"/>
+					</div>
+				</li>
+				<li id="choose2" value="wenyao">
+					<div class="con" id="choose2">
+						<img id="choose2" class="top" src="imgs/nav_braceTop.png"/>
+						<span id="choose2">问药</span>
+						<img id="choose2" class="bottom" src="imgs/nav_bracebottom.png"/>
+					</div>
+				</li>
+				<li id="choose3"  value="yangsheng">
+					<div id="choose3" class="con">
+						<img id="choose3" class="top" src="imgs/nav_braceTop.png"/>
+						<span id="choose3">养生</span>
+						<img id="choose3" class="bottom" src="imgs/nav_bracebottom.png"/>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--搜索-->
+		<form  method="get" id="searchIn">
+			<input type="text" name="search_str" id="search_str" value="<%=search_str%>"/>
+			<input type="hidden" name = "searchSelect" value="qiuyi" id="searchSelect"/>
+			<input type="button" value="搜索"/>
+		</form>
+	</div>
+	<!--病症-->
+	<div class="pain">
+		<p class="isFind" id="nothing">您是不是要找:[<label id="system_hit1"></label>]</p>
+		<div class="painCon">
+			<p class="painName">[<label id="system_hit2"></label>]</p>
+			<p class="painEx">[医学词条解释]</p>
+			<div class="painExCon" id="mediknowcont"></div>
+			<!-- <div class="painExCon">
+				<p>失眠按原因可划分为原发性和继承性两类</p>
+				<p class="painExConTitle">1.原发性失眠</p>
+				<p>通常缺少明确病因，或在排除可能引起失眠的病因后仍遗留失眠症状，主要包括心理生理性失眠、特发性失眠和主观性失眠3种类型。原发性失眠的诊断缺乏特异性指标，主要是一种排除性诊断。当可能引起失眠的病因被排除或治愈以后，仍遗留失眠症状时即可考虑为原发性失眠。心理生理性失眠在临床上发现其病因都可以溯源为某一个或长期事件对患者大脑边缘系统功能稳定性的影响，边缘系统功能的稳定性失衡最终导致了大脑睡眠功能的紊乱，失眠发生。</p>
+				<p class="painExConTitle">2.继发性失眠</p>
+				<p>包括由于躯体疾病、精神障碍、药物滥用等引起的失眠，以及与睡眠呼吸紊乱、睡眠运动障碍等相关的失眠。失眠常与其他疾病同时发生，有时很难确定这些疾病与失眠之间的因果关系，故近年来提出共病性失眠的概念，用以描述那些同时伴随其他疾病的失眠。</p>
+			</div>
+			<p class="painAction">[临床表现]</p>
+			<div class="painExCon">
+				<p>失眠患者的临床表现主要有以下方面：</p>
+				<p class="painExConTitle">1.睡眠过程的障碍</p>
+				<p>入睡困难、睡眠质量下降和睡眠时间减少。</p>
+				<p class="painExConTitle">2.日间认知功能障碍</p>
+				<p>记忆功能下降、注意功能下降、计划功能下降从而导致白天困倦，工作能力下降，在停止工作时容易出现日间嗜睡现象。</p>
+				<p class="painExConTitle">3.大脑边缘系统及其周围的植物神经功能紊乱</p>
+				<p>心血管系统表现为胸闷、心悸、血压不稳定，周围血管收缩扩展障碍；消化系统表现为便秘或腹泻、胃部闷胀；运动系统表现为颈肩部肌肉紧张、头痛和腰痛。情绪控制能力减低，容易生气或者不开心；男性容易出现阳萎，女性常出现性功能减低等表现。</p>
+			</div>
+			<p class="painOther">[就诊科室]<span>精神科</span></p>
+			<p class="painOther">[常见病因]<span>大脑睡眠功能紊乱，躯体疾病，精神障碍</span></p>
+			<p class="painOther">[常见症状]<span>入睡困难，睡眠质量下降和睡眠时间减少</span></p>
+			 -->
+			<!--专家栏-->
+			<div class="experts">
+				<a id="intelligenBtn" >智能咨询</a>
+				<a id="expert_recommendBtn" style="margin-right:0px;">专家推荐</a>
+			</div>
+		</div>
+	</div>
+<jsp:include page="/WEB-INF/include/login.jsp"></jsp:include>
+</body>
+
+</html>

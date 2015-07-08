@@ -1,0 +1,15 @@
+package com.netmed.action.qiuyi;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class ExpeServPricAction extends ActionSupport {
+	private String price;
+	
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		
+		return super.execute();
+	}
+
+}

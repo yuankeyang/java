@@ -1,0 +1,181 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+String templateUrl = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+request.setAttribute("url", templateUrl);
+//String search_str=request.getParameter("search_str");
+String search_str=new String(request.getParameter("search_str").getBytes("iso8859-1"),"utf-8");
+System.out.println(search_str);
+
+%>
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<jsp:include page="../../include/topbarhead.jsp"></jsp:include>
+<link href="${url}/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="${url}/css/main.css" />
+
+<script charset="utf-8" type="text/javascript">
+var mediName;
+$(document).ready(function(){
+    //搜索类型为医生时
+	if("<%=search_str%>"!=""&&"<%=searchSelect%>"=="qiuyi"){
+		search_doctor();
+	}
+	
+	$('#intelligenBtn').click(function(){
+	if(mediName=="失眠")
+	$('#intelligent_query_form').submit();
+	else
+	alert('目前只能咨询失眠');
+	});
+});
+
+
+function search_doctor(){
+  $.ajax({
+     url : '<%=templateUrl%>/MediKnowServletAction',
+	 type : 'POST',
+	 data:"search_str="+$('#search_str').val(),
+	 contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+	 dataType : 'json',
+	 timeout : 25000,
+	 cache : true,
+	 beforeSend : LoadFunction, //加载执行方法  
+	 error : erryFunction, //错误执行方法  
+	 complete : conFunction,
+	 success : succFunction
+			//成功执行方法  
+	});
+	function LoadFunction() {
+	   // alert("dfdfd");
+		
+		// $(".pager").hide();
+	}
+	function erryFunction() {
+	    alert("请等待3秒后刷新页面");
+	}
+	function conFunction() {
+		// $(".pager").show();
+	}
+	function succFunction(data) {
+	   mediName=data.mediknow[0].knowName;
+	   //alert(mediName);
+	   
+	   
+	   var myvalue1 = document.getElementById("search_str1");
+	   var myvalue2 = document.getElementById("search_str2");
+	   if(mediName!=""){
+		   myvalue1.value=mediName;
+		   myvalue2.value=mediName;
+		   document.getElementById("system_hit1").innerHTML=mediName;
+		   document.getElementById("system_hit2").innerHTML=mediName;
+		   
+	   }else{
+		   myvalue.value=<%=search_str%>;
+	   }
+	  
+	   
+	   $("#mediknowcont").html("<p>"+data.mediknow[0].knowCont+"</p>");
+    }    
+}
+
+
+</script>
+
+<title>医学解释</title>
+<style>
+#intelligenBtn{
+background: url(image/largebutton_a.png) no-repeat;
+width:150px;
+height:50px;
+border:0px;
+cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+	<jsp:include page="../../include/topbar.jsp"></jsp:include>
+	<div class="clear"></div>
+	<!--中上部分-->
+	<div id="middle">
+		<!--左端logo-->
+		<div id="leftMid">
+			<a href="welcome"><img src="newimg/logo_S.png" /></a> 
+		</div>
+		<!--左端logo-->
+		<!--右端输入框-->
+		<div id="rightMid">
+			<form method="get" id="searchForm" >
+				<div class="selectlabel">
+				<input type="radio" checked="checked" name="searchSelect"
+					value="qiuyi" /> <label>求医</label> <input type="radio"
+					name="searchSelect" value="wenyao" /> <label>问药</label> <input
+					type="radio" name="searchSelect" value="yangsheng" /> <label>养生</label>
+			</div>
+
+				<!--搜索-->
+				<div id="searchIn">
+					<input type="text" name="search_str" id="search_str" maxlength=200 value="<%=search_str %>"/>
+					<button type="button">搜索</button>
+					<!--透明层-->
+				</div>
+			</form>
+			<div class="clear"></div>
+
+		</div>
+		<!--右端输入框-->
+	</div>
+	<!--中上部分-->
+
+	<!--询问框-->
+	<div id="checkInfo">
+		<h2>
+			您是不是要找&nbsp;&nbsp;&nbsp;&nbsp;<label id="system_hit1"></label>
+		</h2>
+	</div>
+	<!--询问框-->
+
+	<!--查询信息-->
+	<div id="searchInfo">
+		<!--left-->
+		<div id="leftSearchInfo">
+			<h1 id="system_hit2"></h1>
+
+			<div class="container"  >
+			 <div id="mediknowcont" style="width:80%;padding-right: 30px"></div>
+			</div>
+
+			<div id="buttongrp">
+			<div style="float: left;">
+				<!--智能查询-->
+				<form action="intelligent_query" id="intelligent_query_form" method="get">
+                    <input type="hidden" name="search_str" id="search_str1" value="<%=search_str%>" />
+                    <input type="hidden" name="searchSelect" id="searchSelect" value="<%=searchSelect%>" />
+					<input type="button" id="intelligenBtn" />
+				</form>
+            </div>
+            
+            <div style="float: right;">
+				<form action="expert_recommendation" id="expert_recommendation_form"
+					method="get">
+					<!--专家推荐-->
+					<input type="text" style="display: none" name="search_str" id="search_str2" value="" />
+				    <input type="hidden" name="searchSelect" id="searchSelect" value="<%=searchSelect%>" /> 
+						<input type="image"
+						src="image/largebutton_b.png" />
+				</form>
+            </div>
+			</div>
+		</div>
+
+
+	</div>
+	<!--查询信息-->
+	<jsp:include page="/WEB-INF/bottom/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/include/login.jsp"></jsp:include>
+</body>
+</html>

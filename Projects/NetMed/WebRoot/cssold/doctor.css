@@ -1,0 +1,50 @@
+.search-result{width:1024px; border:#FF0000; margin:0 auto}
+#leftMenu{float:left;width:180px; height:120px; border:#CCCCCC 1px solid;box-shadow:1px 1px 3px #909090;margin-top: 30px;}
+#leftMenu ul li{list-style: none; display: block;background-color:#FFF}
+.left-li1{height:60px;  border-bottom: 1px solid #ddd;}
+.left-li2{height:60px;  }
+.no-padding{padding:0 !important;}
+.no-padding .no-margin{position: relative;}
+.tabs-ul{position:absolute;left:178px;top:-1px;border:1px solid #eee;background:#fff;padding:10px;width:100px;display:none;}
+.tabs-ul a{display:inline-block;padding:10px;float:left;}
+
+.rightMenu{float:right;margin-top:30px;width:800px;border:#FF0000;background-color:#fff}
+.mysearch-from{background:rgb(101,188,169);width:100%;height:50px;padding:8px;}
+.mysearch-input{width:90%;height:32px;text-indent:10px;}
+.btn-search{background:transparent;color:#fff;}
+
+.nav-bar-bread{background:url(../img/triangle.png) no-repeat 0px center;width:100px;
+ height:40px;line-height:40px;text-indent:10px;}
+.grey{color:#aaa;}
+
+.bg-yao,.bg-yi{width:100%;height:100%;}
+.bg-yao span,.bg-yi span{display:block;float:left;line-height:60px;height:100%;}
+
+.bg-yao-1{background:url(../img/medicine.png) no-repeat center center;background-position:5px 10px;width:40px;}
+.bg-yao-2{margin-left:20px;width: 80px;font-size:18px;}
+.bg-yao-3{width:20px;}
+
+.bg-yao:hover{cursor:pointer;}
+.bg-yao:hover .bg-yao-1,.bg-active .bg-yao-1{background-position:-30px 10px;}
+.bg-yao:hover .bg-yao-2,.bg-active .bg-yao-2{color:rgb(101,188,169);}
+.bg-yao:hover .bg-yao-3,.bg-active .bg-yao-3{color:rgb(101,188,169);}
+
+.bg-yi-1{background:url(../img/doctor.png) no-repeat center center;background-position:5px 10px;width:40px;}
+.bg-yi-2{margin-left:20px;width:80px;font-size:18px;}
+.bg-yi-3{width:20px;}
+
+.bg-yi:hover{cursor: pointer;}
+.bg-yi:hover .bg-yi-1,.bg-active .bg-yi-1{background-position:-30px 10px;}
+.bg-yi:hover .bg-yi-2,.bg-active .bg-yi-2{color:rgb(101,188,169);}
+.bg-yi:hover .bg-yi-3,.bg-active .bg-yi-3{color:rgb(101,188,169);}
+
+
+.list-doctor{width:800px;height:auto;margin-top:20px;border:#CCCCCC 1px solid;box-shadow:1px 1px 3px #909090;}
+.btn-myinfo{width:74px;height:24px;line-height:24px;display:inline-block;background:rgb(101,188,169);color:#fff;text-align:center;}
+.row-fluid{margin:15px;padding-bottom:10px;}
+.username{padding-left:28px;}
+.img-circle{padding:10px;}
+
+.more-info{margin-bottom:10px;}
+.btn-default{background:url(../img/triangle.png) no-repeat 94px center;color:#aaa;}
+

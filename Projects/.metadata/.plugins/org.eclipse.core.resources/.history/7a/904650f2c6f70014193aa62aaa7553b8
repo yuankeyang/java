@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+    <package name="expe" namespace="/expe" extends="default">
+    
+		
+        <action name="expe-regi">
+            <result>/WEB-INF/jsp/doctor/register.jsp</result>
+        </action>
+        <action name="expe-regi-chec" class="com.netmed.action.expert.ExpeRegiAction">
+            <result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="error">/test/error.jsp</result>
+        </action>
+        <!-- 专家中心 -->
+        <action name="expe-center">
+            <result>/WEB-INF/center/expeFrame.jsp</result>
+        </action>
+        <action name="center-left">
+            <result>/WEB-INF/left/expeLeftjsp</result>
+        </action>
+        <!-- 我的中心 -->
+        <action name="wodeCen">
+            <result>/WEB-INF/expe/wodeCen.jsp</result>
+        </action>
+        <!-- 我的账户 -->
+        <action name="gerenInfo">
+        	<result>/WEB-INF/jsp/doctor/me/gerenInfo.jsp</result>
+        </action>
+        <action name="inBox">
+        	<result>/WEB-INF/jsp/doctor/me/inBox.jsp</result>
+        </action>
+       <!-- 个人管理 -->
+       <action name="diaryMan">
+       		<result>/WEB-INF/jsp/doctor/me/diaryMan.jsp</result>
+       </action>
+     </package>
+</struts>

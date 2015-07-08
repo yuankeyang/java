@@ -1,0 +1,24 @@
+body{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: "FangSong",仿宋;
+}
+
+#right{
+	margin:60px 0 0 30px;
+	width:800px;
+	font-family: "仿宋";
+	font-weight:bold;
+	font-size: 30pt;
+}
+#right .xu{
+	font-size: 16px;
+	color: #fff;
+}
+
+/*疾病管理*/
+#right span{color:#c9b28b;margin-left:35px;}
+#left-img{float:left}
+#right-img{float:right}
+#jibingMan{width:800px;}

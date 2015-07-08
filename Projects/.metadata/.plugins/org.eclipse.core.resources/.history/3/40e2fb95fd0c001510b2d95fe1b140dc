@@ -1,0 +1,315 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+	String templateUrl = request.getScheme() + "://"
+			+ request.getHeader("host") + request.getContextPath();
+	request.setAttribute("url", templateUrl);
+
+	String search_str = new String(request.getParameter("search_str")
+			.getBytes("iso8859-1"), "utf-8");
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<jsp:include page="../../include/topbar.jsp"></jsp:include>
+<jsp:include page="../../include/topbarhead.jsp"></jsp:include>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>药物列表</title>
+
+<link rel="stylesheet" href="${url}/css/main.css" />
+<link href="${url}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${url}/css/doctor.css" rel="stylesheet">
+<link href="${url}/css/pagination.css" rel="stylesheet">
+<script type="text/javascript" src="${url}/js/tab.js"></script>
+<script type="text/javascript" src="${url}/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="${url}/js/bootstrap.js"></script>
+
+
+
+<script charset="utf-8" type="text/javascript">
+
+
+document.onkeyup = function (e) { 
+	
+	var theEvent = window.event || e; 
+	var code = theEvent.keyCode || theEvent.which; 
+	if (code == 13) { 
+		if($('#search_str').val()=="")//  输入为空不能用null，只能用空字符串！！
+		     alert("输入不能为空！！！");
+		else
+		   $('#btn-search').trigger("click");
+	} 
+	
+};
+
+$(document).ready(function(){ 
+	
+	if("<%=search_str%>"!=""){
+		bind(0);
+	}
+	
+// 	var medicineType=1;
+
+	
+function pageselectCallback(page_id,jq){
+   bind(page_id);
+};
+function bind(pageIndex){
+  var total = 0;
+  
+  $.ajax({
+    url : '<%=templateUrl%>/SearchMedicineAction?pageIndex='+(pageIndex+1)+'&search_str='+$('#search_str').val(),
+    type : 'POST',
+	dataType : 'json',
+	timeout : 20000,
+	cache : true,
+	beforeSend : LoadFunction, //加载执行方法  
+	error : erryFunction, //错误执行方法  
+	complete : conFunction,
+	success : succFunction,
+			//成功执行方法  
+	});
+	function LoadFunction() {
+		;
+	}
+	function erryFunction() {
+	     alert("正在查询，请耐心等待");
+	}
+	function conFunction() {
+	}
+	
+	
+	
+	function succFunction(data) {
+	   
+		westMeditotal = data.number.NwestMedi;
+// 		alert(data.number.Nprescrip);
+	  // 显示药物列表
+
+		  $.each(data.westMediArray, function(index) {
+			     var picture=data.westMediArray[index].Picture;
+				 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"<%=templateUrl%>"
+																+ picture
+																+ "\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"
+																+ data.westMediArray[index].Name
+																+ "</h3></div>";
+														var s2 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"
+																+ data.westMediArray[index].Function
+																+ "</div></div>";
+														var s3 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"
+																+ data.westMediArray[index].Usage
+																+ "</div></div>";
+														var s4 = "<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"
+																+ data.westMediArray[index].Precaution
+																+ "</div></div>";
+														var s5 = "<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='MedicineDetail?mediId="
+																+ data.westMediArray[index].MediId
+																+ "&search_strD="
+																+ $('#search_str').val()
+																+ "'>查看详情</a></span></div></div></div>";
+														$("#westmedi_list").html(
+														$("#westmedi_list").html()+ s1+ s2+ s3+ s4+ s5);
+													});
+
+									$("#westmedi_list").pagination(westMeditotal, { //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+										recordCount : 30,
+										callback : pageselectCallback, //点击分页时，调用的回调函数  
+										prev_text : '« 上一页', //显示上一页按钮的文本  
+										next_text : '下一页 »', //显示下一页按钮的文本  
+										items_per_page : 4, //每页显示的项数  
+										num_display_entries : 10, //分页插件中间显示的按钮数目  
+										current_page : 1, //当前页索引  
+										num_edge_entries : 2
+									//分页插件左右两边显示的按钮数目  
+									}); //分页功能结束
+								//}
+								
+			prescriptotal = data.number.Nprescrip;
+			//方剂
+			 $.each(data.prescripArray, function(index) {
+			     var picture=data.prescripArray[index].Picture;
+				 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"<%=templateUrl%>"
+																+ picture
+																+ "\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"
+																+ data.prescripArray[index].Name
+																+ "</h3></div>";
+														var s2 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"
+																+ data.prescripArray[index].Function
+																+ "</div></div>";
+														var s3 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"
+																+ data.prescripArray[index].Usage
+																+ "</div></div>";
+														var s4 = "<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"
+																+ data.prescripArray[index].Precaution
+																+ "</div></div>";
+														var s5 = "<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='MedicineDetail?mediId="
+																+ data.prescripArray[index].MediId
+																+ "&search_strD="
+																+ $('#search_str').val()
+																+ "'>查看详情</a></span></div></div></div>";
+														$("#prescrip_list").html(
+														$("#prescrip_list").html()+ s1+ s2+ s3+ s4+ s5);
+													});
+
+									$("#Pagination2").pagination(prescriptotal, { //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+										recordCount : 30,
+										callback : pageselectCallback, //点击分页时，调用的回调函数  
+										prev_text : '« 上一页', //显示上一页按钮的文本  
+										next_text : '下一页 »', //显示下一页按钮的文本  
+										items_per_page : 4, //每页显示的项数  
+										num_display_entries : 14, //分页插件中间显示的按钮数目  
+										current_page : pageIndex, //当前页索引  
+										num_edge_entries : 2
+									//分页插件左右两边显示的按钮数目  
+									}); //分页功能结束
+			mediMatetotal = data.number.NmediMate;
+			//中医
+			 $.each(data.MediMateArray, function(index) {
+			     var picture=data.MediMateArray[index].Picture;
+				 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"<%=templateUrl%>"
+																+ picture
+																+ "\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"
+																+ data.MediMateArray[index].Name
+																+ "</h3></div>";
+														var s2 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"
+																+ data.MediMateArray[index].Function
+																+ "</div></div>";
+														var s3 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"
+																+ data.MediMateArray[index].Usage
+																+ "</div></div>";
+														var s4 = "<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"
+																+ data.MediMateArray[index].Precaution
+																+ "</div></div>";
+														var s5 = "<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='MedicineDetail?mediId="
+																+ data.MediMateArray[index].MediId
+																+ "&search_strD="
+																+ $('#search_str').val()
+																+ "'>查看详情</a></span></div></div></div>";
+														$("#medimate_list").html(
+														$("#medimate_list").html()+ s1+ s2+ s3+ s4+ s5);
+													});
+
+									$("#Pagination3").pagination(mediMatetotal, { //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+										recordCount : 30,
+										callback : pageselectCallback, //点击分页时，调用的回调函数  
+										prev_text : '« 上一页', //显示上一页按钮的文本  
+										next_text : '下一页 »', //显示下一页按钮的文本  
+										items_per_page : 4, //每页显示的项数  
+										num_display_entries : 14, //分页插件中间显示的按钮数目  
+										current_page : pageIndex, //当前页索引  
+										num_edge_entries : 2
+									//分页插件左右两边显示的按钮数目  
+									}); //分页功能结束
+									
+									
+		pateMeditotal = data.number.NpateMedi;
+		//中成药
+		 $.each(data.pateMediArray, function(index) {
+			     var picture=data.pateMediArray[index].Picture;
+				 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"<%=templateUrl%>"
+																+ picture
+																+ "\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"
+																+ data.pateMediArray[index].Name
+																+ "</h3></div>";
+														var s2 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"
+																+ data.pateMediArray[index].Function
+																+ "</div></div>";
+														var s3 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"
+																+ data.pateMediArray[index].Usage
+																+ "</div></div>";
+														var s4 = "<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"
+																+ data.pateMediArray[index].Precaution
+																+ "</div></div>";
+														var s5 = "<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='MedicineDetail?mediId="
+																+ data.pateMediArray[index].MediId
+																+ "&search_strD="
+																+ $('#search_str').val()
+																+ "'>查看详情</a></span></div></div></div>";
+														$("#patemedi_list").html(
+														$("#patemedi_list").html()+ s1+ s2+ s3+ s4+ s5);
+													});
+
+									$("#Pagination4").pagination(pateMeditotal, { //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+										recordCount : 30,
+										callback : pageselectCallback, //点击分页时，调用的回调函数  
+										prev_text : '« 上一页', //显示上一页按钮的文本  
+										next_text : '下一页 »', //显示下一页按钮的文本  
+										items_per_page : 4, //每页显示的项数  
+										num_display_entries : 14, //分页插件中间显示的按钮数目  
+										current_page : pageIndex, //当前页索引  
+										num_edge_entries : 2
+									//分页插件左右两边显示的按钮数目  
+									}); //分页功能结束
+
+		} //  function succFunction(data)  结束
+
+	} //  function bind(pageIndex)  结束
+
+});
+</script>
+
+<style type="text/css">
+#logintab {
+	margin-top: 20px;
+}
+</style>
+
+</head>
+<body>
+	<div id="menu">
+		<div class="container">
+			<form method="get" id="searchForm">
+				<!-- 这个id也必须加上，这是图片搜索对应的动作，代替button -->
+				<input type="radio" style="display:none" checked="checked"
+					name="searchSelect" value="wenyao" />
+				<div id="searchIn">
+					<!-- 这个id控制格式！！！ -->
+					<input type="text" name="search_str" id="search_str"
+						placeholder="请输入西药、方剂、中成药或中药名" value="<%=search_str%>"
+						style="width:650px;border:2px #3878DB solid"> <a
+						href="javascript:void(0)"> <img src="image/normalbutton_a.png" />
+					</a>
+				</div>
+
+				<input style="display:none" id="btn-search" type="button" />
+			</form>
+		</div>
+		<div class="container" id="search-content">
+		<ul id="logintab" class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#xiyi">西药 </a></li>
+			<li><a data-toggle="tab" href="#fangji">方剂</a></li>
+			<li><a data-toggle="tab" href="#zhongyao">中药</a></li>
+			<li><a data-toggle="tab" href="#zhongchengyao">中成药</a></li>
+		</ul>
+	</div>
+	<div class="tab-content">
+
+		<div class="tab-pane active" id="xiyi">
+			<div class="container" id="westmedi_list"></div>
+			<div id="Pagination1" class="megas512"></div>
+		</div>
+
+		<div class="tab-pane" id="fangji">
+			<div style="" class="container" id="prescrip_list"></div>
+			<div id="Pagination2" class="megas512"></div>
+		</div>
+		<div class="tab-pane" id="zhongyao">
+			<div style="" class="container" id="medimate_list"></div>
+			<div id="Pagination3" class="megas512"></div>
+		</div>
+
+		<div class="tab-pane" id="zhongchengyao">
+			<div style="" class="container" id="patemedi_list"></div>
+			<div id="Pagination4" class="megas512"></div>
+		</div>
+		
+	</div>
+	</div>
+	<!-- 	</div> -->
+	<jsp:include page="/WEB-INF/include/login.jsp"></jsp:include>
+</body>
+</html>

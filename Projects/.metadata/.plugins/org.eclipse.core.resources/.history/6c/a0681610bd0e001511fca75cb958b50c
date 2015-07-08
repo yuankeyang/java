@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+
+<!--  	<bean id="sessionFactory" -->
+<!--  		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  -->
+<!--  		<property name="configLocation"  -->
+<!--  			value="classpath:hibernate.cfg.xml"> -->
+<!-- 		</property>  -->
+<!--     </bean>  -->
+    
+	
+	<bean id="SyndSynoDAO" class="com.netmed.dao.SyndSynoDAO"></bean>
+	<bean id="ExpeRegiDAO" class="com.netmed.dao.ExpeRegiDAO"></bean>
+	<bean id="MedicineDAO" class="com.netmed.dao.MedicineDAO"></bean>
+	<bean id="MediKnowDAO" class="com.netmed.dao.MediKnowDAO"></bean>
+	<bean id="MembRegiDAO" class="com.netmed.dao.MembRegiDAO"></bean>
+	<bean id="RegimenDAO" class="com.netmed.dao.RegimenDAO"></bean>
+	<bean id="MembConsInfoDAO" class="com.netmed.dao.MembConsInfoDAO"></bean>
+	<bean id="DoctorDAO" class="com.netmed.dao.DoctorDAO"></bean>
+	<bean id="CollectionDAO" class="com.netmed.dao.CollectionDAO"></bean>
+	<bean id="MemberArticleDAO" class="com.netmed.dao.MemberArticleDAO">
+<!-- 	    <property name="sessionFactory"> -->
+<!-- 	     <ref bean="sessionFactory"/>  -->
+<!-- 	    </property> -->
+	</bean>
+	<bean id="ExpertArticleDAO" class="com.netmed.dao.ExpertArticleDAO"></bean>
+	<bean id="ExpertDiaryDAO" class="com.netmed.dao.ExpertDiaryDAO"></bean>
+	<bean id="ExpertToolboxDAO" class="com.netmed.dao.ExpertToolboxDAO"></bean>
+	<bean id="ExpertNoticeDAO" class="com.netmed.dao.ExpertNoticeDAO"></bean>
+	<bean id="MembAppointmentDAO" class="com.netmed.dao.MembAppointmentDAO"></bean>
+	<bean id="MedicineDetailDAO" class="com.netmed.dao.MedicineDetailDAO"></bean>
+	<bean id="RegimenDetailDAO" class="com.netmed.dao.RegimenDetailDAO"></bean>
+	<bean id="MembFamiDAO" class="com.netmed.dao.MembFamiDAO"></bean>
+	<bean id="MembArchInfoDAO" class="com.netmed.dao.MembArchInfoDAO"></bean>
+	<bean id="ChatDao"  class="com.netmed.dao.ChatDao"></bean>
+	<bean id="BloodPressureDAO" class="com.netmed.dao.BloodPressureDAO"></bean>
+	<bean id="ExpeTypeDAO" class="com.netmed.dao.ExpeTypeDAO"></bean>
+	<bean id="ChinDiseSynoDAO" class="com.netmed.dao.ChinDiseSynoDAO"></bean>
+	<bean id="SleepRecordDAO" class="com.netmed.dao.SleepRecordDAO"></bean>
+	<bean id="DiagResultDAO" class="com.netmed.dao.DiagResultDAO"></bean>
+	<bean id="ExpeIndiRepoDAO" class="com.netmed.dao.ExpeIndiRepoDAO"></bean>
+	
+</beans>

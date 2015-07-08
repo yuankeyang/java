@@ -1,0 +1,345 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+	String templateUrl = request.getScheme() + "://"
+			+ request.getHeader("host") + request.getContextPath();
+	request.setAttribute("url", templateUrl);
+
+	String search_str = new String(request.getParameter("search_str")
+			.getBytes("iso8859-1"), "utf-8");
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<jsp:include page="../../include/topbar.jsp"></jsp:include>
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<jsp:include page="../../include/topbarhead.jsp"></jsp:include>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>养生品列表</title>
+
+<link rel="stylesheet" href="${url}/css/main.css" />
+<link href="${url}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${url}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${url}/css/doctor.css" rel="stylesheet">
+<link href="${url}/css/pagination.css" rel="stylesheet">
+
+
+
+
+<script type="text/javascript" src="${url}/js/tab.js"></script>
+
+<script type="text/javascript" src="${url}/js/ajax-pushlet-client.js"></script>
+<script type="text/javascript" src="${url}/view/js/js.js"></script>
+<script type="text/javascript" src="${url}/view/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="${url}/js/bootstrap.js"></script>
+
+<script charset="utf-8" type="text/javascript">
+
+
+document.onkeyup = function (e) { 
+	
+	var theEvent = window.event || e; 
+	var code = theEvent.keyCode || theEvent.which; 
+	if (code == 13) { 
+		if($('#search_str').val()=="")//  输入为空不能用null，只能用空字符串！！
+		     alert("输入不能为空！！！");
+		else
+		   $('#btn-search').trigger("click");
+	} 
+};
+
+$(document).ready(function(){ 
+	  //搜索类型为医生时
+	if("<%=search_str%>"!=""){
+		bind(0);
+	}
+	
+  // $('#btn-search').click(function(){//页面加载时绑定   
+	//   if($('#search_str').val()!="")
+    //     bind(0);
+	 //  else
+		//   alert("输入不能为空！！！");
+ //  });
+ 
+   // 自动提示功能！！！
+   //$('#search_str').autocomplete(search_str,{scroll:true});
+
+function pageselectCallback(page_id,jq){
+   bind(page_id);
+};
+
+function bind(pageIndex){
+  var total = 0;
+  
+  $.ajax({
+    url : '<%=templateUrl%>/SearchRegimenAction?pageIndex='+(pageIndex+1)+'&search_str='+$('#search_str').val(),
+    type : 'POST',
+	dataType : 'json',
+	timeout : 20000,
+	cache : true,
+	beforeSend : LoadFunction, //加载执行方法  
+	error : erryFunction, //错误执行方法  
+	complete : conFunction,
+	success : succFunction
+			//成功执行方法  
+	});
+	function LoadFunction() {
+		
+	}
+	function erryFunction() {
+	     alert("error");
+	}
+	function conFunction() {
+		// $(".pager").show();
+	}
+	
+	
+	
+	function succFunction(data) {
+	    //alert("success");
+	    foodtotal = data.typeNumb.Nfood;
+	    alert(foodtotal);
+		$.each(data.healFoodArray, function(index) {
+			 var picture=data.healFoodArray[index].Picture;
+			 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"<%=templateUrl%>"
+															+ picture
+															+ "\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"
+															+ data.healFoodArray[index].Name
+															+ "</h3></div>";
+													var s2 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"
+															+ data.healFoodArray[index].Function
+															+ "</div></div>";
+													var s3 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"
+															+ data.healFoodArray[index].Usage
+															+ "</div></div>";
+													var s4 = "<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"
+															+ data.healFoodArray[index].Precaution
+															+ "</div></div>";
+													var s5 = "<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='RegimenDetail?regiId="
+															+ data.healFoodArray[index].regiId
+															+ "&search_strD="
+															+ $('#search_str')
+																	.val()
+															+ "'>查看详情</a></span></div></div></div>";
+
+													$("#regiComp_list").html(
+															$("#regiComp_list").html()+ s1+ s2+ s3+ s4+ s5);
+												});
+
+								$("#Pagination1").pagination(foodtotal, { //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+									recordCount : 30,
+									callback : pageselectCallback, //点击分页时，调用的回调函数  
+									prev_text : '« 上一页', //显示上一页按钮的文本  
+									next_text : '下一页 »', //显示下一页按钮的文本  
+									items_per_page : 4, //每页显示的项数  
+									num_display_entries : 14, //分页插件中间显示的按钮数目  
+									current_page : pageIndex, //当前页索引  
+									num_edge_entries : 2
+								//分页插件左右两边显示的按钮数目  
+
+								}); //分页功能结束
+								
+								
+		comptotal = data.typeNumb.Ncomp;
+		$.each(data.regiCompArray, function(index) {
+			 var picture=data.regiCompArray[index].Picture;
+			 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"<%=templateUrl%>"
+															+ picture
+															+ "\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"
+															+ data.regiCompArray[index].Name
+															+ "</h3></div>";
+													var s2 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"
+															+ data.regiCompArray[index].Function
+															+ "</div></div>";
+													var s3 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"
+															+ data.regiCompArray[index].Usage
+															+ "</div></div>";
+													var s4 = "<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"
+															+ data.regiCompArray[index].Precaution
+															+ "</div></div>";
+													var s5 = "<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='RegimenDetail?regiId="
+															+ data.regiCompArray[index].regiId
+															+ "&search_strD="
+															+ $('#search_str')
+																	.val()
+															+ "'>查看详情</a></span></div></div></div>";
+
+													$("#regiComp_list").html(
+															$("#regiComp_list").html()+ s1+ s2+ s3+ s4+ s5);
+												});
+
+								$("#Pagination2").pagination(comptotal, { //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+									recordCount : 30,
+									callback : pageselectCallback, //点击分页时，调用的回调函数  
+									prev_text : '« 上一页', //显示上一页按钮的文本  
+									next_text : '下一页 »', //显示下一页按钮的文本  
+									items_per_page : 4, //每页显示的项数  
+									num_display_entries : 14, //分页插件中间显示的按钮数目  
+									current_page : pageIndex, //当前页索引  
+									num_edge_entries : 2
+								//分页插件左右两边显示的按钮数目  
+
+								}); //分页功能结束
+bathtotal = data.typeNumb.Nbath;
+alert(bathtotal);
+		$.each(data.mediBathArray, function(index) {
+			 var picture=data.mediBathArray[index].Picture;
+			 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"<%=templateUrl%>"
+															+ picture
+															+ "\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"
+															+ data.mediBathArray[index].Name
+															+ "</h3></div>";
+													var s2 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"
+															+ data.mediBathArray[index].Function
+															+ "</div></div>";
+													var s3 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"
+															+ data.mediBathArray[index].Usage
+															+ "</div></div>";
+													var s4 = "<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"
+															+ data.mediBathArray[index].Precaution
+															+ "</div></div>";
+													var s5 = "<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='RegimenDetail?regiId="
+															+ data.mediBathArray[index].regiId
+															+ "&search_strD="
+															+ $('#search_str')
+																	.val()
+															+ "'>查看详情</a></span></div></div></div>";
+
+													$("#mediBath_list").html(
+															$("#mediBath_list").html()+ s1+ s2+ s3+ s4+ s5);
+												});
+
+								$("#Pagination3").pagination(bathtotal, { //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+									recordCount : 30,
+									callback : pageselectCallback, //点击分页时，调用的回调函数  
+									prev_text : '« 上一页', //显示上一页按钮的文本  
+									next_text : '下一页 »', //显示下一页按钮的文本  
+									items_per_page : 4, //每页显示的项数  
+									num_display_entries : 14, //分页插件中间显示的按钮数目  
+									current_page : pageIndex, //当前页索引  
+									num_edge_entries : 2
+								//分页插件左右两边显示的按钮数目  
+
+								}); //分页功能结束
+		prestotal = data.typeNumb.Npres;
+		alert(prestotal);
+		$.each(data.massPresArray, function(index) {
+			 var picture=data.massPresArray[index].Picture;
+			 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"<%=templateUrl%>"
+															+ picture
+															+ "\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"
+															+ data.massPresArray[index].Name
+															+ "</h3></div>";
+													var s2 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"
+															+ data.massPresArray[index].Function
+															+ "</div></div>";
+													var s3 = "<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"
+															+ data.massPresArray[index].Usage
+															+ "</div></div>";
+													var s4 = "<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"
+															+ data.massPresArray[index].Precaution
+															+ "</div></div>";
+													var s5 = "<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='RegimenDetail?regiId="
+															+ data.massPresArray[index].regiId
+															+ "&search_strD="
+															+ $('#search_str')
+																	.val()
+															+ "'>查看详情</a></span></div></div></div>";
+
+													$("#massPres_list").html(
+															$("#massPres_list").html()+ s1+ s2+ s3+ s4+ s5);
+												});
+
+								$("#Pagination4").pagination(prestotal, { //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+									recordCount : 30,
+									callback : pageselectCallback, //点击分页时，调用的回调函数  
+									prev_text : '« 上一页', //显示上一页按钮的文本  
+									next_text : '下一页 »', //显示下一页按钮的文本  
+									items_per_page : 4, //每页显示的项数  
+									num_display_entries : 14, //分页插件中间显示的按钮数目  
+									current_page : pageIndex, //当前页索引  
+									num_edge_entries : 2
+								//分页插件左右两边显示的按钮数目  
+
+								}); //分页功能结束
+							} //  function succFunction(data)  结束
+
+						} //  function bind(pageIndex)  结束
+
+					});
+</script>
+<style type="text/css">
+#logintab {
+	margin-top: 20px;
+}
+
+#logintab li a {
+	outline: none;
+	text-decoration: none
+}
+</style>
+
+</head>
+<body>
+
+	<div id="menu">
+
+
+
+		<div class="container">
+
+			<form method="get" id="searchForm">
+				<input type="radio" style="display:none" checked="checked"
+					name="searchSelect" value="yangsheng" />
+
+				<div id="searchIn">
+					<input type="text" name="search_str" id="search_str"
+						placeholder="请输入保健食品、复方、浴方等"
+						style="width:650px;border:2px #3878DB solid"
+						value="<%=search_str%>" /> <a href="javascript:void(0)"> <img
+						src="image/normalbutton_a.png" /> </a>
+				</div>
+
+				<input style="display:none" id="btn-search" type="button" />
+			</form>
+		</div>
+		<div class="container" id="search-content">
+			<ul id="logintab" class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#healFood">保健食品</a>
+				</li>
+				<li><a data-toggle="tab" href="#regiComp">养生复方</a></li>
+				<li><a data-toggle="tab" href="#mediBath">中药浴方</a></li>
+				<li><a data-toggle="tab" href="#massPres">按摩方</a></li>
+				<li><a data-toggle="tab" href="#mediEqui">医疗器械</a></li>
+			</ul>
+			<div class="tab-content">
+			<div class="tab-pane active" id="healFood">
+					<div class="container" id="healFood_list">保健食品</div>
+					<div id="Pagination1" class="pager"></div>
+				</div>
+				<div class="tab-pane" id="regiComp">
+					<div class="container" id="regiComp_list">养生复方</div>
+					<div id="Pagination1" class="pager"></div>
+				</div>
+				<div class="tab-pane" id="mediBath">
+					<div class="container" id="mediBath_list">中药浴方</div>
+					<div id="Pagination2" class="pager"></div>
+				</div>
+				<div class="tab-pane" id="massPres">
+					<div class="container" id="massPres_list">按摩方</div>
+					<div id="Pagination3" class="pager"></div>
+				</div>
+				<div class="tab-pane" id="mediEqui">
+					<div class="container" id="mediEqui_list">医疗器械</div>
+					<div id="Pagination4" class="pager"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<jsp:include page="/WEB-INF/include/login.jsp"></jsp:include>
+</body>
+</html>

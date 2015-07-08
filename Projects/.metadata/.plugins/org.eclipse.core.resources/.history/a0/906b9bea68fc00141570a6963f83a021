@@ -1,0 +1,20 @@
+package com.Bean;
+
+import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.Result;
+
+public class JSONResult implements Result {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6575694923065195002L;
+
+	@Override
+	public void execute(ActionInvocation arg0) throws Exception {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+}

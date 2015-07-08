@@ -1,0 +1,24 @@
+package com.netmed.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.ExpeRegi;
+import com.netmed.pojo.ExpeType;
+import com.netmed.pojo.ExpeTypeComp;
+
+public class ExpeTypeDAO {
+//  保存收藏！！！
+	public int SaveExpeType(ExpeRegi experegi,ExpeTypeComp expetypecomp){
+		ExpeType et=new ExpeType(experegi, expetypecomp);
+		Session session=HibernateSessionFactory.getSession();
+		Transaction tran=session.beginTransaction();
+		session.save(expetype);
+		tran.commit();
+		session.close();
+		System.out.println("保存专家类型成功！！");
+		return expetype.getId();
+	}
+	
+}

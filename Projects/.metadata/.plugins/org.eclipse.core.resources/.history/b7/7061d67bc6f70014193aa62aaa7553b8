@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="user" namespace="/user" extends="struts-default">
+		<action name="user-regi">
+			<result>/WEB-INF/jsp/user/register.jsp</result>
+		</action>
+		<action name="user-regi-chec" class="com.netmed.action.member.MembRegiAction">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="error">/test/error.jsp</result>
+		</action>
+		<action name="user-center">
+			<result>/WEB-INF/jsp/user/personal-center.jsp</result>
+		</action>
+		<!-- 我的中心 -->
+		<action name="wodeCen">
+			<result>/WEB-INF/jsp/user/me/wodeCen.jsp</result>
+		</action>
+		<action name="uploadImg" class="action.User" method="uploadHeadImg">
+			<result name="success" type="freemarker">/WEB-INF/jsp/user/me/uploadSuccess.jsp
+			</result>
+			<result name="input">/error.jsp</result>
+		</action>
+		<!-- 医疗服务 -->
+		<action name="gerenSer">
+			<result>/WEB-INF/jsp/user/me/gerenSer.jsp</result>
+		</action>
+		<action name="wodeDoc">
+			<result>/WEB-INF/jsp/user/me/wodeDoc.jsp</result>
+		</action>
+		<action name="allDoctor">
+			<result>/WEB-INF/jsp/user/mycount/allDoctor.jsp</result>
+		</action>
+		<action name="hudongDoctor">
+			<result>/WEB-INF/jsp/user/mycount/hudongDoctor.jsp</result>
+		</action>
+		<action name="huanyouSoc">
+			<result>/WEB-INF/jsp/user/me/huanyouSoc.jsp</result>
+		</action>
+		<action name="jiuyiExp">
+			<result>/WEB-INF/jsp/user/me/jiuyiExp.jsp</result>
+		</action>
+		<!--疾病管理 -->
+		<action name="jibingMan">
+			<result>/WEB-INF/jsp/user/me/JiBMan.jsp</result>
+		</action>
+		<!-- 养生天地 -->
+		<action name="yangshengTao">
+			<result>/WEB-INF/jsp/user/me/yangshengTao.jsp</result>
+		</action>
+		<action name="dingyue">
+			<result>/WEB-INF/jsp/user/me/dingyue.jsp</result>
+		</action>
+		<!-- 收藏与订阅 -->
+		<action name="wodeCol">
+			<result>/WEB-INF/jsp/user/me/wodeCol.jsp</result>
+		</action>
+		<action name="yishengAct">
+			<result>/WEB-INF/jsp/user/me/yishengAct.jsp</result>
+		</action>
+		<!-- 我的账户 -->
+		<action name="caiwuMan">
+			<result>/WEB-INF/jsp/user/me/caiwuMan.jsp</result>
+		</action>
+		<action name="jifenMan">
+			<result>/WEB-INF/jsp/user/me/jifenMan.jsp</result>
+		</action>
+		<action name="gerenInfo">
+			<result>/WEB-INF/jsp/user/me/gerenInfo.jsp</result>
+		</action>
+		<action name="gerenInfoFix">
+			<result>/WEB-INF/jsp/user/mycount/gerenInfoFix.jsp</result>
+		</action>
+		<action name="fixCheck">
+			<result>/WEB-INF/jsp/user/mycount/fixCheck.jsp</result>
+		</action>
+		<action name="passChange">
+			<result>/WEB-INF/jsp/user/mycount/passChange.jsp</result>
+		</action>
+		<!-- 通讯录 -->
+		<!-- <action name="zuijinList"> -->
+		<!-- <result>/WEB-INF/jsp/user/me/zuijinList.jsp</result> -->
+		<!-- </action> -->
+		<!-- <action name="contactList"> -->
+		<!-- <result>/WEB-INF/jsp/user/me/contactList.jsp</result> -->
+		<!-- </action> -->
+		<!-- 通知中心 -->
+		<action name="inBox">
+			<result>/WEB-INF/jsp/user/me/inBox.jsp</result>
+		</action>
+	</package>
+</struts>

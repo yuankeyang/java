@@ -1,0 +1,83 @@
+package com.netmed.action.expert;
+
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+
+import org.apache.struts2.ServletActionContext;
+import org.json.JSONObject;
+import com.netmed.dao.ScheduleDAO;
+import com.netmed.pojo.Schedule;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * @author 远客
+ *
+ */
+public class ScheduleDataAction extends ActionSupport {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2862419854484121482L;
+	
+	private ScheduleDAO dao;
+	public ScheduleDataAction() {
+		// TODO Auto-generated constructor stub
+		dao=new ScheduleDAO();
+	}
+	
+	
+	private List<Schedule> list;
+	
+	
+
+	public List<Schedule> getList() {
+		return list;
+	}
+
+	public void setList(List<Schedule> list) {
+		this.list = list;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		
+		return SUCCESS;
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getData() {
+		System.out.println("getData");
+		HttpServletRequest request=ServletActionContext.getRequest();
+		HttpSession session=request.getSession();
+		String expeId=(String)session.getAttribute("expename");
+		System.out.println(expeId);
+		list=dao.getScheludeData(expeId);
+		System.out.println(list.size());
+		return SUCCESS;
+	}
+	public String saveData() throws IOException {
+		
+		System.out.println("saveData");
+		JSONObject jsobj=null;
+		
+		HttpServletRequest request=ServletActionContext.getRequest();
+		System.out.println("request");
+		String s=request.getParameter("jsonData");
+		System.out.println(s);
+		jsobj=new JSONObject();
+		System.out.println(jsobj);
+//		System.out.println(jsobj.get("title"));
+		return SUCCESS;
+	}
+	public String deleteData() {
+		System.out.println("deleteData");
+		return SUCCESS;
+	}
+	
+}

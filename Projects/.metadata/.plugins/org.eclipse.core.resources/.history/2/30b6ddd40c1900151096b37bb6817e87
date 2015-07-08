@@ -1,0 +1,101 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String templateUrl = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+request.setAttribute("url", templateUrl);
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="${url}/css0623/index.css"/>
+<title>主页</title>
+<script type="text/javascript" src="${url}/js0623/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#turnBg li[id=choose1]").attr("class","addBg");
+	$("#turnBg li").mouseenter(function(){
+	$(this).siblings(".addBg").removeClass("addBg");
+	$(this).attr("class","addBg");
+	});
+		
+	$("#searchIn").find("input[type=button]").click(function(){
+		var item=$("#turnBg .addBg").attr("value");
+		if(item=="qiuyi"){
+			$('#searchIn').attr('action','MediKnow?searchSelect=\'qiuyi\'');
+		}else if(item=="wenyao"){
+			$('#searchIn').attr('action','SearchMedicine?searchSelect=\'wenyao\'');
+		}else{
+			$('#searchIn').attr('action','SearchRegimen?searchSelect=\'yangsheng\'');
+		}
+		if($('#search_str').val()=='')
+			alert('请输入搜索词条！');
+		else{
+		alert(item);
+		$('#searchIn').submit();}
+	});
+});
+</script>
+</head>
+<body>
+	<!--背景图-->
+	<img class="bg-01" src="imgs/bg-01.jpg"/>
+	<span class="headerBg"></span>
+	<span class="footerBg" align="center">
+	颐健通项目研发小组	
+	版权所有 2015-2016
+	</span>
+	<span class="indexBgLeft"></span>
+	<span class="indexBgRight"></span>
+	<span class="logo"></span>
+	<!--首页内容-->
+	<div class="indexCon">
+		<img class="logo" src="imgs/logo.png"/>
+		<p class="callCen">
+			<a href="#">病·医·药 咨询养生中心</a>
+		</p>
+		<ul>
+			<li><a href="#">登录</a></li>
+			<li><a href="#">注册</a>
+				<ul>
+					<li><s:a namespace="/user" action="user-regi">会员注册</s:a></li>
+					<li><s:a namespace="/expe" action="expe-regi">专家注册</s:a></li>
+					<li><s:a namespace="/inst" action="inst-regi">机构注册</s:a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!--切换-->
+	<div class="indexFind">
+		<ul id="turnBg">
+			<li id="choose1" value="qiuyi">
+				<div id="choose1" class="con">
+					<img id="choose1" class="top" src="${url}/imgs/nav_braceTop.png"/>
+					<span id="choose1">求医</span>
+					<img  id="choose1" class="bottom" src="${url}/imgs/nav_bracebottom.png"/>
+				</div>
+			</li>
+			<li id="choose2" value="wenyao">
+				<div class="con" id="choose2">
+					<img id="choose2" class="top" src="${url}/imgs/nav_braceTop.png"/>
+					<span id="choose2">问药</span>
+					<img id="choose2" class="bottom" src="${url}/imgs/nav_bracebottom.png"/>
+				</div>
+			</li>
+			<li id="choose3" value="yangsheng">
+				<div id="choose3" class="con">
+					<img id="choose3" class="top" src="${url}/imgs/nav_braceTop.png"/>
+					<span id="choose3">养生</span>
+					<img id="choose3" class="bottom" src="${url}/imgs/nav_bracebottom.png"/>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!--搜索-->
+	<form id="searchIn" action="" method="post">
+		<input type="text" name="search_str" id="search_str" maxlength=200 value=""/>
+		<input type="button" value="搜索"/>
+	</form>
+</body>
+
+</html>

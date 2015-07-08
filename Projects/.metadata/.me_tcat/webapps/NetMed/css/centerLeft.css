@@ -1,0 +1,28 @@
+*{margin:0px;padding:0px;}
+body{background:#eff2f4;}
+ul{list-style:none;}
+.content{width:1366px;height:700px;margin-top:30px;}
+.content .mainContent{width:1260px;height:700px;margin:0 auto;}
+.content .mainContent .leftMain{float:left;width:200px;height:700px;}
+.content .mainContent .leftMain .orange{width:202px;height:5px;background:#f76e0d;}
+.content .mainContent .leftMain>ul{width:200px;height:auto;border:1px solid #ddd;}
+.content .mainContent .leftMain>ul>li{width:200px;height:50px;background:#f2f2f2;color:#333;line-height:50px;text-align:center;font-size:18px;border-bottom:1px solid #ddd;border-top:1px solid #ddd;cursor:pointer;}
+.content .mainContent .leftMain>ul>li.focusColor{color:#f76e0d;}
+.content .mainContent .leftMain>ul>div{width:200px;height:auto;background:#fff;}
+.content .mainContent .leftMain>ul a{display:block;margin:0 auto;width:160px;height:50px;border-bottom:1px dashed #BBB;color:#333;text-decoration:none;line-height:50px;text-align:center;font-size:15px;}
+.content .mainContent .leftMain>ul a.noBorder{border-bottom:none;}
+.content .mainContent .leftMain ul .vanish{display:none;}
+/*右部分*/
+.content .mainContent .rightMain{float:right;width:1030px;height:700px;}
+.content .mainContent .rightMain .top{width:1030px;height:200px;background:#fff;}
+.content .mainContent .rightMain .top>img{float:left;width:160px;height:160px;margin-left:20px;margin-top:20px; }
+.content .mainContent .rightMain .top .userMess{float:left;width:200px;height:160px;}
+.content .mainContent .rightMain .top .userMess span{display:inline-block;margin-left:20px;margin-top:100px;font-size:25px;}
+.content .mainContent .rightMain .top .userMess span.edit{font-size:18px;margin-top:10px;width:120px;height:41px;line-height:41px;text-align:center;background:url("../imgs/edit.png") no-repeat;cursor:pointer;}
+.content .mainContent .rightMain .top .userMore{float:right;width:460px;height:160px;margin-top:20px;}
+.content .mainContent .rightMain .top .userMore li{float:left;width:140px;height:160px;margin-left:10px;background:#f2f2f2;}
+.content .mainContent .rightMain .top .userMore li p{width:140px;height:20px;margin-top:55px;text-align:center;font-size:18px;color:#888;}
+.content .mainContent .rightMain .top .userMore li p.count{width:100px;margin:0 auto;margin-top:5px;border-top:1px dashed #aaa;font-size:30px;color:#00f;}
+.content .mainContent .rightMain .bottom{width:1030px;height:460px;margin-top:20px;background:#fff;}
+.content .mainContent .rightMain .bottom p.tip{width:970px;height:60px;margin:0 auto;font-size:20px;line-height:60px;border-bottom:1px dashed #aaa;}
+.content .mainContent .rightMain .bottom p.con{width:970px;height:390px;margin:0 auto;margin-top:20px;font-size:18px;}

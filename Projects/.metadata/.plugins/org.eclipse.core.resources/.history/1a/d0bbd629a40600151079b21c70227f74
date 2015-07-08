@@ -1,0 +1,406 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<jsp:include page="../include/core_head.jsp"></jsp:include>
+<%
+	String templateUrl = request.getScheme() + "://"
+			+ request.getHeader("host") + request.getContextPath();
+	request.setAttribute("url", templateUrl);
+	//String expe_id=request.getParameter("doctorName");   //获取的不是专家ID；
+	//String expe_id = new String(request.getParameter("doctorName").getBytes("iso8859-1"), "utf-8");
+	//电子病历，唯一标识
+	String electronic_record = request
+			.getParameter("electronic_record");
+	// out.println(expe_id);
+%>
+<jsp:include page="../include/topbar.jsp"></jsp:include>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<jsp:include page="${url}/include/topbarhead.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="${url}/css/article.css" />
+<link rel="stylesheet" type="text/css" href="${url}/css/tab02.css" />
+<link rel="stylesheet" type="text/css" href="${url}/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="${url}/css/jquery.autocomplete.css" />
+<link rel='stylesheet' href='${url}/schedule/jquery-ui-1.11.4/jquery-ui.css' />
+<script type="text/javascript" src="${url}/js/jquery.js"></script>
+<script type="text/javascript"  src='${url}/schedule/jquery-ui-1.11.4/jquery-ui.js'></script>
+<script type="text/javascript" src="${url}/js/jquery.validate.js"></script>
+<script type="text/javascript" src="${url}/js/register.js"></script>
+<link rel="stylesheet" href="${url}/css/main.css" />
+<link href="${url}/css/bootstrap.min.css" rel="stylesheet">
+<%-- <script type='text/javascript' src='${url}/js/autocomplete/jquery.bgiframe.min.js'></script> --%>
+<%-- <script type='text/javascript' src='${url}/js/autocomplete/jquery.ajaxQueue.js'></script> --%>
+<%-- <script type='text/javascript' src='${url}/js/autocomplete/thickbox-compressed.js'></script> --%>
+<%-- <script type='text/javascript' src='${url}/js/autocomplete/jquery.autocomplete.js'></script> --%>
+<%-- <link rel="stylesheet" type="text/css" href="${url}/css/jquery.autocomplete.css" /> --%>
+<%-- <link rel="stylesheet" type="text/css" href="${url}/css/thickbox.css" /> --%>
+
+<title>待处理离线咨询</title>
+</head>
+<script type="text/javascript">
+function checkSubmit(){
+	if($('#medical_result').val()==""){
+		$("#medical_result").select();
+		$("#medical_result").focus();
+	}else if($('#medical_advice').val()==""){
+		$("#medical_advice").select();
+		$("#medical_advice").focus();
+	}else{
+		//提交已处理的表单
+		//$("#DoctorofflineConsult").submit();
+		submit();
+	}
+}
+function submit(){
+	$.ajax({
+        url : '<%=templateUrl%>/expe/DoctorOfflineConsultAction',
+		type : 'POST',
+		data:"electronic_record=<%=electronic_record%>&MidecalZheng="+$('#second').val()+"&medical_result="+$('medical_result').val()+"&medical_advice"+$('#medical_advice').val(),
+		contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+		dataType : 'text',
+		timeout : 8000,
+		cache : true,
+		errot:erryFunction,
+		success : succFunction
+	//成功执行方法  
+	});
+	function erryFunction() {
+		alert("请刷新页面！");
+	}
+	function succFunction(data) {
+		var data = String($.trim(data)); 
+		if(data=="yes"){
+     		alert("提交成功!页面即将关闭");
+	     	window.close();
+	    }else{
+	    	 alert("请重新操作！");
+	   }
+		//window.location="diaryMan";
+	}
+}
+window.onload = function() {
+		if('<%=electronic_record%>'!=""){
+			getElectronic_record('<%=electronic_record%>');
+		}
+		getMidecalZheng('bz1.');
+};
+function getMidecalZheng(data){
+	$.ajax({
+        url : '<%=templateUrl%>/expe/MidecalZhengAction?midecalZheng='+data,
+        type : 'POST',
+        contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+		 dataType : 'json',
+		 timeout : 3000,
+		 cache : true,
+		 error : erryFunction, //错误执行方法  
+		 success : succFunction	//成功执行方法  
+		});
+		function erryFunction() {alert("请刷新页面！");}
+		function succFunction(data) {
+			alert("sdaf");
+			var ar=new Array();
+			$.each(data.MidecalZhengArray,function(index){
+				ar[index]=data.MidecalZhengArray[index].name;
+			});
+			
+			$("#suggest1").autocomplete({
+			source:ar
+			});
+// 				width: 400,
+// 				highlight: false,
+// 				multiple: true,
+// 				scroll: true,
+// 				matchContains: true,
+// 				minChars: 0,
+// 				multipleSeparator:"，"
+			//});
+	};
+}
+//获取电子病历表
+function getElectronic_record(electronic_record){
+	 $.ajax({
+            url : '<%=templateUrl%>/expe/ElectronicRecordAction?electronic_record=<%=electronic_record%>',
+			type : 'POST',
+			contentType : "application/x-www-form-urlencoded; charset=utf-8",
+			dataType : 'json',
+			timeout : 5000,
+			cache : true,
+			error : erryFunction, //错误执行方法  
+			success : succFunction
+				//成功执行方法  
+				});
+		function erryFunction() {
+			alert("请刷新页面！");
+		}
+		function succFunction(data) {
+			$("#username").html(data.userId);
+			$('#illn_desc').val(data.illn_desc);
+			$('#fami_hist').val(data.fami_hist);
+			$('#pers_hist').val(data.pers_hist);
+			if(parseInt(data.fileAccount)!=0){
+				$("#fileList").html("附件：");
+				$.each(data.file, function(index) {
+					//alert(index);
+					$("#fileList").append("<li><a target=\"_blank\" href='FileDownloadAction?fileNumber="+index+"&fileName="+data.file[index].fileName+"&electronic_record="+'<%=electronic_record%>'+"'>"+data.file[index].fileName+"</a></li>");
+				});
+			}
+		}
+		;
+	}
+	
+function getToolBoxList(){
+	  // var data=encodeURIComponent(JSON.stringify($('#input_doctor').val()),"utf-8");
+	  // alert(encodeURI(encodeURI($('#input_doctor').val())));//验证是否在线
+	    $.ajax({
+	        url : '<%=templateUrl%>/expe/ToolBoxListAction',
+			type : 'POST',
+			contentType : "application/json; charset=utf-8",
+			dataType : 'json',
+			timeout : 10000,
+			cache : true,
+			error : erryFunction, //错误执行方法  
+			success : succFunction
+		//成功执行方法  
+		});
+		function erryFunction() {
+			alert("有错误，请刷新页面");
+		}
+		function succFunction(data) {
+			//未读消息条数
+			var num = data.acount;
+			//alert(num);
+			$("#recAID").html(num);
+			
+			if(parseInt(data.acount)!=0){
+				var th=$("<tr> <th>序号</th><th>方名</th><th>适应证</th><th>&nbsp</th></tr>");
+				th.appendTo("#toolBoxList");
+				//alert(data.ToolBoxArray[0].title);
+				$.each(data.ToolboxArray,function(index) {
+					//alert(data.OfflineConsultArray[index].electronic_record);
+					var s1 = "<tr><td>"+(index+1)+"</td>"  ;
+					var s2 = "<td class=\"offAccount\"><a target=\"_blank\" href='expe/OpenToolBox?ToolBox_Id="+data.ToolboxArray[index].ToolBox_Id+"'>"+data.ToolboxArray[index].title+"</a></td>";
+					var s3= "<td>"+data.ToolboxArray[index].syndrome+"</td>";
+					//var s4="<td>添加</td></tr>";
+					//var s5= "<td class=\"offAccount\"><a title=\"修改一下\" href='UpdateToolBoxAction?ToolBox_Id="+data.ToolboxArray[index].ToolBox_Id+"'>添加</a></td>";
+					var s4="<td class=\"offAccount\"><a title=\"加入到当前诊断中\" href='javascript:void(0)' id="+data.ToolboxArray[index].ToolBox_Id+" class='add'>添加</a></td></tr>";
+					var tr=$(s1+s2+s3+s4);
+				    tr.appendTo("#toolBoxList");
+				});
+				$('#toolBoxList').show();
+				 $(".add").click(function (){
+					 var ToolBox_Id = $(this).attr("id");
+					 $.ajax({
+				            url : '<%=templateUrl%>/expe/ToolBoxForRead?ToolBox_Id='+ToolBox_Id,
+				            type : 'POST',
+				            contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+						    dataType : 'json',
+						    timeout : 8000,
+						    cache : true,
+							error : erryFunction, //错误执行方法  
+							success : succFunction	//成功执行方法  
+						});
+						function erryFunction() {alert("获取知识库出错，请重试!!");}
+						function succFunction(data) {
+							$("#dialog").dialog("close");
+							$("#toolBoxList tr").remove();
+							$('#medical_advice').val($('#medical_advice').val()+data.content);
+					};
+				   });
+			}
+		}
+	}	
+function toolbox(){
+ $("#dialog").dialog("open");
+}
+
+window.onload = function(){
+	$('#dialog').dialog({
+		  open:function(){//对话框打开时初始化
+			  getToolBoxList();
+		  },
+	    autoOpen: false,
+	    height:480,
+	    width:850,
+	    modal:true,
+	    title:'我的知识库',
+	   draggable: false,
+	   buttons:[{
+	     text:"关闭",
+	     click:function(){
+	       $(this).dialog("close");
+	     }
+	   }]
+	  });	
+};
+</script>
+<style type="text/css">
+   .offAccount a{ color:#0000ff;text-decoration:none;font-weight:bold}
+   .offAccount a:hover{color:#ff0000}
+   .offAccount a:active{color:#ff0000}   
+</style>
+<body>
+
+	<div style="margin-left:300px;margin-top:10px">
+		<p
+			style="background:url(${url}/image/suggestionbg.png) no-repeat;font-size:18px;font-weight:400;width:600px">
+			&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;患者信息：<label
+				id="username"></label>
+		</p>
+	   <div style="text-align:center">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <a target="_blank" href='expe/ArchInfoDetailForDoctorRead?electronic_record=<%=electronic_record%>'><font size="4px" color="#0000ff">查看患者的电子健康病历</font></a>
+       </div>
+       
+		<div style="margin-top:10px">
+			<div style="margin-left:30px;">
+				<img src="${url}/image/angle_blue.png" />&nbsp;&nbsp;&nbsp;&nbsp; <label
+					style="font-size:18px">病情描述</label>
+			</div>
+			<textarea id="illn_desc" name="illn_desc"
+				style="width:720px;height:100px;overflow-y:scroll;resize:none;margin-left:30px;border:solid 2px #09F"
+				disabled="disabled"></textarea>
+		</div>
+
+		<div>
+			<div style="margin-left:30px;float:left">
+				<img src="${url}/image/angle_blue.png" />&nbsp;&nbsp;&nbsp;&nbsp; <label
+					style="font-size:18px">家族病史</label>
+			</div>
+			<br />
+			<div style="float:none;margin-top:20px">
+				<textarea id="fami_hist" name="fami_hist"
+					style="width:720px;height:100px;overflow-y:scroll;resize:none;margin-left:30px;border:solid 2px #09F"
+					disabled="disabled"></textarea>
+			</div>
+
+		</div>
+
+		<div style="margin-top:30px">
+			<div style="margin-left:30px;float:left">
+				<img src="${url}/image/angle_blue.png" />&nbsp;&nbsp;&nbsp;&nbsp; <label
+					style="font-size:18px">个人病史</label>
+			</div>
+			<br /> <br />
+			<div style="float:none">
+				<textarea id="pers_hist" name="pers_hist"
+					style="width:720px;height:100px;overflow-y:scroll;resize:none;margin-left:30px;border:solid 2px #09F"
+					disabled="disabled"></textarea>
+			</div>
+			<br />
+			<p
+				style="background:url(${url}/image/suggestionbg.png) no-repeat;font-size:18px;font-weight:400;width:600px">&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;专家诊断：</p>
+		</div>
+		<form action="DoctorOfflineConsultAction"
+			name="DoctorOfflineConsultAction" method="post"
+			id="DoctorofflineConsult">
+			<input type="hidden" name="electronic_record" id="electronic_record"
+				value="<%=electronic_record%>">
+			<div style="margin-left:30px;float:left">
+				<div style="margin-top:4px;">
+					<img src="${url}/image/angle_blue.png" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<label style="font-size:18px">认证结果</label>
+				</div>
+				<table style="margin-top:14px;font-size:18px;text-align: center;"
+					border=0 width="620">
+					<tr>
+						<td>大类症状：</td>
+						<td><select id="first"
+							onchange="getMidecalZheng(this.value);" style="width:150px;">
+								<option value="bz1." selected>基本虚证</option>
+								<option value="bz2.">基本实证</option>
+								<option value="bz3.">虚实夹杂证</option>
+								<option value="bz4.">心系证</option>
+								<option value="bz5.">肺系证</option>
+								<option value="bz6.">脾系证</option>
+								<option value="bz7.">肝系证</option>
+								<option value="bz8.">肾系证</option>
+								<option value="bz9.">脏腑兼证</option>
+								<option value="bz10.">卫表肌肤证</option>
+								<option value="bz11.">头面官窍证</option>
+								<option value="bz12.">经脉筋骨证</option>
+								<option value="bz13.">其他证</option>
+								<option value="bz14.">期、度、型</option>
+						</select>
+						</td>
+						
+					</tr>
+					<tr>
+					<td>具体症状：</td>
+						<td>
+
+<input type="text" id="suggest1" style="width:400px" placeholder="虚证1，虚证2，..."/>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<br /> <br /> <br /> <br />
+			
+			<div style="margin-top:30px">
+				<div style="margin-left:30px;float:left">
+					<img src="${url}/image/angle_blue.png" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<label style="font-size:18px">诊断结果</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+					<!-- 知识库关联专家工具箱 -->
+<%--					<a href="expe/readToolbox" target="_blank" style="text-decoration:none"><input id="expertToolbox" name="expertToolbox" type="button" value="查看知识库"></a>--%>
+					<input id="expertToolbox" name="expertToolbox" type="button" value="查看知识库" onclick="toolbox();">
+				</div>
+				<br /> <br />
+				<div style="float:none">
+					<textarea id="medical_result" name="medical_result"
+						style="width:720px;height:100px;overflow-y:scroll;resize:none;margin-left:30px;border:solid 2px #09F"></textarea>
+				</div>
+
+			</div>
+			<div style="margin-top:30px">
+				<div style="margin-left:30px;float:left">
+					<img src="${url}/image/angle_blue.png" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<label style="font-size:18px">医疗建议</label>
+				</div>
+				<br /> <br />
+				<div style="float:none">
+					<textarea id="medical_advice" name="medical_advice"
+						style="width:720px;height:100px;overflow-y:scroll;resize:none;margin-left:30px;border:solid 2px #09F"></textarea>
+				</div>
+
+			</div>
+            <ul id="fileList" style="list-style:none;"></ul>
+			<div style="margin-top:30px;height:150px;width:800px;">
+				<div id="mysubmit"
+					style="float:right;width:420px;margin-left:170px;">
+					<img src="${url}/image/largebutton_subsave.png"
+						onclick="checkSubmit();" style="float:right;">
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+	
+ <div id="dialog" style="display: none">
+	<div class="user_center_bigtitle" style="text-align:center"> <span><h3>我的知识库</h3></span> 
+   <hr></hr>
+	</div>
+	<div class="my_dis_diray">
+		<div class="my_dis_diray_con">
+			<div class="mg_info" style="font-family: KaiTi_GB2312;font-size: 18px;">
+					<h3 style="text-align:center">总共有（<a id="recAID" href="javascript:void(0)">0</a>）篇开方记录</h3>
+				<table id="toolBoxList" width="700" border="1" id="table" bordercolor="#FFFFFF" align="center" style="text-align: left;">
+                   </table>
+			</div>
+			
+		</div>
+	</div>
+  </div>
+	<!--版权信息等-->
+   <jsp:include page="/WEB-INF/bottom/footer.jsp"></jsp:include>
+
+</body>
+</html>

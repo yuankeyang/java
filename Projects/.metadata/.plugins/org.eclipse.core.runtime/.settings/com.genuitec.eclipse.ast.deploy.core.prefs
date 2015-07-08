@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+myeclipseTomcatServer.NetMed.IEARProjectName=
+myeclipseTomcatServer.NetMed.altContextRoot=/NetMed
+myeclipseTomcatServer.NetMed.contextRoot=/NetMed
+myeclipseTomcatServer.NetMed.deployIsOverProject=false
+myeclipseTomcatServer.NetMed.deploymentPath=E\:\\\u5FEB\u76D8\\myeclispe_temp\\.metadata\\.me_tcat\\webapps\\NetMed
+myeclipseTomcatServer.NetMed.isDeployed=true
+myeclipseTomcatServer.NetMed.isExploded=true
+myeclipseTomcatServer.NetMed.isUptoDate=true
+myeclipseTomcatServer.NetMed.noFileCopy=false
+myeclipseTomcatServer.NetMed.shouldBackup=false
+myeclipseTomcatServer.NetMed.shouldOverwrite=false
+myeclipseTomcatServer.NetMed.type=WebDeployment

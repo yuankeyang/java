@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context> 
+	<!-- 本文件是为tomcat使用的，其他应用服务器用不到，它们有自己的配置方式 -->
+	
+	<!-- 
+	   <Context reloadable="true" crossContext="true">
+	   <WatchedResource>WEB-INF/web.xml</WatchedResource>
+	   <
+	 -->
+	
+	<!-- 定义数据库连接池 -->
+     <Resource name="jdbc/demo" 
+               auth="Container" type="javax.sql.DataSource" 
+               maxActive="50" maxIdle="30" 
+               maxWait="10000" logAbandoned="true" 
+               username="root" password="xianggen" 
+               driverClassName="com.mysql.jdbc.Driver" 
+               url="jdbc:mysql://localhost:3306/demo" /> 
+     
+     	<!-- 定义J2EE安全，用户及角色都保存在数据库中 -->
+     	<!--  
+	<Realm className="org.apache.catalina.realm.DataSourceRealm"
+		localDataSource="true" dataSourceName="jdbc/demo" userTable="c_account"
+		userNameCol="c_id" userCredCol="c_pass" userRoleTable="c_account_roles"
+		roleNameCol="c_role" />
+		-->
+</Context>

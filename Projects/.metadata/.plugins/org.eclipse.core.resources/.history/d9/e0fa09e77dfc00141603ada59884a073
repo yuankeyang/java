@@ -1,0 +1,28 @@
+package com.netmed.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.Schedule;
+
+public class ScheduleDAO {
+	public List<Object[]> getScheludeData(String expeId){
+		System.out.println("getScheludeData");
+	String hql="from Schedule schedule where schedule.expeRegi='"+expeId+"'";
+	Session session=HibernateSessionFactory.getSession();
+	System.out.println(hql);
+	Query query=session.createQuery(hql);
+	List<Object[]> list=query.list();
+	System.out.println(list.size());
+	System.out.println(list.get(0));
+	Schedule temp=null;
+	for(Object[] obj:list){
+		System.out.println((Integer)obj[0]);
+		System.out.println((String)obj[2]);
+	}
+	return list;
+	}
+}

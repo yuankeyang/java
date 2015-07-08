@@ -1,0 +1,26 @@
+
+/*遮罩层*/
+.mask{display:none;position:fixed;top:0%;left:0%;width:100%;height:100%;
+background-color:black;z-index:1001;-moz-opacity:0.4;opacity:0.4;filter:alpha(opacity=40);}
+.login-div{display:none;position:relative;top:30%;left:40%;width:450px;height:420px;
+border:1px solid #e8e9f7;background-color:#ffffff;z-index:1002;overflow:none;
+margin:20px 20px 20px 20px;}
+.login-div .close-div{width:100%;min-height:22px}
+/*关闭登陆的按钮图片*/
+.close-btn{background:rgb(201,178,139);color:#fff;line-height:40px;text-align:center;
+height:40px;width:40px;font-size:24px;padding:1px;border-radius:20px;}
+.close-btn::before{content:"\2716";}
+.close-btn{top:-20px;right:-20px;position:absolute;}
+.login-table{width:100%;height:100%;}
+.login-div .login-title{height:66px;width:100%;background:url("../imgs/login-title.png") no-repeat}
+.login-div .loginForm-div{padding:20px 30px 30px 30px;height:280px;font-size:16pt;font-weight:bold;}
+.login-div .loginForm-div .wangji{float:right;}
+.login-div .loginForm-div .wangji a{text-decoration:none;color:#000;}
+.loginForm-div form table{width:400px;}
+.loginForm-div form table tr{height:60px;line-height:60px;padding:10px 0 10px 0;}
+.loginForm-div input{width:100%;line-height:38px;height:38px;border:1px solid #C9B28B;border-radius:10px;}
+.loginForm-div  button{color:#fff;font-size:18pt;font-weight:bold;background:#C9B28B;cursor: hand;
+border:0px #93bee2 solid;border-radius:10px;}
+.loginForm-div select{width:140px;height:38px;line-height:38px;border:1px solid #C9B28B;border-radius:10px;}
+.loginForm-div select > option{height:38px;line-height:38px;border:1px solid #C9B28B;border-radius:10px;}
+#login-button{width:100%;height:38px;}

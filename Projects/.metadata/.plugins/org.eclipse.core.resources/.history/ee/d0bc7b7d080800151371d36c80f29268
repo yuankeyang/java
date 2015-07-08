@@ -1,0 +1,177 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<% String templateUrl = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+request.setAttribute("url", templateUrl);
+
+String search_str=new String(request.getParameter("search_str").getBytes("iso8859-1"),"utf-8");
+
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<jsp:include page="../../include/topbar.jsp"></jsp:include>
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<jsp:include page="../../include/topbarhead.jsp"></jsp:include>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>药物</title>
+
+<link rel="stylesheet" href="${url}/css/main.css"/>
+<link href="${url}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${url}/css/doctor.css" rel="stylesheet">
+<link href="${url}/css/pagination.css" rel="stylesheet">
+
+
+<script type="text/javascript" src="${url}/js/tab.js"></script>
+<script type="text/javascript" src="${url}/js/jquery.pagination.js"></script>
+
+
+<script charset="utf-8"  type="text/javascript">
+
+
+document.onkeyup = function (e) { 
+	
+	var theEvent = window.event || e; 
+	var code = theEvent.keyCode || theEvent.which; 
+	if (code == 13) { 
+		if($('#search_str').val()=="")//  输入为空不能用null，只能用空字符串！！
+		     alert("输入不能为空！！！");
+		else
+		   $('#btn-search').trigger("click");
+	} 
+};
+
+$(document).ready(function(){ 
+	
+	if("<%=search_str%>"!=""){
+		bind(0);
+	}
+	
+function pageselectCallback(page_id,jq){
+   bind(page_id);
+};
+function bind(pageIndex){
+  var total = 0;
+  
+  $.ajax({
+    url : '<%=templateUrl%>/SearchMedicineAction?pageIndex='+(pageIndex+1)+'&search_str='+$('#search_str').val(),
+    type : 'POST',
+	dataType : 'json',
+	timeout : 20000,
+	cache : true,
+	beforeSend : LoadFunction, //加载执行方法  
+	error : erryFunction, //错误执行方法  
+	complete : conFunction,
+	success : succFunction
+			//成功执行方法  
+	});
+	function LoadFunction() {
+		
+	}
+	function erryFunction() {
+	     alert("error");
+	}
+	function conFunction() {
+		// $(".pager").show();
+	}
+	
+	
+	
+	function succFunction(data) {
+	    //alert("success");
+	    $("#medicine_list").html("");
+	    total = data.account;
+	  
+	  if(total==0){
+		  //alert(data.nullInfo);
+		 $("#medicine").html("<h3>"+data.nullInfo+"</h3><br>");
+	  }    
+	  else{	  
+		  $("#medicine").html("<h3>"+$('#search_str').val()+"</h3><br>");
+	  }
+		 
+		$.each(data.medicineArray, function(index) {
+			
+		     var picture=data.medicineArray[index].Picture;
+		     //alert(picture);
+			 //var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src=\"./view/images/m1.png\" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"+data.medicineArray[index].Name+"</h3></div>";
+			 var s1="<div class=\"list-doctor row container\"><div class=\"col-md-2\"><img src='<%=templateUrl%>/"+picture+"'" class=\"img-circle\" /></div><div class=\"col-md-10\"><div class=\"username\"><h3>"+data.medicineArray[index].Name+"</h3></div>";
+
+			 
+			 var s2="<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">主治功能</span></div><div class=\"col-md-10\">"+data.medicineArray[index].Function+"</div></div>";
+			 var s3="<div class=\"row-fluid clearfix\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">用法用量</span></div><div class=\"col-md-10\">"+data.medicineArray[index].Usage+"</div></div>";
+			 var s4="<div class=\"row-fluid\"><div class=\"col-md-2\"><span class=\"btn-myinfo\">注意事项</span></div><div class=\"col-md-10\">"+data.medicineArray[index].Precaution+"</div></div>";
+			 var s5="<div class=\"text-right more-info\"><span class=\"btn btn-default btn-lg\"><a target=\"_blank\" href='MedicineDetail?mediId="+data.medicineArray[index].MediId+"&search_strD="+$('#search_str').val()+"'>查看详情</a></span></div></div></div>";
+			 
+			 $("#medicine_list").html($("#medicine_list").html()+s1+s2+s3+s4+s5);
+		});
+		
+		
+	   $("#Pagination").pagination(total,{ //recordCount在后台定义的一个公有变量，通过从数据库查询记录进行赋值，返回记录的总数
+	        recordCount: 30,   
+            callback: pageselectCallback,  //点击分页时，调用的回调函数  
+            prev_text: '« 上一页',  //显示上一页按钮的文本  
+            next_text: '下一页 »',  //显示下一页按钮的文本  
+            items_per_page:4,  //每页显示的项数  
+            num_display_entries:14,  //分页插件中间显示的按钮数目  
+            current_page:pageIndex,  //当前页索引  
+            num_edge_entries:2 //分页插件左右两边显示的按钮数目  
+               
+        });  //分页功能结束
+        
+   }   //  function succFunction(data)  结束
+	
+  }    //  function bind(pageIndex)  结束
+     
+ });
+ 
+</script>
+</head>
+<body>
+
+	<ul id="list"></ul>
+	
+	<div id="menu">
+
+		<div id="leftMenu" class="no-padding">
+			<ul id="tabs-con" class="no-padding no-margin">
+				<li class="left-li1 no-margin row">
+					<div class="bg-yao">
+						<span class="bg-yao-1"></span> <span class="bg-yao-2">问药</span> <span
+							class="bg-yao-3">&gt;</span>
+					</div>
+				</li>
+				
+				
+		   </ul>
+		</div>
+
+		<div class="rightMenu">
+			<div class="container">
+				<form method="get" id="searchForm">  <!-- 这个id也必须加上，这是图片搜索对应的动作，代替button -->
+				<input type="radio" style="display:none" checked="checked" name="searchSelect" value="wenyao" />
+					<div id="searchIn">  <!-- 这个id控制格式！！！ -->
+					<input type="text" name="search_str" id="search_str" placeholder="请输入西药、方剂、中成药或中药名" value="<%=search_str%>"  style="width:650px;border:2px #3878DB solid">
+					 <a href="javascript:void(0)"> <img src="image/normalbutton_a.png" /> </a>
+					 </div>
+					 
+				   <input style="display:none" id="btn-search" type="button"/>
+				</form>
+			</div>
+
+		    <div class = "container" id = "medicine"> </div>
+            
+			<div style="" class="container" id="medicine_list">  </div>
+		
+			<div id = "Pagination" class = "pager">  </div>
+			
+		</div>
+
+
+	</div>
+<jsp:include page="/WEB-INF/include/login.jsp"></jsp:include>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="user_center_bigtitle"><span>我的医生</span></div>
+<div class="filter_box">
+<script>
+	function change(){
+		hobj=$.ajax({
+			url:'allDoctor',
+			success:function(){},
+			error:function(){alert("加载信息错误");},
+			async:false
+			});
+		$(".usercenter_con").html(hobj.responseText);
+	}
+	</script>
+	<script>
+		function change1(){
+		hobj=$.ajax({
+			url:'hudongDoctor',
+			success:function(){},
+			error:function(){alert("加载信息错误");},
+			async:false
+			});
+		$(".usercenter_con").html(hobj.responseText);
+	}
+	</script>
+                    <div class="filter_all">
+                    <!--  
+                        <div class="item on"><a href="showmydoctor">全部医生</a></div>
+                        -->
+                        <button type="button" onclick="change()"><font size=2>全部医生</font></button>
+                        <!-- 
+                        <div class="item on"><a href="/allDoctor.jsp" >全部医生</a></div>
+                        -->
+                    </div>
+
+                    <div class="filter_list">
+                        <ul class="clearfix">
+                            <li>
+                                <div class="item">
+                                    <button type="button" onclick="change1()"><font size=2>互动医生</font></button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <a href="#">订阅的医生</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <a href="#">收藏的医生</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+<div class="user_center_normalbox" style="margin-top:10px;">
+                        <div class="user_center_normaltitle2"></div>
+                        <div class="user_center_no_fav" style="margin-top:-40px; padding-bottom:20px;">
+                            <div class="pr40 pl40">
+                                                            <div class="tit" style="word-break:normal;word-wrap:normal">您还没有和医生建立联系，在网站搜索您的主治医生，在他/她的个人网站进行门诊/住院患者报到，医生就可以为您提供：</div>
+                                <ul class="list">
+                                    <li><i></i>预约下次复诊时间</li>
+                                    <li><i></i>帮您评估检查结果，不用再跑门诊</li>
+                                    <li><i></i>病情不明白的地方，直接在线问医生</li>
+                                    <li><i></i>获得3次免费回复次数</li>
+                                </ul>
+                                                        </div>
+                        </div>
+                    </div>

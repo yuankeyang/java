@@ -1,0 +1,67 @@
+package com.netmed.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.Collection;
+import com.netmed.pojo.ExpeRegi;
+import com.netmed.pojo.MembRegi;
+
+
+/**
+ * @author Administrator
+ *   收藏表DAO
+ *   05-11
+ */
+public class CollectionDAO {
+	
+	//  保存收藏！！！
+	public int SaveCollection(Collection collection){
+		Session session=HibernateSessionFactory.getSession();
+		Transaction tran=session.beginTransaction();
+		session.save(collection);
+		tran.commit();
+		session.close();
+		System.out.println("保存收藏成功！！");
+		return collection.getId();
+	}
+	
+	// 通过专家ID和用户ID找到收藏记录！！！删除收藏
+	public int CancelCollection(String expertId,String userId){
+		Session session=HibernateSessionFactory.getSession();
+		Transaction tran=session.beginTransaction();
+		MembRegi membRegi=new MembRegi(userId);
+		ExpeRegi expeRegi=new ExpeRegi(expertId);
+		Collection collection=new Collection(expeRegi,membRegi);
+		session.delete(collection);
+		tran.commit();
+		session.close();
+		
+		System.out.println("该收藏成功从数据库删除-----删除的收藏ID："+collection.getId());
+		return collection.getId();
+	}
+	
+	public List<Collection> getCollections(String memb_id){
+		System.out.println("getCollections");
+		List<Collection> c=new ArrayList<Collection>();
+		Session session=HibernateSessionFactory.getSession();
+        Criteria criteria=session.createCriteria(Collection.class);
+        System.out.println("createCriteria");
+        MembRegiDAO membdao=new MembRegiDAO();
+        MembRegi memb=membdao.getMembinfoById(memb_id);
+        criteria.add(Restrictions.eq("MembRegi", memb));
+        c=criteria.list();
+        System.out.println(c.size());
+		session.close();
+	    System.out.println("从收藏表中查找专家成功！！");
+ 		return c;
+	}
+
+}

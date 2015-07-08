@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="user" namespace="/user" extends="struts-default">
+		<action name="user-regi">
+			<result>/WEB-INF/jsp/user/register.jsp</result>
+		</action>
+		<action name="user-regi-chec" class="com.netmed.action.member.MembRegiAction">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="error">/test/error.jsp</result>
+		</action>
+		
+	</package>
+</struts>

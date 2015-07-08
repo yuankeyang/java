@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/schedule/lib/jquery.min.js,WebRoot/schedule/lang-all.js,WebRoot/schedule/lib/moment.min.js
+validator.Unchecked=

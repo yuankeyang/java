@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="inst" namespace="/inst" extends="default">
+		<action name="inst-regi">
+			<result>/WEB-INF/inst/register.jsp</result>
+		</action>
+		<action name="inst-regi-chec">
+			<result>/WEB-INF/inst/register-check.jsp</result>
+		</action>
+		<action name="inst-center">
+			<result>/WEB-INF/inst/personal-center.jsp</result>
+		</action>
+
+		<!-- 我的中心 -->
+		<action name="wodeCen">
+			<result>/WEB-INF/inst/me/wodeCen.jsp</result>
+		</action>
+		<!-- 医院信息 -->
+		<action name="jibenMan">
+			<result>/WEB-INF/inst/me/jibenMan.jsp</result>
+		</action>
+		<action name="yishengMan">
+			<result>/WEB-INF/inst/me/yishengMan.jsp</result>
+		</action>
+		<action name="yaopinMan">
+			<result>/WEB-INF/inst/me/yaopinMan.jsp</result>
+		</action>
+		<!-- 医疗服务 -->
+		<action name="shangmenSer">
+			<result>/WEB-INF/inst/me/shangmenSer.jsp</result>
+		</action>
+		<action name="dingdanMan">
+			<result>/WEB-INF/inst/me/dingdanMan.jsp</result>
+		</action>
+		<action name="yonghupingQia">
+			<result>/WEB-INF/inst/me/yonghupingQia.jsp</result>
+		</action>
+	</package>
+</struts>

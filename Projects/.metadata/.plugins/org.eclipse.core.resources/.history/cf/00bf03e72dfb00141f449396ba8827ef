@@ -1,0 +1,217 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String templateUrl = request.getScheme() + "://"
+			+ request.getHeader("host") + request.getContextPath();
+	request.setAttribute("url", templateUrl);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>日程管理</title>
+<meta name="viewport" content="width=device-width">
+<link href='${url}/schedule/fullcalendar.css' rel='stylesheet' />
+<link href='${url}/schedule/fullcalendar.print.css' rel='stylesheet'
+	media='print' />
+<script src='${url}/schedule/lib/moment.min.js'></script>
+<script src='${url}/schedule/lib/jquery.min.js'></script>
+<script src='${url}/schedule/fullcalendar.min.js'></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+
+						$('#calendar')
+								.fullCalendar(
+										{
+											header : {
+												left : 'prev,next today',
+												center : 'title',
+												right : 'month,agendaWeek,agendaDay'
+											},
+											lang : 'zh-cn',
+											monthNames : [ "一月", "二月", "三月",
+													"四月", "五月", "六月", "七月",
+													"八月", "九月", "十月", "十一月",
+													"十二月" ],
+											monthNamesShort : [ "一月", "二月",
+													"三月", "四月", "五月", "六月",
+													"七月", "八月", "九月", "十月",
+													"十一月", "十二月" ],
+											dayNames : [ "周日", "周一", "周二",
+													"周三", "周四", "周五", "周六" ],
+											dayNamesShort : [ "周日", "周一", "周二",
+													"周三", "周四", "周五", "周六" ],
+											today : [ "今天" ],
+											firstDay : 1,
+											buttonText : {
+												today : '本月',
+												month : '月',
+												week : '周',
+												day : '日',
+												prev : '上一月',
+												next : '下一月'
+											},
+											defaultDate : '2015-05-16',
+											selectable : true,
+											//点击日期触发事件
+											dayClick : function(date, jsEvent,
+													view) {
+												alert('Clicked on: '+ date.format());
+
+												alert('Coordinates: '
+														+ jsEvent.pageX + ','
+														+ jsEvent.pageY);
+
+												alert('Current view: '
+														+ view.name);
+
+												// change the day's background color just for fun
+												$(this).css('background-color',
+														'red');
+
+											},
+											selectHelper : true,
+											select : function(start, end) {
+												var title = prompt('Event Title:');
+												var eventData;
+												if (title) {
+													eventData = {
+														title : title,
+														start : start,
+														end : end
+													};
+													$('#calendar')
+															.fullCalendar(
+																	'renderEvent',
+																	eventData,
+																	true); // stick? = true
+												}
+												$('#calendar').fullCalendar(
+														'unselect');
+											},
+											editable : true,
+											eventLimit : true,
+
+										});
+
+					});
+</script>
+
+<style type='text/css'>
+.ui-datepicker {
+	width: 23em;
+	padding: .2em .2em 0;
+	font-size: 70%;
+	display: none;
+}
+
+#calendar {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#loading {
+	top: 0px;
+	right: 0px;
+}
+
+.tooltip {
+	padding-bottom: 25px;
+	padding-left: 25px;
+	width: 100px !important;
+	padding-right: 25px;
+	display: none;
+	background: #999;
+	height: 70px;
+	color: red;
+	font-size: 12px;
+	padding-top: 25px;
+	z-order: 10;
+}
+
+.ui-timepicker-div .ui-widget-header {
+	margin-bottom: 8px;
+}
+
+.ui-timepicker-div dl {
+	text-align: left;
+}
+
+.ui-timepicker-div dl dt {
+	height: 25px;
+	margin-bottom: -25px;
+}
+
+.ui-timepicker-div dl dd {
+	margin: 0 10px 10px 65px;
+}
+
+.ui-timepicker-div td {
+	font-size: 90%;
+}
+
+.ui-tpicker-grid-label {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ui-timepicker-rtl {
+	direction: rtl;
+}
+
+.ui-timepicker-rtl dl {
+	text-align: right;
+}
+
+.ui-timepicker-rtl dl dd {
+	margin: 0 65px 10px 10px;
+}
+</style>
+</head>
+<body>
+	<div id='calendar'></div>
+	<div id="wrap">
+		<div id='calendar'></div>
+		<div id="reserveinfo" title="Details">
+			<div id="revtitle"></div>
+			<div id="revdesc"></div>
+		</div>
+		<div style="display: none" id="reservebox"
+			title="Reserve meeting room">
+			<form id="reserveformID" method="post">
+				<div class="sysdesc">&nbsp;</div>
+				<div class="rowElem">
+					<label> 标题:</label> <input id="title" name="start">
+				</div>
+				<div class="rowElem">
+					<label> 重要程度:</label> <input id="chengdu" name="start">
+				</div>
+				<div class="rowElem">
+					<label> 开始时间:</label> <input id="start" name="start">
+				</div>
+				<div class="rowElem">
+					<label> 结束时间:</label> <input id="end" name="end">
+				</div>
+				<div class="rowElem">
+					<label> 备忘内容:</label>
+					<textarea id="details" rows="3" cols="43" name="details"></textarea>
+				</div>
+				<div class="rowElem"></div>
+				<div class="rowElem"></div>
+				<div id="addhelper" class="ui-widget">
+					<div
+						style="padding-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px"
+						class="ui-state-error ui-corner-all">
+						<div id="addresult"></div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</body>
+</html>

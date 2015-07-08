@@ -1,0 +1,15 @@
+html{
+	 height: 100%; 
+	 scrollbar-face-color: #EBF1FF; 											     
+	 scrollbar-shadow-color:#EBF1FF;          
+	 scrollbar-highlight-color: #FFFFFF; 
+	 scrollbar-3dlight-color: #719AC1; 
+	 scrollbar-darkshadow-color: #719AC1; 
+	 scrollbar-track-color:#D5DFE6; 
+	 scrollbar-arrow-color:#5E8AB4; 
+	}
+body {
+	background-color:#FFF;
+	background-repeat: repeat;
+	background-image:url(../image/asidepic05.png);
+}

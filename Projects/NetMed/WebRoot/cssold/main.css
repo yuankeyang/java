@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+body{background:#f2f2f2;width:100%;height:100%;overflow-x:hidden}
+ul{list-style-type:none;padding:0;margin:0;}
+li{display:inline;}
+.no-padding{padding:0 !important;}
+.no-margin{margin:0 !important;}
+
+.topbar,.page-foot{ width:100%;height:50px;line-height:50px;background-color:#65bca9;color:#fff;overflow:hidden}
+.topbar .text-brand{margin-left:50px;margin-top:10px; width:200px; font-family:"Times New Roman", Times, serif;font-size:27px;color:#fff;float:left;}
+.topbar .text-login-register{ font-family:Tahoma, Geneva, sans-serif;margin-right:50px; margin-top:12px;color:#fff; float:right;}
+.topbar a:link{text-decoration:none;color:#FBFBFF}
+.topbar a:visited{text-decoration:none; color:#FBFBFF}
+.topbar a:hover{ text-decoration:none;color:#d2e9ff}
+.topbar a:active{text-decoration:none; color:#fbfffd}
+
+.central {height:500px;width:100%;position:relative}
+.central .central-search{ margin-top:230px;margin-left:auto;margin-right:auto;width:850px;height:300px;padding:0;position:relative;}
+.central .central-search .text-logo{color:#65bca9; font-family:SimSun;position:absolute}
+.central .central-search .text-logo ul li{float:left;padding:0 12px 2px;font-size:30px;cursor:pointer}
+.central .central-search .text-logo .on{color:#fff;background-color:#65bca9}
+.central .central-search .search{ border-radius:2px; -moz-box-shadow:4px 4px 5px rgba(20%,20%,40%,0.5);-webkit-box-shadow:4px 4px 5px rgba(20%,20%,40%,0.5);box-shadow:4px 4px 5px rgba(20%,20%,40%,0.5);background-color:#65bca9;margin-top:60px;height:50px;width:740px;position:absolute}
+.central .central-search .search .input{ border-radius:2px;border-top-style:none;border-left-style:none;width:650px; height:30px; margin-top:10px;margin-left:6px;font-size:20px;}
+.central .central-search .search .submit{ background-color:transparent;color:#FFFFFF;border:none; width:60px;height:30px;font-size:20px;}
+.central .central-search .img{margin-top:0px;margin-left:700px;position:absolute}
+
+.cooperations{height:120px;width:auto;background-color:#FFF;}
+.cooperations .ul{margin-left:60px;margin-top:50px;font-size:20px}
+
+#div-mask {display:none;position:absolute;eft:0;top:0;width:100%;height:100%;z-index:20000;background-color:rgba(0%,0%,0%,0.6);}
+#div-login {display:none;position:fixed;z-index:20002;height:300px;width:500px;top:200px;padding:10px 10px 10px 10px;background-color:#ffffff;}
+.nav_current {border:none;background-color:transparent;height:40px;color:#65bca9;border-bottom:1px #65bca9 solid;}
+.nav_link{height:39px;border:none;background-color:transparent;color:#c6c6c6;}
+.dis{display:block;}
+.undis{display:none;}
+
+.container .mod-hd {margin-top:10px;height:40px;width:460px;}
+.container .mod-hd ul li{height:40px;float:left;width:80px;font-size:24px;font-weight:600;}
+.container .mod-bd .dis,.undis{margin-top:10px;height:anto;width:460px;}
+.table-class {height:100%;width:100%;border:none;margin:0;padding:0}
+.table-class .tr-class{height:30px;margin:2 auto;}

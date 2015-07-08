@@ -1,0 +1,105 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort()+ path + "/";
+	String templateUrl = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+	request.setAttribute("url", templateUrl);
+	String expename =  new String(session.getAttribute("expename").toString().getBytes("iso8859-1"), "utf-8");
+	if (expename == null||expename=="") {
+		response.sendRedirect(templateUrl);
+	}
+%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<jsp:include page="../include/core_head.jsp"></jsp:include>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="${url}/js/jquery.js"></script>
+<script type="text/javascript" src="${url}/js/ajax-pushlet-client.js"></script>
+<link rel="stylesheet" type="text/css" href="${url}/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${url}/css/jquery.autocomplete.css" />
+<script type="text/javascript" src="${url}/js/jquery.js"></script>
+<script type="text/javascript" src="${url}/js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="${url}/js/localdata.js"></script>
+<script type="text/javascript" src="${url}/js/first.js"></script>
+<link rel="stylesheet" type="text/css" href="${url}/css/chat-2.0.css" >
+<link href="${url}/cssold/bootstrap.css" rel="stylesheet">
+<link href="${url}/cssold/register.css" rel="stylesheet">
+<link href="${url}/cssold/usercenter.css" rel="stylesheet">
+<link href="${url}/cssold/scenter.css" rel="stylesheet">
+<link href="${url}/cssold/base.css" rel="stylesheet">
+<script type="text/javascript" src="${url}/js/jquery.js"></script>
+<script type="text/javascript" src="${url}/jsold/jquery.validate.js"></script>
+<script type="text/javascript" src="${url}/jsold/register.js"></script>
+<script type="text/javascript" src="${url}/jsold/usercenter.js"></script>
+<script type="text/javascript" src="${url}/js/ajax-pushlet-client.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<jsp:include page="../include/topbarhead.jsp"></jsp:include>
+<script type="text/javascript" src="${url}/js/jquery.js"></script>
+<script type="text/javascript" src="${url}/js/ajax-pushlet-client.js"></script>
+<link rel="stylesheet" type="text/css" href="${url}/css/chat-2.0.css" />
+<script type="text/javascript">
+        window.contextPath = "<%=path%>";
+        window["serverDomin"] = "larch";
+ </script>
+ <script type="text/javascript" src="${url}/js/jsjac.js"></script>
+ <script type="text/javascript" src="${url}/js/send.message.editor-1.0.js"></script>
+ <script type="text/javascript" src="${url}/js/jquery.easydrag.js"></script>
+ <script type="text/javascript" src="${url}/js/remote.jsjac.chat-2.0.js"></script>
+ <script type="text/javascript" src="${url}/js/local.chat-2.0.js"></script>
+ <script type="text/javascript" src="${url}/js/jsjac.js"></script>
+ <script type="text/javascript" src="${url}/js/send.message.editor-1.0.js"></script>
+ <script type="text/javascript" src="${url}/js/jquery.easydrag.js"></script>
+ <script type="text/javascript" src="${url}/js/remote.jsjac.chat-2.0.js"></script>
+ <script type="text/javascript" src="${url}/js/local.chat-2.0.js"></script>
+<script type="text/javascript">
+//$(document).ready(function(){
+PL.userId = '<%=expename%>';
+// alert("sd");
+// alert(PL.userId);
+PL._init();
+//p_join_listen();
+PL.joinListen('chat');
+PL.joinListen('newMessage');
+
+function onData(event) {
+	alert("sdsd");
+	if(event.get("sender")!=null&&event.get("sender")!=""){
+		alert(event.get("sender"));
+		// 建立一个聊天窗口应用，并设置发送者和消息接收者
+		var user={
+        			userName:'<%=expename%>',
+        			password:"987460880"
+        		};
+        remote.jsjac.chat.login(user);
+        var receiver = event.get("sender");
+         $.WebIM({
+                   sender: user.userName,
+                   receiver: receiver
+           });
+		// 离开
+		 //PL.leave();
+	}
+	if(event.get("message")!=null&&event.get("message")!=""){
+		   alert(event.get('message'));
+	}
+}
+//});
+</script>
+</head> 
+<frameset  framespacing="0" rows="40,*,60">
+	<frame frameborder="0" name="topFrame" noresize="noresize" scrolling="no"
+		src="<%=basePath%>topbarDefault">
+	<frameset framespacing="0" cols="250px,*">
+		<frame frameborder="0" name="leftFrame" noresize="noresize"
+			src="<%=basePath%>expe/center-left">
+		<frame frameborder="0" name="rightFrame" noresize="noresize"
+			src="<%=basePath%>expe/wodeCen">
+	</frameset>
+	<frame frameborder="0" noresize="noresize" scrolling="no" src="<%=basePath%>footer">
+</frameset>
+</html>

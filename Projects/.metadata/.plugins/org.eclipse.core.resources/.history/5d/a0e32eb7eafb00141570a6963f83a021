@@ -1,0 +1,11 @@
+package com.netmed.dao;
+
+import org.hibernate.Session;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.Schedule;
+
+public class ScheduleDAO {
+	Schedule[] s=null;
+	Session session=HibernateSessionFactory.getSession();
+}

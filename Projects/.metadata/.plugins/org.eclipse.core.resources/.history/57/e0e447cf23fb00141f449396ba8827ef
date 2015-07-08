@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* 日程管理CSS Document */
+body, td { font-size:12px Verdana; color:808284; text-align:center}
+a:link { color:cccccc; text-decoration:none; cursor:pointer}
+a:active { color:cccccc; text-decoration:none; }
+a:visited { color:cccccc; text-decoration:none; }
+a:hover { color:ff0000; text-decoration:underline; }
+body, td, th { font-size: 12px; }
+img{ border:0}
+
+#content{ padding:0; margin:0 auto; width:80%}
+.D_table{font-size:12px;color:808284; background-color:#b7c9f2; border:0}
+.D_bt{ background:url(/img/schedule/dh_bj.png) repeat-x;height:36px; font-size:14px; color: #CCFF33; font-weight:bold}
+
+.D_bt a:link,.D_bt a:visited{text-decoration:none;color:#ffffff}
+.D_bt a:hover{text-decoration:none;color: #FFFF00}
+
+.week{ background-color:#e6edfd; text-align:center; height:20px; font-weight:bold}
+.week b{ color:#FF0000;}
+.week em{ font-style:normal; color:#00CC00}
+
+.today{ width:10%; height:110px; padding:0px; margin:0px; vertical-align:top; background:url(/img/schedule/currentToday.png) repeat-x bottom;}
+.dd{width:10%; height:110px; padding:0px; margin:0px; vertical-align:top; background-position:bottom}
+.dd1{width:10%; height:110px; padding:0px; margin:0px; vertical-align:top; background-position:bottom}
+.red{ color:#FF0000;}
+.green{ color:#00CC00;}
+.db{height:20px; border-bottom:1px solid #DDEEFF;background: #F1F2F2;margin:0px;}
+.kb{ background:url(/img/schedule/kongban.png) repeat-x bottom;}
+
+.yl{float:left; width:20px;padding:3px 0 0 0!important;padding:2px 0 0 0}
+.nl{float:right;width:40px;padding:2px 0 0 0!important;padding:3px 0 0 0}

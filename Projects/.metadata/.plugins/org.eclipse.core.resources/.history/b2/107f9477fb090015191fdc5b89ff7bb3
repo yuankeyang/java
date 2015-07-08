@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+
+<struts>
+
+	<!-- 自动动态方法的调用，使用这个设置后可以这样调用：action!method -->
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" 
+		/> -->
+	<!-- 设置常量实现动态调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.action.extension" value=",,action" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<!-- 限制图片大小，不超过500k -->
+<!-- 	<constant name="struts.multipart.maxSize" value="512000"/>  -->
+	  
+	<package name="default" namespace="/" extends="struts-default">
+   
+		<default-action-ref name="index" />
+
+		<global-results>
+			<result name="error">/test/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+		<action name="topbarDefault">
+			<result>/WEB-INF/top/topbarDefault.jsp</result>
+		</action>
+		<action name="footer">
+			<result>/WEB-INF/bottom/footer.jsp</result>
+		</action>
+
+		<action name="welcome">
+			<result>index.jsp</result>
+		</action>
+
+		
+		<!-- 求医 -->
+		<action name="MediKnow">
+			<result>/WEB-INF/memb/qiuyi/MediKnowDetail.jsp</result>
+		</action>
+		
+		<!-- ****智能查询***** -->
+		<action name="intelligent_query">
+			<result>/WEB-INF/memb/qiuyi/intelligent_query.jsp</result>
+		</action>
+		<action name="intelligent_query2">
+			<result>/WEB-INF/memb/qiuyi/intelligent_query2.jsp</result>
+		</action>
+		<action name="intelligent_query3">
+			<result>/WEB-INF/memb/qiuyi/intelligent_query3.jsp</result>
+		</action>
+		<action name="intelligent_query4">
+			<result>/WEB-INF/memb/qiuyi/intelligent_query4.jsp</result>
+		</action>
+		<action name="intelligent_query5">
+			<result>/WEB-INF/memb/qiuyi/intelligent_query5.jsp</result>
+		</action>
+		<action name="intelligent_query6">
+			<result>/WEB-INF/memb/qiuyi/intelligent_query6.jsp</result>
+		</action>
+		<!-- ******智能查询******** -->
+		
+		<action name="expert_recommendation">
+			<result>/WEB-INF/memb/qiuyi/expert_recommendation.jsp</result>
+		</action>
+		<action name="CheckOnlineAction" class="com.netmed.action.qiuyi.CheckOnlineAction"></action>
+		<action name="DoctorServletAction" class="com.netmed.action.qiuyi.DoctorServletAction"></action>
+		<action name="MediKnowServletAction" class="com.netmed.action.qiuyi.MediKnowServletAction"></action>
+		<action name="CollectAction" class="com.netmed.action.qiuyi.CollectAction"></action>
+		<action name="getMemberCreditValue" class="com.netmed.action.member.MembRegiAction" method="getMemberCredit"></action>
+		
+		
+        <!-- 问药action -->
+		<action name="SearchMedicine">
+		   <result>/WEB-INF/memb/wenyao/SearchMedicine.jsp</result>
+		</action>
+		<action name="MedicineDetail">
+		  <result>/WEB-INF/memb/wenyao/MedicineDetail.jsp</result>
+		</action>
+		<action name="pharmacist_recommend">
+		  <result>/WEB-INF/memb/wenyao/pharmacist_recommend.jsp</result>
+		</action>
+        <action name="MedicineDetailAction" class="com.netmed.action.wenyao.MedicineDetailAction"></action>
+		<action name="SearchMedicineAction" class="com.netmed.action.wenyao.SearchMedicineAction"></action>
+		<action name="PharmacistAction" class="com.netmed.action.wenyao.PharmacistAction"></action>
+		<!-- 养生action -->
+        <action name="SearchRegimen">
+           <result>/WEB-INF/memb/yangsheng/SearchRegimen.jsp</result>
+        </action>
+        <action name="RegimenDetail">
+		  <result>/WEB-INF/memb/yangsheng/RegimenDetail.jsp</result>
+		</action>
+		<action name="regimenExpert_recommend">
+		   <result>/WEB-INF/memb/yangsheng/regimenExpert_recommend.jsp</result>
+		</action>
+        <action name="SearchRegimenAction" class="com.netmed.action.yangsheng.SearchRegimenAction"></action>
+        <action name="RegimenDetailAction" class="com.netmed.action.yangsheng.RegimenDetailAction"></action>
+        <action name="RegimenExpertAction" class="com.netmed.action.yangsheng.RegimenExpertAction"></action>
+
+		<!-- 分类登录action -->
+		<action name="membLoginCheck" class="com.netmed.action.member.MembLoginAction">
+ 			<result name="success" type="redirect">
+ 			<param name="headers.a">login successfully</param>
+ 			</result> 
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+
+		<action name="expeLoginCheck" class="com.netmed.action.expert.ExpeLoginAction">
+			<result name="success" type="redirectAction">
+			<param name="namespace">/expe</param>
+				<param name="actionName">expe-center</param>
+             </result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="instLoginCheck">
+			<result>/WEB-INF/inst/instLogin-check.jsp</result>
+		</action>
+
+
+		<action name="exit">
+			<result>/WEB-INF/include/deleteSession.jsp</result>
+		</action>
+
+
+		<action name="doctorView">
+			<result>/WEB-INF/jsp/doctor/DoctorView.jsp</result>
+		</action>
+
+
+	</package>
+	
+	<include file="user-action.xml"></include>
+	<include file="expe-action.xml"></include>
+	<include file="institution-action.xml"></include>
+</struts>

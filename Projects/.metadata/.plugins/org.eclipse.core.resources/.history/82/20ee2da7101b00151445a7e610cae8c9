@@ -1,0 +1,66 @@
+*{margin:0px;padding:0px;}
+ul{list-style:none;}
+img{border:0px;}
+a{text-decoration:none;}
+/*图片集群*/
+.topCon{width:1366px;height:350px;}
+.topCon .bg-01{width:1366px;height:350px;position:absolute;top:0px;z-index:-10;}
+.topCon .headerBg{width:1366px;height:204px;background:url("../imgs/headerBg.png") repeat-x;position:absolute;top:0px;z-index:-9;opacity:0.7;filter:alpha(opacity=70);}
+/*顶部内容*/
+.topCon .indexCon{width:1280px;height:80px;margin:0 auto;padding-top:20px;}
+.topCon .indexCon .logo{width:170px;height:160px;float:left;}
+.topCon .indexCon .callCen{width:230px;height:160px;float:left;line-height:80px;}
+.topCon .indexCon .callCen a{font-family:"宋体";font-size:16px;color:#4C4C4C;}
+.topCon .indexCon>ul{float:right;width:172px;height:42px;margin-top:15px;}
+.topCon .indexCon>ul>li{float:left;width:86px;height:42px;line-height:42px;text-align:center;box-shadow:0px 5px 10px -8px #666;}
+.topCon .indexCon>ul>li>a{width:60px;font-family:"宋体";font-size:16px;color:#4C4C4C;}
+.topCon .indexCon>ul>li>ul{display:none;}
+.topCon .indexCon>ul>li>ul>li{width:100%;height:100%;background:#c6af89;opacity:0.5;fliter:alpha(opacity=50);box-shadow:0px 5px 10px -8px #666;}
+.topCon .indexCon>ul>li>ul>li>a{font-family:"宋体";font-size:17px;color:#fff;}
+.topCon .indexCon>ul>li:hover ul{display:block;}
+/*搜索框*/
+.topCon .indexFind{width:450px;height:100px;margin:0 auto;}
+.topCon .indexFind ul{width:450px;height:150px;}
+.topCon .indexFind ul li{float:left;width:120px;height:150px;text-align:center;background:url("../imgs/tab_before.png") no-repeat 5px 0px;cursor:pointer;}
+.topCon .indexFind ul li .con{display:inline-block;padding-top:18px;}
+.topCon .indexFind ul li .con img{display:block;}
+.topCon .indexFind ul li .con img.top{margin-left:8px;}
+.topCon .indexFind ul li .con span{display:inline-block;width:30px;font-size:22px;font-family:"仿宋";color:#000;font-weight:bold;}
+.topCon .indexFind ul li.addBg{background:url("../imgs/tab_after.png") no-repeat 0px -4px;}
+.topCon form{width:800px;height:45px;margin:0 auto;}
+.topCon form input[type="text"]{width:625px;height:45px;border-radius:8px;border:1px solid #c6af89;box-shadow:0px 0px 1px rgba(0,0,0,0.2);font-size:18px;text-indent:10px;}
+.topCon form input[type="button"]{width:150px;height:45px;color:#fff;letter-spacing:10px;font-size:18px;background:#c9b28b;border-radius:8px;border:none;cursor:pointer;}
+/*选药*/
+
+
+.chooseMidi{width:1366px;height:auto;padding-top:40px;}
+.chooseMidi ul.midiTab{width:1200px;height:100px;margin:0 auto;}
+.chooseMidi ul.midiTab li{float:left;width:76px;height:100px;text-align:center;background:url("../imgs/tab2_before.png") no-repeat 5px 0px;cursor:pointer;}
+.chooseMidi ul.midiTab li .con{display:inline-block;padding-top:7px;}
+.chooseMidi ul.midiTab li .con span{display:inline-block;width:30px;font-size:22px;font-family:"仿宋";color:#000;font-weight:bold;}
+.chooseMidi ul.midiTab li .con span.left{float:left;margin-left:6px;width:25px;}
+.chooseMidi ul.midiTab li .con span.right{margin-top:13px;}
+
+.chooseMidi ul.midiTab li.addBg{background:url("../imgs/tab2_after.png") no-repeat 0px -4px;}
+.chooseMidi .midiTopPic{display:inline-block;width:1203px;height:13px;margin-left:81px;background:url("../imgs/midiTopPic.png") no-repeat;}
+.chooseMidi ul.midiCon{display:none;width:1200px;height:auto;margin:0 auto;font-family:"宋体";}
+.chooseMidi ul.midiCon li{width:1200px;height:160px;padding-top:30px;padding-bottom:30px;border-bottom:1px solid #d6C5A8;}
+.chooseMidi ul.midiCon li:hover{background:#E8E2D9;}
+.chooseMidi ul.midiCon img{float:left;width:150px;height:150px;border:1px solid #c9b28b;margin-left:20px;}
+.chooseMidi ul.midiCon .midiMess{float:left;width:280px;height:150px;margin-left:10px;overflow:hidden;}
+.chooseMidi ul.midiCon .midiMess .midiName{font-size:20px;font-weight:bold;}
+.chooseMidi ul.midiCon .midiMess .midiText{margin-left:20px;margin-top:10px;font-size:15px;}
+.chooseMidi ul.midiCon .midiInter{display:inline-block;width:30px;height:150px;float:left;background:url("../imgs/middle.png") no-repeat -40px 0px;}
+.chooseMidi ul.midiCon .midiUse{float:left;width:280px;height:150px;}
+.chooseMidi ul.midiCon .midiUse .midiUseName{font-size:18px;font-weight:bold;}
+.chooseMidi ul.midiCon .midiUse .midiUseText{margin-left:10px;margin-top:10px;font-size:15px;width:280px;height:110px;overflow:hidden;}
+.chooseMidi ul.midiCon .midiMore{float:left;width:76px;height:66px;margin-top:40px;text-align:center;background:url("../imgs/tab2_before.png") no-repeat 5px 0px;cursor:pointer;}
+.chooseMidi ul.midiCon .midiMore .midiMoreText{display:inline-block;padding-top:7px;}
+.chooseMidi ul.midiCon .midiMore .midiMoreText span{display:inline-block;width:30px;font-size:22px;font-family:"仿宋";color:#000;font-weight:bold;}
+.chooseMidi ul.midiCon .midiMore .midiMoreText span.left{float:left;}
+.chooseMidi ul.midiCon .midiMore:hover{background:url("../imgs/tab2_after.png") no-repeat 0px -4px;}
+/*翻页*/
+.turnPage{width:1200px;height:40px;margin:0 auto;text-align:center;}
+.turnPage span.page{width:31px;height:31px;display:inline-block;line-height:30px;}
+.turnPage a{color:#000;font-family:"宋体";}
+.turnPage span.page:hover{background:url("../imgs/turnPage.png") no-repeat 1px 0px;}

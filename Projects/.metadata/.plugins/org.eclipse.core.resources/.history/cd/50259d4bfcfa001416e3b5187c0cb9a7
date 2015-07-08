@@ -1,0 +1,199 @@
+package com.netmed.pojo;
+
+import java.sql.Timestamp;
+
+/**
+ * MembConsInfo entity. @author MyEclipse Persistence Tools
+ */
+
+public class MembConsInfo implements java.io.Serializable {
+
+	// Fields
+
+	private Integer id;
+	private ChinDiseSyno chinDiseSyno;
+	private ExpeRegi expeRegi;
+	private MembRegi membRegi;
+	private ChinStanSyno chinStanSyno;
+	private Timestamp consTime;
+	private String expeType;
+	private String servType;
+	private String illnDesc;
+	private String folder;
+	private String filenames;
+	private String famiHist;
+	private String persHist;
+	private Timestamp replTime;
+	private String diagResu;
+	private String diagReco;
+	private Boolean state;
+
+	// Constructors
+
+	/** default constructor */
+	public MembConsInfo() {
+	}
+
+	/** full constructor */
+	public MembConsInfo(ChinDiseSyno chinDiseSyno, ExpeRegi expeRegi,
+			MembRegi membRegi, ChinStanSyno chinStanSyno, Timestamp consTime,
+			String expeType, String servType, String illnDesc, String folder,
+			String filenames, String famiHist, String persHist,
+			Timestamp replTime, String diagResu, String diagReco, Boolean state) {
+		this.chinDiseSyno = chinDiseSyno;
+		this.expeRegi = expeRegi;
+		this.membRegi = membRegi;
+		this.chinStanSyno = chinStanSyno;
+		this.consTime = consTime;
+		this.expeType = expeType;
+		this.servType = servType;
+		this.illnDesc = illnDesc;
+		this.folder = folder;
+		this.filenames = filenames;
+		this.famiHist = famiHist;
+		this.persHist = persHist;
+		this.replTime = replTime;
+		this.diagResu = diagResu;
+		this.diagReco = diagReco;
+		this.state = state;
+	}
+
+	// Property accessors
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public ChinDiseSyno getChinDiseSyno() {
+		return this.chinDiseSyno;
+	}
+
+	public void setChinDiseSyno(ChinDiseSyno chinDiseSyno) {
+		this.chinDiseSyno = chinDiseSyno;
+	}
+
+	public ExpeRegi getExpeRegi() {
+		return this.expeRegi;
+	}
+
+	public void setExpeRegi(ExpeRegi expeRegi) {
+		this.expeRegi = expeRegi;
+	}
+
+	public MembRegi getMembRegi() {
+		return this.membRegi;
+	}
+
+	public void setMembRegi(MembRegi membRegi) {
+		this.membRegi = membRegi;
+	}
+
+	public ChinStanSyno getChinStanSyno() {
+		return this.chinStanSyno;
+	}
+
+	public void setChinStanSyno(ChinStanSyno chinStanSyno) {
+		this.chinStanSyno = chinStanSyno;
+	}
+
+	public Timestamp getConsTime() {
+		return this.consTime;
+	}
+
+	public void setConsTime(Timestamp consTime) {
+		this.consTime = consTime;
+	}
+
+	public String getExpeType() {
+		return this.expeType;
+	}
+
+	public void setExpeType(String expeType) {
+		this.expeType = expeType;
+	}
+
+	public String getServType() {
+		return this.servType;
+	}
+
+	public void setServType(String servType) {
+		this.servType = servType;
+	}
+
+	public String getIllnDesc() {
+		return this.illnDesc;
+	}
+
+	public void setIllnDesc(String illnDesc) {
+		this.illnDesc = illnDesc;
+	}
+
+	public String getFolder() {
+		return this.folder;
+	}
+
+	public void setFolder(String folder) {
+		this.folder = folder;
+	}
+
+	public String getFilenames() {
+		return this.filenames;
+	}
+
+	public void setFilenames(String filenames) {
+		this.filenames = filenames;
+	}
+
+	public String getFamiHist() {
+		return this.famiHist;
+	}
+
+	public void setFamiHist(String famiHist) {
+		this.famiHist = famiHist;
+	}
+
+	public String getPersHist() {
+		return this.persHist;
+	}
+
+	public void setPersHist(String persHist) {
+		this.persHist = persHist;
+	}
+
+	public Timestamp getReplTime() {
+		return this.replTime;
+	}
+
+	public void setReplTime(Timestamp replTime) {
+		this.replTime = replTime;
+	}
+
+	public String getDiagResu() {
+		return this.diagResu;
+	}
+
+	public void setDiagResu(String diagResu) {
+		this.diagResu = diagResu;
+	}
+
+	public String getDiagReco() {
+		return this.diagReco;
+	}
+
+	public void setDiagReco(String diagReco) {
+		this.diagReco = diagReco;
+	}
+
+	public Boolean getState() {
+		return this.state;
+	}
+
+	public void setState(Boolean state) {
+		this.state = state;
+	}
+
+}

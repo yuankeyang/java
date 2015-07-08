@@ -1,0 +1,76 @@
+package com.netmed.pojo;
+
+import java.sql.Timestamp;
+
+/**
+ * Schedule entity. @author MyEclipse Persistence Tools
+ */
+
+public class Schedule implements java.io.Serializable {
+
+	// Fields
+
+	private Integer id;
+	private ExpeRegi expeRegi;
+	private String content;
+	private Timestamp insertTime;
+	private Timestamp promtTime;
+
+	// Constructors
+
+	/** default constructor */
+	public Schedule() {
+	}
+
+	/** full constructor */
+	public Schedule(ExpeRegi expeRegi, String content, Timestamp insertTime,
+			Timestamp promtTime) {
+		this.expeRegi = expeRegi;
+		this.content = content;
+		this.insertTime = insertTime;
+		this.promtTime = promtTime;
+	}
+
+	// Property accessors
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public ExpeRegi getExpeRegi() {
+		return this.expeRegi;
+	}
+
+	public void setExpeRegi(ExpeRegi expeRegi) {
+		this.expeRegi = expeRegi;
+	}
+
+	public String getContent() {
+		return this.content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Timestamp getInsertTime() {
+		return this.insertTime;
+	}
+
+	public void setInsertTime(Timestamp insertTime) {
+		this.insertTime = insertTime;
+	}
+
+	public Timestamp getPromtTime() {
+		return this.promtTime;
+	}
+
+	public void setPromtTime(Timestamp promtTime) {
+		this.promtTime = promtTime;
+	}
+
+}

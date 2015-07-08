@@ -1,0 +1,153 @@
+package com.netmed.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.*;
+
+/**类<code>ExpeRegiDAO</code>
+ * 封装对表expe_regi的数据库操作
+ * 最后改动时间2015-05-10
+ * @author 远客
+ * @version 1.0
+ */
+public class ExpeRegiDAO {
+	/**方法<code>getExpeinfoById</code>
+	 * 通过专家的expe_id来获取对应的对象
+	 * @param id
+	 * @return ExpeRegi
+	 */
+	public ExpeRegi getExpeinfoById(String expeId) {
+//		System.out.println(expeId+1);
+		Session session=HibernateSessionFactory.getSession();
+//		System.out.println(expeId+2);
+		Object obj=session.get(com.netmed.pojo.ExpeRegi.class, expeId);
+		session.close();
+		return (ExpeRegi)obj;
+	}
+	/**方法<code>checkLogin</code>
+	 * 专家登录检查，合法返回true，否则返回false
+	 * @param username
+	 * @param password
+	 * @return boolean
+	 */
+	public boolean checkLogin(String username,String password){
+		System.out.println("checkLogin");
+		ExpeRegi expe=getExpeinfoById(username);
+		System.out.println(username);
+		System.out.println(expe);
+		if(expe==null){
+			return false;
+		}else{
+			if(expe.getExpePass().equals(password)){
+				System.out.println("success:"+expe.getExpePass());
+				expe.setState(Boolean.TRUE);
+				UpdateExpeRegi(expe);
+				return true;
+				}
+			else{
+//				System.out.println(memb.getMembPass());
+				return false;
+				}
+		}
+	}
+	
+	/**方法<code>setState</code>
+	 * 设置登录状态
+	 * @param id
+	 * @param state
+	 * @return boolean
+	 */
+	public boolean setState(String id,Boolean state){
+		ExpeRegi expe=getExpeinfoById(id);
+		if(expe==null) return false;
+		Session session=HibernateSessionFactory.getSession();
+		org.hibernate.Transaction tx=session.beginTransaction();
+		expe.setState(state);
+		session.update(expe);
+		tx.commit();//提交事务。
+		session.close();
+		return true;
+	}
+	
+	public boolean regiExpe(String username,String realname,
+			String password,Boolean sex,String id_card_numb,
+			String email,String phone,String telephone,
+			String referrer) {
+		System.out.println(username);
+		ExpeRegi obj=getExpeinfoById(username);
+		System.out.println(username+3);
+		if(obj!=null) return false;//判断数据库中是否已经存在
+		Session session=HibernateSessionFactory.getSession();
+		org.hibernate.Transaction tx=session.beginTransaction();
+		obj=new ExpeRegi(username,realname,password,
+				sex,id_card_numb,email,phone,telephone,referrer);
+		session.save(obj);//保存对象到数据库
+		tx.commit();//提交事务。
+		session.close();
+		return true;
+	}
+	//对专家信息更新保存
+	public boolean UpdateExpeRegi(ExpeRegi expe){
+		Session session=HibernateSessionFactory.getSession();
+		Transaction tran=session.beginTransaction();
+		session.update(expe);
+		tran.commit();
+		session.close();
+		return true;  //返回更新表的Id
+	}
+	 public List<ExpeRegi> queryExpeRegi(String expertid) {
+			
+	    	System.out.println("ExpertDaoImpl 方法接收："+expertid);
+	     	StringBuffer hql=new StringBuffer("from ExpeRegi p where");
+	 		
+	 		
+	 		hql.append(" p.expeId LIKE:expert");
+	 		//hql.append(" or chinStanSyno.stanSyndName LIKE '%"+inputStr+"%'");
+	 		
+	        Session session=HibernateSessionFactory.getSession();
+	 		
+	 		Query query=session.createQuery(hql.toString());
+	 	
+	 		query.setParameter("expert", expertid);
+	 		
+	 		List<ExpeRegi> expertList=query.list();
+	 		return expertList;
+		} 
+		
+		// 通过输入关键词找到相关的专家ID,这里还需要改进，不能通过关键词直接找服务内容约定
+		public List<String> queryExpertId(String inputStr){
+			
+			StringBuffer hql=new StringBuffer("select expeRegi.expeId from ExpeServCont s where");
+			hql.append(" s.diseType LIKE '%"+inputStr+"%'");
+			
+			Session session=HibernateSessionFactory.getSession();
+			Query query=session.createQuery(hql.toString());
+			
+			List<String> list=query.list();
+			
+			System.out.println("ExpertDaoImpl实现类  ->  从ExpeServCont表中搜索到专家："+list.size());
+			return list;
+	}
+		
+		/**根据专家ID，增加相应积分**/
+		public boolean calculateCredit(ExpeRegi expert){
+			Session session=HibernateSessionFactory.getSession(); 
+			try{
+				Transaction tran=session.beginTransaction();
+				session.update(expert);
+				tran.commit();
+				session.close();
+				return true;
+			}catch(Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		}
+	
+		
+}

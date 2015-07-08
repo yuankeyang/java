@@ -1,0 +1,80 @@
+package com.netmed.action.expert;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.Bean.UserBean;
+import com.netmed.dao.ScheduleDAO;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * @author 远客
+ *
+ */
+public class ScheduleDataAction extends ActionSupport {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2862419854484121482L;
+	
+	private ScheduleDAO dao;
+	public ScheduleDataAction() {
+		// TODO Auto-generated constructor stub
+		dao=new ScheduleDAO();
+	}
+	
+	
+	private List<Object[]> list;
+	
+	
+	
+
+
+	public List<Object[]> getList() {
+		return list;
+	}
+
+	public void setList(List<Object[]> list) {
+		this.list = list;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+//		ScheduleDAO dao=new ScheduleDAO();
+//		HttpServletRequest request=ServletActionContext.getRequest();
+//		String expe_id=(String)request.getAttribute("expename");
+//		List<Object[]> l=dao.getScheludeData(expe_id);
+		
+		return SUCCESS;
+	}
+	
+	public String getData() {
+		System.out.println("getData");
+		HttpServletRequest request=ServletActionContext.getRequest();
+		String expeId=(String)request.getAttribute("expename");
+		System.out.println(expeId);
+		list=dao.getScheludeData(expeId);
+		return SUCCESS;
+	}
+	public String saveData() {
+		
+		System.out.println("saveData");
+		return SUCCESS;
+	}
+	public String deleteData() {
+		System.out.println("deleteData");
+		return SUCCESS;
+	}
+	
+}

@@ -1,0 +1,67 @@
+package com.netmed.pojo;
+
+/**
+ * ExpeServPric entity. @author MyEclipse Persistence Tools
+ */
+
+public class ExpeServPric implements java.io.Serializable {
+
+	// Fields
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer pricId;
+	private String expeType;
+	private Integer expeRank;
+	private Integer servPric;
+
+	// Constructors
+
+	/** default constructor */
+	public ExpeServPric() {
+	}
+
+	/** full constructor */
+	public ExpeServPric(String expeType, Integer expeRank, Integer servPric) {
+		this.expeType = expeType;
+		this.expeRank = expeRank;
+		this.servPric = servPric;
+	}
+
+	// Property accessors
+
+	public Integer getPricId() {
+		return this.pricId;
+	}
+
+	public void setPricId(Integer pricId) {
+		this.pricId = pricId;
+	}
+
+	public String getExpeType() {
+		return this.expeType;
+	}
+
+	public void setExpeType(String expeType) {
+		this.expeType = expeType;
+	}
+
+	public Integer getExpeRank() {
+		return this.expeRank;
+	}
+
+	public void setExpeRank(Integer expeRank) {
+		this.expeRank = expeRank;
+	}
+
+	public Integer getServPric() {
+		return this.servPric;
+	}
+
+	public void setServPric(Integer servPric) {
+		this.servPric = servPric;
+	}
+
+}

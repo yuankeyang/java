@@ -1,0 +1,7 @@
+ENDORSED_DIRS="D\:\\Program Files\\MyEclipse\\Common\\plugins\\com.genuitec.eclipse.easie.tomcat.myeclipse_9.0.0.me201211011550\\tomcat/common/endorsed"
+JDK_HOME=D\:\\Program Files\\MyEclipse\\Common\\binary\\com.sun.java.jdk.win32.x86_64_1.6.0.013
+LIBRARY_PATH="D\:\\Program Files\\MyEclipse\\Common\\binary\\com.sun.java.jdk.win32.x86_64_1.6.0.013\\bin;D\:\\Program Files\\MyEclipse\\Common\\plugins\\com.genuitec.eclipse.easie.tomcat.myeclipse_9.0.0.me201211011550\\tomcat\\bin"
+OPT_VM_ARGS=-Xms512m -Xmx1024m
+eclipse.preferences.version=1
+embedded.server.port=8083
+tomcat.configuration.version.current=2

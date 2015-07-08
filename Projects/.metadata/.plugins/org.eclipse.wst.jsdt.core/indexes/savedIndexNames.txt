@@ -1,0 +1,6 @@
+INDEX VERSION 1.122+E:\©Лел\myeclispe_temp\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3553877095.index
+3684912286.index
+3667153353.index
+1956793881.index
+2069796941.index

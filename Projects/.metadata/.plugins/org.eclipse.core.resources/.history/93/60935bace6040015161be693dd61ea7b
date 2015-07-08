@@ -1,0 +1,320 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+String templateUrl = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+request.setAttribute("url", templateUrl);
+//String search_str=request.getParameter("search_str");
+String search_str=new String(request.getParameter("search_str").getBytes("utf-8"),"utf-8");
+String searchSelect=new String(request.getParameter("searchSelect").getBytes("utf-8"),"utf-8");
+%>
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<jsp:include page="../../include/topbarhead.jsp"></jsp:include>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="${url}/js/jquery.js"></script>
+<script type="text/javascript" src="${url}/js/tab.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link href="${url}/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="${url}/css/main.css" />
+
+<script type="text/javascript">
+
+function myreset(){
+	
+	$("#sleepQuestion")[0].reset();
+}
+
+</script>
+
+<style type="text/css">
+ .input_text{
+    text-align:center;
+    width:80px;
+    border-color:#000000;   
+    border-style:solid;   
+    border-top-width:0px;   
+    border-right-width:0px;   
+    border-bottom-width:1px;   
+    border-left-width:0px; }
+</style>
+ 
+<title> 智能咨询问题 </title>
+
+</head>
+
+<body>
+	<!--顶端信息-->
+	<jsp:include page="../../include/topbar.jsp"></jsp:include>
+
+	<!--中上部分-->
+	<div id="middle">
+		<!--左端logo-->
+		<div id="leftMid">
+			<a href="welcome"><img src="image/logo.png" />
+			</a>
+		</div>
+		<!--左端logo-->
+		<!--右端输入框-->
+		<div id="rightMid">
+			<form method="get" id="searchForm">
+				<br /> 
+				<div style="">
+				<input type="radio" checked="checked" name="searchSelect"
+					value="qiuyi" /> <label>求医</label> &nbsp;&nbsp;&nbsp;
+					<input type="radio" name="searchSelect" value="wenyao" /> <label>问药</label> &nbsp;&nbsp;&nbsp;
+					<input type="radio" name="searchSelect" value="yangsheng" /> <label>养生</label>
+				</div>
+				<!--搜索-->
+				<div id="searchIn">
+					<input type="text" name="search_str" id="search_str" maxlength=200
+						value="<%=search_str%>" /> <a href="javascript:void(0)"> <img
+						src="image/normalbutton_a.png" /> </a>
+				</div>
+				<input style="display:none" />
+			</form>
+			<div class="clear"></div>
+
+		</div>
+		<!--右端输入框-->
+	</div>
+	<!--中上部分-->
+
+	<!--查询信息-->
+	<div class="page">
+		<ul class="tab">
+			<li id="tab_to_1" class="no"><a href="#"
+				onclick="tab('tab',2,1)" onmouseout="">智能咨询</a>
+			</li>
+			<li id="tab_to_2"><a
+				href="expert_recommendation?search_str=<%=search_str%>&searchSelect=<%=searchSelect%>"
+				onclick="tab('tab',2,2)" onmouseout="">专家推荐</a>
+			</li>
+		</ul>
+		<div id="contleft">
+			<img src="image/asidepic04.png" style="margin:-60px 0 0 40px" />
+		</div>
+
+		<div style="margin-left:450px">
+			<div id="tab_mo_1" style="width:600px;">
+			
+			<ul>
+			<form method="get" id=sleepQuestion>
+				<p>下面一些问题是关于您最近1个月的睡眠情况，请您按实际情况选择或填写最符合您近1个月实际情况的答案：</p>
+				<p>
+					⒈近1个月，晚上上床睡觉通常<input type="text" class="input_text" />&nbsp;点钟。<br /> ⒉近1个月，从上床到入睡通常需要<input
+						type="text" class="input_text" />&nbsp; 分钟。<br /> ⒊近1个月，通常早上<input type="text" class="input_text" />&nbsp; 点起床。<br />
+					⒋近1个月，每夜通常实际睡眠<input type="text" class="input_text" />&nbsp;小时（不等于卧床时间）。
+				</p>
+				</form>
+				<p>对下列问题请选择1个最适合您的答案</p>
+			
+				
+				<p>⒌近1个月 ，因下列情况影响睡眠而烦恼：</p>
+				<ul style="list-style:none">
+					<li>
+						<ul id="a01" style="list-style:none">
+							<li>a. 入睡困难（30分钟内不能入睡）</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+						
+					<li>
+						<ul id="a02" style="list-style:none">
+							<li>b. 夜间易醒或早醒</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+					<li>
+						<ul id="a03" style="list-style:none">
+							<li>C.夜间去厕所</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+					<li>
+						<ul id="a04" style="list-style:none">
+							<li>d. 呼吸不畅</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+					<li>
+						<ul id="a05" style="list-style:none">
+							<li>e. 咳嗽或鼾声高</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+					<li>
+						<ul id="a06" style="list-style:none">
+							<li>f. 感觉冷</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+					<li>
+						<ul id="a07" style="list-style:none">
+							<li>g. 感觉热</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+					<li>
+						<ul id="a08" style="list-style:none">
+							<li>h. 做恶梦</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+					<li>
+						<ul id="a09" style="list-style:none">
+							<li>i. 疼痛不适</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul></li>
+					<li>
+						<ul id="a10" style="list-style:none">
+							<li>j. 其它影响睡眠的事情</li>
+							<li>
+								<form>
+									<label> <input name="Fruit" type="radio" value="" /> 无
+									</label> <label> <input name="Fruit" type="radio" value=""
+										checked="checked" /> &lt;1次/周 </label> <label> <input
+										name="Fruit" type="radio" value="" /> 1-2次/周 </label> <label>
+										<input name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+								</form></li>
+						</ul>
+					</li>
+				
+					
+					
+					
+					
+					
+				</ul>
+				
+					
+				 
+					<ul id="a6" style="list-style:none">
+					<li>6.近1个月，总的来说，您认为自己的睡眠质量</li>
+					<li>
+						<form>
+							<label> <input name="Fruit" type="radio" value="" /> 很好 &nbsp;&nbsp;&nbsp;&nbsp;
+							</label> <label> <input name="Fruit" type="radio" value=""
+								checked="checked" /> 较好 &nbsp;&nbsp;&nbsp;&nbsp;</label> <label> <input name="Fruit"
+								type="radio" value="" /> 较差 &nbsp;&nbsp;&nbsp;&nbsp;</label> <label> <input
+								name="Fruit" type="radio" value="" /> 很差 </label>
+						</form></li>
+				   </ul>
+				 
+				
+				
+				<ul id="a7" style="list-style:none">
+					<li>⒎近1个月，您用药物催眠的情况</li>
+					<li>
+						<form>
+							<label> <input name="Fruit" type="radio" value="" /> 无 </label>&nbsp;&nbsp;&nbsp;&nbsp;
+							<label> <input name="Fruit" type="radio" value=""
+								 /> &lt;1次/周 </label> &nbsp;&nbsp;&nbsp;&nbsp;<label> <input
+								name="Fruit" type="radio" value="" /> 1-2次/周 </label>&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
+								name="Fruit" type="radio" checked="checked" value="" /> &ge;1次/周 </label>
+						</form></li>
+				</ul>
+				<ul id="a8" style="list-style:none">
+					<li>⒏近1个月，您常感到困倦吗</li>
+					<li>
+						<form>
+							<label> <input name="Fruit" type="radio" value="" /> 无 </label>&nbsp;&nbsp;&nbsp;&nbsp;
+							<label> <input name="Fruit" type="radio" value=""
+								 /> &lt;1次/周 </label>&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
+								name="Fruit" type="radio" checked="checked" value="" /> 1-2次/周 </label>&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
+								name="Fruit" type="radio" value="" /> &ge;1次/周 </label>
+						</form></li>
+				</ul>
+
+				<ul id="a9" style="list-style:none">
+					<li>⒐近1个月，您做事情的精力不足吗</li>
+					<li>
+						<form>
+							<label> <input name="Fruit" type="radio" checked="checked" value="" /> 没有
+							</label>&nbsp;&nbsp;&nbsp;&nbsp; <label> <input name="Fruit" type="radio" value=""
+								 /> 偶尔有</label> &nbsp;&nbsp;&nbsp;&nbsp;<label> <input name="Fruit"
+								type="radio" value="" /> 有时有 </label> &nbsp;&nbsp;&nbsp;&nbsp;<label> <input
+								name="Fruit" type="radio" value="" /> 经常有 </label>
+						</form></li>
+				</ul>
+
+            </ul>
+            
+				<div style="margin-left:60px">
+					<a href="intelligent_query2?search_str=<%=search_str%>&searchSelect=<%=searchSelect%>"><img
+						src="image/largebutton_next.png" />
+					</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+						href="javascript:void(0)"><img
+						src="image/largebutton_clear.png" onclick="myreset();"/>
+					</a>
+				</div>
+			</div>
+			<div id="tab_mo_2" style="display:none"></div>
+
+		</div>
+	</div>
+
+	<!--查询信息-->
+	</br>
+	<jsp:include page="/WEB-INF/bottom/footer.jsp"></jsp:include>
+</body>
+</html>

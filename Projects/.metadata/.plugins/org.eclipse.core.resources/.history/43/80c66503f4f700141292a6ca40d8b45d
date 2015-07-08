@@ -1,0 +1,105 @@
+package com.netmed.action.expert;
+
+import com.netmed.dao.ExpeRegiDAO;
+import com.netmed.pojo.ExpeRegi;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**类<code>ExpeRegiAction</code>
+ * 专家注册Action
+ * @author 远客
+ *
+ */
+public class ExpeRegiAction extends ActionSupport{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7195502502697238891L;
+	
+	private String username;
+	private String realname;
+	private String password;
+	private String sex;
+	private String id_card_numb;
+	private String email;
+	private String phone;
+	private String telephone;
+	private String referrer;
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getRealname() {
+		return realname;
+	}
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getId_card_numb() {
+		return id_card_numb;
+	}
+	public void setId_card_numb(String id_card_numb) {
+		this.id_card_numb = id_card_numb;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+	public String getReferrer() {
+		return referrer;
+	}
+	public void setReferrer(String referrer) {
+		this.referrer = referrer;
+	}
+	/**方法<code>isInvalide</code>
+	 * 验证输入的数据是否合法
+	 * @return
+	 */
+	public boolean isInvalide(){
+		return true;
+	}
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		Boolean sex_=Boolean.TRUE;
+		if(this.getSex().equals("female"))
+			sex_=Boolean.FALSE;
+		ExpeRegiDAO dao=new ExpeRegiDAO();
+		if(dao.regiExpe(username, realname, password, sex_, id_card_numb, email, phone, telephone, referrer))
+		{
+			return SUCCESS;
+		}else{
+		return ERROR;
+		}
+	}
+	
+}

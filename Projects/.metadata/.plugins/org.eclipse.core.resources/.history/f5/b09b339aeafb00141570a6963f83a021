@@ -1,0 +1,5 @@
+package com.netmed.dao;
+
+public class ScheduleDAO {
+	
+}

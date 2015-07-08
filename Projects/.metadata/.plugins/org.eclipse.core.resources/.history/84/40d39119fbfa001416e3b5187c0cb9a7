@@ -1,0 +1,46 @@
+package com.netmed.action.member;
+
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.ServletActionContext;
+
+import com.netmed.dao.MembRegiDAO;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**类<code>MembRegiAction</code>
+ * 完成会员注册的action类
+ *@author 远客
+ *@version 1.0
+ *
+ */
+public class MembRegiAction extends ActionSupport {
+	
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 550127190947974011L;
+	
+	private String username;
+	private String email;
+	private String sex;
+	private String password;
+
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		HttpServletRequest request=ServletActionContext.getRequest();
+		String username=request.getParameter("username");
+		String mail=request.getParameter("email");
+		String sex=request.getParameter("sex");
+		String password=request.getParameter("password");
+		System.out.println(sex);
+		Boolean s=Boolean.TRUE;
+		if(sex.equals("female")) s=Boolean.FALSE;
+		MembRegiDAO dao=new MembRegiDAO();
+		if(dao.regiMemb(username, mail, s, password)){
+//			dao.setState(username, Boolean.TRUE);
+			return SUCCESS;
+			}
+		else
+			return ERROR;
+	}
+}

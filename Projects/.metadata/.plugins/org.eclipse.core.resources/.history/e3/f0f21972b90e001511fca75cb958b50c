@@ -1,0 +1,110 @@
+package com.netmed.action.expert;
+
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.ServletActionContext;
+
+
+import com.netmed.dao.ScheduleDAO;
+import com.netmed.pojo.Schedule;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * @author 远客
+ *
+ */
+public class ScheduleDataAction extends ActionSupport {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2862419854484121482L;
+	
+	private ScheduleDAO dao;
+	public ScheduleDataAction() {
+		// TODO Auto-generated constructor stub
+		dao=new ScheduleDAO();
+	}
+	
+	
+	private List<Schedule> list;
+	
+	
+
+	public List<Schedule> getList() {
+		return list;
+	}
+
+	public void setList(List<Schedule> list) {
+		this.list = list;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		
+		return SUCCESS;
+	}
+	
+	
+	//Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2005-06-09"); 
+	 // String now = new SimpleDateFormat("yyyy年MM月dd日").format(date);
+	/**
+	 * @return
+	 */
+	public String getData() {
+		System.out.println("获取专家日程action---getData");
+		HttpServletRequest request=ServletActionContext.getRequest();
+		HttpSession session=request.getSession();
+		String expeId=(String)session.getAttribute("expename");
+		String expe_id_=(String)request.getParameter("t");//预约功能
+		System.out.println(expe_id_);
+		if(expe_id_!=null){
+			expeId=expe_id_;
+		}
+		System.out.println(expeId);
+		
+		
+		list=dao.getScheludeData(expeId);
+		System.out.println("日程安排数量"+list.size());
+		return SUCCESS;
+	}
+	public String saveData() throws IOException {
+		
+		System.out.println("saveData");
+		try{
+		HttpServletRequest request=ServletActionContext.getRequest();
+		HttpSession session= request.getSession();
+		String s=request.getParameter("jsonData");
+		String expe_id=(String)session.getAttribute("expename");
+		System.out.println(s);
+		
+		JSONObject jsobj=new JSONObject();
+		String title=jsobj.get("title").toString();
+		String content=jsobj.get("description").toString();
+		
+		Timestamp start=Timestamp.valueOf(jsobj.get("start").toString());
+		Timestamp end=Timestamp.valueOf(jsobj.get("end").toString()+":00");
+		
+		
+		ScheduleDAO dao=new ScheduleDAO();
+		dao.saveScheduleData(title,expe_id,content ,start, end);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String deleteData() {
+		System.out.println("deleteData");
+		return SUCCESS;
+	}
+	
+}

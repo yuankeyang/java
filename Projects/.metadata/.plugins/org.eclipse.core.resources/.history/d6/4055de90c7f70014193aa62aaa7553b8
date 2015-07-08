@@ -1,0 +1,88 @@
+package com.netmed.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.*;
+
+/**类<code>ExpeRegiDAO</code>
+ * 封装对表expe_regi的数据库操作
+ * 最后改动时间2015-05-10
+ * @author 远客
+ * @version 1.0
+ */
+public class ExpeRegiDAO {
+	/**方法<code>getExpeinfoById</code>
+	 * 通过专家的expe_id来获取对应的对象
+	 * @param id
+	 * @return ExpeRegi
+	 */
+	public ExpeRegi getExpeinfoById(String expe_id) {
+		Session session=HibernateSessionFactory.getSession();
+		Object obj=session.get(ExpeRegi.class, expe_id);
+		session.close();
+		return (ExpeRegi)obj;
+	}
+	/**方法<code>checkLogin</code>
+	 * 专家登录检查，合法返回true，否则返回false
+	 * @param username
+	 * @param password
+	 * @return boolean
+	 */
+	public boolean checkLogin(String username,String password){
+//		System.out.println("checkLogin");
+		ExpeRegi expe=getExpeinfoById(username);
+		System.out.println(expe);
+		if(expe==null){
+			return false;
+		}else{
+			//System.out.println(password+"<>"+expe.getExpePass());
+			if(expe.getExpePass().equals(password)){
+			//	System.out.println("sdsds");
+//				System.out.println("success:"+memb.getMembPass());
+				return true;
+				}
+			else{
+//				System.out.println(memb.getMembPass());
+				return false;
+				}
+		}
+	}
+	
+	/**方法<code>setState</code>
+	 * 设置登录状态
+	 * @param id
+	 * @param state
+	 * @return boolean
+	 */
+	public boolean setState(String id,Boolean state){
+		ExpeRegi expe=getExpeinfoById(id);
+		if(expe==null) return false;
+		Session session=HibernateSessionFactory.getSession();
+		org.hibernate.Transaction tx=session.beginTransaction();
+		expe.setState(state);
+		session.save(expe);
+		tx.commit();//提交事务。
+		session.close();
+		return true;
+	}
+	
+	public boolean regiExpe(String username,String realname,
+			String password,Boolean sex,String id_card_numb,
+			String email,String phone,String telephone,
+			String referrer) {
+		ExpeRegi obj=getExpeinfoById(username);
+		if(obj!=null) return false;//判断数据库中是否已经存在
+		Session session=HibernateSessionFactory.getSession();
+		org.hibernate.Transaction tx=session.beginTransaction();
+		obj=new ExpeRegi(username,realname,password,sex,id_card_numb,email,phone,telephone,referrer);
+		session.save(obj);//保存对象到数据库
+		tx.commit();//提交事务。
+		session.close();
+		return true;
+	}	
+		
+}

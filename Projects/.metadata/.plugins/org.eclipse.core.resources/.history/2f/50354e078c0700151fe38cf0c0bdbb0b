@@ -1,0 +1,17 @@
+package com.netmed.action.qiuyi;
+
+import com.netmed.dao.ExpeServPricDAO;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class ExpeServPricAction extends ActionSupport {
+	private String price;
+	
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		ExpeServPricDAO dao=new ExpeServPricDAO();
+		
+		return super.execute();
+	}
+
+}

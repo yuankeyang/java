@@ -1,0 +1,238 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String templateUrl = request.getScheme() + "://"
+			+ request.getHeader("host") + request.getContextPath();
+	request.setAttribute("url", templateUrl);
+	String expe_id=request.getParameter("doctorId");
+	System.out.println(expe_id);
+	request.setAttribute("doctorId", expe_id);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link rel='stylesheet' href='${url}/schedule/jquery-ui-1.11.4/jquery-ui.min.css' />
+<link href='${url}/schedule/fullcalendar-2.3.1/fullcalendar.css' rel='stylesheet' />
+<link href='${url}/schedule/fullcalendar-2.3.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link rel='stylesheet'
+href='${url}/schedule/jQuery-Timepicker-Addon-master/jquery-ui-timepicker-addon.css' />
+
+
+<link rel="stylesheet" type="text/css" href="${url}/css/article.css" />
+
+<script src='${url}/schedule/fullcalendar-2.3.1/lib/moment.min.js'></script>
+<script src='${url}/schedule/fullcalendar-2.3.1/lib/jquery.min.js'></script>
+<script src='${url}/schedule/fullcalendar-2.3.1/fullcalendar.min.js'></script>
+<script src='${url}/schedule/fullcalendar-2.3.1/lang-all.js'></script>
+<script src='${url}/schedule/jquery-ui-1.11.4/jquery-ui.min.js'></script>
+
+<script src='${url}/schedule/jQuery-Timepicker-Addon-master/jquery-ui-timepicker-addon.js'></script>
+<script  type='text/javascript'>
+
+ $(document).ready(function() {
+$(document).ready(function() {
+	  var selectdateGlobal=moment().toDate();//选中的日期，全局变量
+    //结束时间
+      $("#appoTime").datetimepicker({
+    	  defaultDate: selectdateGlobal,
+    	  minDate:selectdateGlobal,
+    	  dayNamesMin: [ "日","一", "二", "三", "四", "五", "六"],
+    	  monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
+    	  currentText: "现在",
+    	  closeText: "完成",
+    	  dateFormat: 'yy-mm-dd', 
+    	  hourMin: 5, hourMax: 23, hourGrid: 3, 
+    	  minuteGrid: 15, timeText: '时间', hourText: '时', 
+    	  minuteText: '分', 
+    	  onClose: function (dateText, inst) {
+    		  
+        },
+         onSelect: function (selectedDateTime) {
+            }
+        });
+
+        $("#addhelper").hide();
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+			$("#calendar").fullCalendar({
+        		theme:true,
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				lang: 'zh-cn',
+				buttonIcons: false, // show the prev/next text
+				weekNumbers: true,
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+        viewRender:function(view,element){
+          //创建时调用
+          var viewSart=$.fullCalendar.moment(view.start).format("YYYY-MM-DD HH:mm:ss");
+          var viewEnd=$.fullCalendar.moment(view.end).format("YYYY-MM-DD HH:mm:ss");
+          $("#calendar").fullCalendar('removeEvents');
+         // alert("viewEnd");
+          $.ajax({
+           type: "POST", //使用post方法访问后台
+           timeout:4000,
+           cache:false,
+           dataType:"json",
+           url: "getScheduleData?doctorId=''"+<%=expe_id%>+"'", //要访问的后台地址
+           success: function (data) {
+        	   //(data.length);
+        	   
+       	   if(data.length>0)
+        	for(i=0;i<data.length;i++){
+        	   var testdata={id:data[i].id,title:data[i].title,fullname:data[i].title,start:data[i].starttime,
+            	   end:data[i].endtime,description:data[i].content};
+                   $("#calendar").fullCalendar('renderEvent', testdata, true);
+        	 }
+           },
+           error:function(){
+           alert("获取数据出错");
+           }
+          });
+        },
+        titleFormat: "YYYYMMMMdddd",
+        loading: function (bool,view) {
+                if (bool) $("#loading").show();
+                else $("#loading").hide();
+            },
+        eventAfterRender: function (event, element, view) {//数据绑定上去后添加相应信息在页面上
+         var fstart = $.fullCalendar.moment(event.start).format("HH:mm");
+         var fend = $.fullCalendar.moment(event.end).format("HH:mm");
+
+         var confbg = '';
+         if (event.confid == 1) {
+             confbg = confbg + '<span class="fc-event-bg"></span>';
+         } else if (event.confid == 2) {
+             confbg = confbg + '<span class="fc-event-bg"></span>';
+         } else if (event.confid == 3) {
+             confbg = confbg + '<span class="fc-event-bg"></span>';
+         } else if (event.confid == 4) {
+             confbg = confbg + '<span class="fc-event-bg"></span>';
+         } else if (event.confid == 5) {
+             confbg = confbg + '<span class="fc-event-bg"></span>';
+         } else if (event.confid == 6) {
+             confbg = confbg + '<span class="fc-event-bg"></span>';
+         } else {
+             confbg = confbg + '<span class="fc-event-bg"></span>';
+         }
+
+         if (view.name == "month") {//按月份
+             var evtcontent = '<div class="fc-event-vert"><a>';
+             evtcontent = evtcontent + confbg;
+             evtcontent = evtcontent + '<span class="fc-event-titlebg">' + fstart + " - " + fend + event.fullname + '</span>';
+             element.html(evtcontent);
+         } else if (view.name == "agendaWeek") {//按周
+             var evtcontent = '<a>';
+             evtcontent = evtcontent + confbg;
+             evtcontent = evtcontent + '<span class="fc-event-time">' + fstart + "-" + fend  + '</span>';
+             evtcontent = evtcontent + '<span>'+ event.fullname + '</span>';
+             element.html(evtcontent);
+          } else if (view.name == "agendaDay") {//按日
+              var evtcontent = '<a>';
+              evtcontent = evtcontent + confbg;
+              evtcontent = evtcontent + '<span class="fc-event-time">' + fstart + " - " + fend +  '</span>';
+                    element.html(evtcontent);
+                }
+          },
+            eventMouseover: function (calEvent, jsEvent, view) {
+                var fstart = $.fullCalendar.moment(calEvent.start).format("YYYY/MM/dd HH:mm");
+                var fend = $.fullCalendar.moment(calEvent.end).format("YYYY/MM/dd HH:mm");
+                $(this).attr('title', fstart + " - " + fend + " " + "标题" + " : " + calEvent.title);
+                $(this).css('font-weight', 'normal');
+                $(this).tooltip({
+                    effect: 'toggle',
+                    cancelDefault: true
+                });
+            },
+
+           
+            events: []
+        });
+
+
+
+        //goto date function
+        if ($.browser.msie) {
+            $("#calendar .fc-header-right table td:eq(0)").before('<td><div class="ui-state-default ui-corner-left ui-corner-right" style="border-right:0px;padding:1px 3px 2px;" ><input type="text" id="selecteddate" size="10" style="padding:0px;"></div></td><td><div class="ui-state-default ui-corner-left ui-corner-right"><a><span id="selectdate" class="ui-icon ui-icon-search">goto</span></a></div></td><td><span class="fc-header-space"></span></td>');
+        } else {
+            $("#calendar .fc-header-right table td:eq(0)").before('<td><div class="ui-state-default ui-corner-left ui-corner-right" style="border-right:0px;padding:3px 2px 4px;" ><input type="text" id="selecteddate" size="10" style="padding:0px;"></div></td><td><div class="ui-state-default ui-corner-left ui-corner-right"><a><span id="selectdate" class="ui-icon ui-icon-search">goto</span></a></div></td><td><span class="fc-header-space"></span></td>');
+        }
+
+        $("#selecteddate").datepicker({
+            dateFormat: 'yy-mm-dd',
+            beforeShow: function (input, instant) {
+                setTimeout(
+							function () {
+							    $('#ui-datepicker-div').css("z-index", 15);
+							}, 100
+						);
+            }
+        });
+
+
+
+        $("#selectdate").click(function () {
+            var selectdstr = $("#selecteddate").val();
+            var selectdate = $.fullCalendar.moment(selectdstr).format("YYYY-MM-DD");
+            $('#calendar').fullCalendar('gotoDate', selectdate.getFullYear(), selectdate.getMonth(), selectdate.getDate());
+        });
+
+        // conference function
+        $("#calendar .fc-header-left table td:eq(0)").before('<td><div class="ui-state-default ui-corner-left ui-corner-right" id="selectmeeting"><a><span id="selectdate" class="ui-icon ui-icon-search" style="float: left;padding-left: 5px; padding-top:1px"></span>meeting room</a></div></td><td><span class="fc-header-space"></span></td>');
+    });
+ });
+
+
+</script>
+
+<style>
+
+#appoBox{
+
+ width: 900px;
+ margin: 0 auto;
+}
+  #calendar
+    {
+        width: 900px;
+        margin: 0 auto;
+    }
+</style>
+
+</head>
+<body>
+ <div id="wrap">
+        <div id='calendar'>
+        </div>
+        <div id="appoBox">
+        <form method="get">
+        <div class="rowElem">
+                <label>
+                    标题:</label>
+                <input id="title" name="start">
+            </div>
+        <div class="rowElem">
+        <label>
+        预约时间：</label><input id="appoTime" name="appoTime" readonly='true'>
+        </div>
+        <div class="rowElem">
+            <label>
+                    备忘内容:</label>
+                <textarea id="details" rows="3" cols="43" name="details"></textarea>
+         </div>
+         <div class="rowElem">
+         <button>提交</button>
+         </div>
+            
+            </form>
+	 	</div>
+</div>
+</body>
+</html>

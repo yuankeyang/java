@@ -1,0 +1,144 @@
+package com.netmed.action.member;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.netmed.dao.ExpeRegiDAO;
+import com.netmed.dao.MembRegiDAO;
+import com.netmed.pojo.ExpeRegi;
+import com.netmed.pojo.MembRegi;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**类<code>MembRegiAction</code>
+ * 完成会员注册的action类
+ *@author 远客
+ *@version 1.0
+ *
+ */
+public class MembRegiAction extends ActionSupport {
+	
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 550127190947974011L;
+
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		HttpServletRequest request=ServletActionContext.getRequest();
+		String username=request.getParameter("username");
+		String mail=request.getParameter("email");
+		String sex=request.getParameter("sex");
+		String password=request.getParameter("password");
+		System.out.println(sex);
+		Boolean s=Boolean.TRUE;
+		if(sex.equals("female")) s=Boolean.FALSE;
+		
+		MApplicationContext otx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		MembRegiDAO dao=(MembRegiDAO)otx.getBean("MembRegiDAO");
+		if(dao.regiMemb(username, mail, s, password)){
+//			dao.setState(username, Boolean.TRUE);
+			return SUCCESS;
+			}
+		else
+			return ERROR;
+	}
+	
+	public String getMemberCredit(){
+		System.out.println("运行到了getMemberCredit----");
+		HttpServletRequest request=ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		String forward="success";
+		String userId=request.getParameter("userId");
+		System.out.println("运行到了getMemberCredit---会员："+userId);
+		
+		MembRegiDAO dao=new MembRegiDAO();
+		int credit=dao.getMemberCredit(userId);
+		
+		System.out.println("会员积分为："+credit);
+		String str = String.valueOf(credit);
+		PrintWriter out = null;
+		JSONObject json = new JSONObject();
+		json.put("credit", str);
+		try {
+			out = response.getWriter();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			forward="error";
+		}
+		out.println(json.toString());
+		out.flush();
+		out.close();
+		return forward;
+	}
+	
+	public String payAction(){
+		System.out.println("运行到了payAction----同时更新会员和专家积分");
+		HttpServletRequest request=ServletActionContext.getRequest();
+		String forward="success";
+		
+		try {
+			String userId=new String(request.getParameter("userId").getBytes("iso8859-1"),"utf-8");
+			String expe_id= new String(request.getParameter("expe_id").getBytes("iso8859-1"),"utf-8");
+			String expe_name = new String(request.getParameter("expe_name").getBytes("iso8859-1"),"utf-8");
+			System.out.println("运行到了payAction---会员："+userId);
+			System.out.println("运行到了payAction---专家ID："+expe_id);
+			System.out.println("运行到了payAction---专家姓名："+expe_name);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("expe_id", expe_id);
+			session.setAttribute("expe_name", expe_name);
+
+			MembRegiDAO dao=new MembRegiDAO();
+			ExpeRegiDAO expertDao=new ExpeRegiDAO();
+			MembRegi member=dao.getMembinfoById(userId);
+			ExpeRegi expert=expertDao.getExpeinfoById(expe_id);
+			
+			int membCredit=member.getCredit();
+			int expeCredit=expert.getCredit();
+			System.out.println(userId+"当前积分为:"+membCredit);
+			System.out.println(expe_id+"当前积分为:"+expeCredit);
+			
+			membCredit=membCredit-10;
+			expeCredit=expeCredit+10;
+			member.setCredit(membCredit);
+			expert.setCredit(expeCredit);
+			
+			if(dao.calculateCredit(member)){
+				System.out.println("更新会员积分成功！");
+				forward="success";
+			}else{
+				System.out.println("更新会员积分失败！");
+				forward="error";
+			}
+			if(expertDao.calculateCredit(expert)){
+				System.out.println("更新专家积分成功！");
+				forward="success";
+			}else{
+				System.out.println("更新专家积分失败！");
+				forward="error";
+			}
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			forward="error";
+		}
+		return forward;
+		
+	}
+
+}

@@ -1,0 +1,57 @@
+package com.netmed.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.ExpeRegi;
+import com.netmed.pojo.ExpeServCont;
+
+/**
+ * @author xianggen
+ * 5-11
+ * 通过专家服务内容约定表和专家注册表得到医师列表，这里还没有考虑专家的类别
+ */
+public class DoctorDAO {
+	
+     //通过专家ID查找相关专家
+	 public List<ExpeRegi> queryExpeRegi(String expertId) {			
+		    List<ExpeRegi> expert=new ArrayList<ExpeRegi>(); 		
+	        Session session=HibernateSessionFactory.getSession();
+	        Criteria criteria=session.createCriteria(ExpeRegi.class);
+			criteria.add(Restrictions.ilike("expeId", expertId,MatchMode.EXACT));
+			expert=criteria.list();
+			session.close();
+		    System.out.println("从专家注册表中查找专家成功！！");
+	 		return expert;
+		} 
+		
+		// 通过输入关键词找到相关的专家ID,这里还需要改进，不能通过关键词直接找服务内容约定
+	    //  返回类型注意，模糊查询的类型！！！！
+		public List<ExpeServCont> queryExpertId(String inputStr){
+			 Session session=HibernateSessionFactory.getSession();
+			 List<ExpeServCont> result=new ArrayList<ExpeServCont>();
+		     Criteria criteria=session.createCriteria(ExpeServCont.class);
+			 criteria.add(Restrictions.like("diseType", "%"+inputStr+"%"));
+			 result=criteria.list();
+			 System.out.println("从专家服务内容表中获取专家ID成功！！");
+			 session.close();
+			 return result;
+	    }
+		
+		// 判断专家是否在线
+		public boolean isOnline(String expertId){
+			Session session=HibernateSessionFactory.getSession();
+			ExpeRegi doctor=(ExpeRegi) session.get(ExpeRegi.class, expertId);
+			session.close();
+			System.out.println("查询成功，该专家："+doctor.getState());
+			return doctor.getState();
+		}
+
+		
+}

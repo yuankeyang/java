@@ -1,0 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<script type="text/javascript">
+    $(".usercenter_nav .item ul .on").parent().show().prev("div").addClass("on");
+    </script>
+<iframe width="0" height="0" name="report_image_iframe" id="report_image_iframe" style="display:none;"></iframe>
+<div class="user_center_bigtitle"><span>我的服务</span></div>
+<div class="pr15 tr"><a class="blue" target="_blank" href="#">向其他大夫提问&gt;&gt;</a></div>
+<div style="margin-top:-19px; padding-left:20px;">暂时无服务</div>

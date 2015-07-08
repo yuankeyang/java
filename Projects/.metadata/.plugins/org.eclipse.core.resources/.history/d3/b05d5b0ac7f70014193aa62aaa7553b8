@@ -1,0 +1,128 @@
+<%@page import="java.sql.ResultSet"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<jsp:useBean id="dbmanage" class="com.Bean.db_manager"></jsp:useBean>
+<% 
+response.setHeader("Pragma","No-cache");    
+response.setHeader("Cache-Control","no-cache");    
+response.setDateHeader("Expires", -10);   
+ %> 
+<%
+String basepath = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+String name=(String)session.getAttribute("username");
+String sql="select * from memb_regi where memb_id='"+name+"'";
+String rank=null;
+String credit=null;
+String money=null;
+String headImg="";
+String mem_id="";
+ResultSet rs=dbmanage.query(sql);
+if(rs.next()){
+	
+	rank=rs.getString("rank");
+	mem_id=rs.getString("memb_id");
+	credit=rs.getString("credit");
+	money=rs.getString("money");
+	headImg=rs.getString("head_img");
+	headImg= headImg!=null && !headImg.equals("") ? headImg:"/img/iconuser96.gif";
+}else{
+	System.out.println("查询出错");
+}
+dbmanage.dbclose();
+String times=System.currentTimeMillis()+"";
+ %>
+<!--
+
+//-->
+</script>
+ <script language="javascript">
+$(document).ready(function(){
+    $(".userinfo_box .userpic span").hover(function(){
+        $(this).find("a").show();
+    },function(){
+        $(this).find("a").hide();
+    })
+});
+</script>
+<div class="userinfo_box">
+                    <div class="userpic">
+                        <span id="abc">
+                            <img alt="" src="<%=basepath %><%=headImg %>?_t=<%=times %>">
+                            <!--  
+                            <a href="javascript:void(0);" onclick="index_update_doctor_headphoto(this)" style="display: none;">修改头像</a>
+                        	-->
+                        	<a href="<%=basepath %>/upload.jsp?mem_id=<%=mem_id %>" >修改头像</a>
+                        </span>
+                    </div>
+                    <div class="userinfo">
+                        <div class="welcome"><%=session.getAttribute("username") %>&nbsp;您好！
+                                                        <a target="_blank" id="aa" href="#"><img width="110" height="35" src="<%=basepath %>/img/nousedphone.png" title="下载手机客户端，随时随地联系颐健通"></a>
+                                    </div>
+                        <div class="num">
+                        积分: <a href="#" class="blue"><%=credit %>分</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        账户余额: <a href="#" class="red"><%=money %></a> 元&nbsp;&nbsp;&nbsp;&nbsp;
+                        等级: <a href="#" class="blue"><%=rank %></a>
+                        </div>
+<%--                        <div class="num">--%>
+<%--                            <span class="black">0&nbsp;</span>封感谢信&nbsp;&nbsp;&nbsp;&nbsp;--%>
+<%--                            <span class="black">0&nbsp;</span>篇就医经验&nbsp;&nbsp;&nbsp;&nbsp;--%>
+<%--                            <span class="black">0&nbsp;</span>件心意礼物--%>
+<%--                        </div>--%>
+                    </div>
+                </div>
+                
+          <script>
+    function index_update_doctor_headphoto(el){
+        space_pop_windows(el, 'index_doctor_photo', '/index/ajaxphoto?window_id=00', {title: '头像设置'});
+    }
+
+    $(function(){/*{{{*/       
+        $('.todocheckup').fancybox({
+            onComplete:function(){/*{{{*/
+                var uploadContent = $('#uploadimagediv').html();
+                $('#boxmanualentering').fancybox({
+                    padding:0,
+                        onComplete:function(){/*{{{*/
+                            $('#reportboxsave').click(function(){/*{{{*/
+                                alert('提交成功');
+                            });/*}}}*/
+                        },/*}}}*/
+                    onCleanup:function(){/*{{{*/
+                        var inputSerialize = $('#ticketid').serialize() + "&" + $('#inputlistbox').find(':input').serialize();
+                        $.post('/myhealth/ajaxbatchaddstructedreport', inputSerialize, function(){
+                            if(window.location.pathname == '/myhealth/checkuphistory')
+                            {
+                                showReportList();
+                            }
+                        })
+                    }/*}}}*/
+                });
+
+                $('#boxuploadimage').fancybox({
+                    type:'iframe',
+                    scrolling:'no'    
+                });
+            }/*}}}*/
+        });
+    });/*}}}*/
+
+    function addCheckupReportLeft(ticketId, patientAttachmentId)
+    {/*{{{*/
+        $.fancybox.close();
+        $.post('/myhealth/ajaxaddcheckupreport4patientattachment', {ticketid:ticketId, patientattachmentid:patientAttachmentId}, function(data){
+            alert('上传成功');
+            //$('.todocheckup:first').click();
+        });
+    }/*}}}*/
+
+    
+    </script>
+    
+    <div class="user_center_normalbox">
+         <div class="user_center_normaltitle">最近的通知</div>
+         <ul class="user_center_normallist">
+         收件箱暂无消息         </ul>
+         <div class="find_more">
+              </div>
+ </div>

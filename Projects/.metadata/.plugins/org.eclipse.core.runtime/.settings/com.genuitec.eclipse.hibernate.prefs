@@ -1,0 +1,6 @@
+com.genuitec.eclipse.hibernate.GEN_ABSTRACT=false
+com.genuitec.eclipse.hibernate.JAVA_FOLDER=/NetMed/src
+com.genuitec.eclipse.hibernate.JAVA_PACKAGE=com.netmed.pojo
+eclipse.preferences.version=1
+me.pref.version=4.1
+switchperspective=always

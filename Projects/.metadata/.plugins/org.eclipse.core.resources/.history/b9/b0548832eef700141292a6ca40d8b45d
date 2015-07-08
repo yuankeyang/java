@@ -1,0 +1,22 @@
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<frameset  framespacing="0" rows="40,*,100">
+	<frame frameborder="0" name="topFrame" noresize="noresize" scrolling="no"
+		src="<%=basePath%>topbarDefault">
+	<frameset  framespacing="0" cols="250px,*">
+		<frame name="leftFrame" noresize="noresize"
+			src="<%=basePath%>user/center-left">
+		<frame frameborder="0" frameborder="0" name="rightFrame" noresize="noresize"
+			src="<%=basePath%>user/wodeCen">
+	</frameset>
+	<frame noresize="noresize" scrolling="no" src="<%=basePath%>footer">
+</frameset>
+</html>

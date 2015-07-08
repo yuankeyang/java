@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="网医" lastModify="2015-05-14-20:35">
+
+	<member name="杨元科">
+		<modifyPlace id="1">会员注册、专家注册文件规范，放到了/WEB-INF/memb/register.jsp和/WEB-INF/expe/register.jsp
+		</modifyPlace>
+		<modifyPlace id="2">修改/WEB-INF/expe/register.jsp</modifyPlace><!--增加多类型注册-->
+		<modifyPlace id="3">修改/jsold/register.js，116行处</modifyPlace><!--js控制-->
+	</member>
+		</project>

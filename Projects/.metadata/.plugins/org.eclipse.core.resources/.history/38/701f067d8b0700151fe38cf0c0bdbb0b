@@ -1,0 +1,39 @@
+package com.netmed.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.ExpeServPric;
+import com.netmed.pojo.WestMedi;
+
+/**
+ * 专家服务价格表，读取专家服务价格
+ * @author Administrator
+ *
+ */
+public class ExpeServPricDAO {
+	
+	/**
+	 * 根据专家类型和等级读取服务价格，可能有多个
+	 */
+	public List<ExpeServPric> getPriceByTypeAndRank(int type,int rank){
+		List<ExpeServPric> priceList = new ArrayList<ExpeServPric>();
+		Session session = HibernateSessionFactory.getSession();
+		Criteria criteria = session.createCriteria(ExpeServPric.class);
+		criteria.add(Restrictions.and(Restrictions.eq(
+				"expeTypeComp.expeTypeId", type),Restrictions.eq(
+						"expeRank", rank)));
+		priceList=criteria.list();
+		return priceList;
+	}
+	public String getPrice(int n){
+		String price=null;
+		return price;
+	}
+
+}

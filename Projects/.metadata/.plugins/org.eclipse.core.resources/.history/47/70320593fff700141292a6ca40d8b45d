@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.List" %>
+<%@ page language="java" import="com.netmed.pojo.Collection" %>
+<jsp:useBean id="colDao" class="com.netmed.dao.CollectionDAO"></jsp:useBean>
+<%
+String memb_id=(String)session.getAttribute("username");
+List<Collection> l=colDao.getCollections(memb_id);
+int n=l.size();//个数
+ %>
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<html>
+<head>
+<script type="text/javascript" src="${url}/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="${url}/membcss/wodeDoc.css"/>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tabs li").bind("click", function () {
+            var index = $(this).index();
+            var divs = $("#tabs-body > div");
+            $(this).parent().children("li").attr("class", "tab-nav");//将所有选项置为未选中
+            $(this).attr("class", "tab-nav-action"); //设置当前选中项为选中样式
+            divs.hide();//隐藏所有选中项内容
+            divs.eq(index).show(); //显示选中项对应内容
+        });
+        var N=<%=n%>;
+        if(N==0){
+        $("#tab1").html("你还没有收藏任何专家！！！赶快去收藏吧");
+        }else{
+        $("#tab1").append("<ul>");
+        for(i=0;i<N;i++){
+        	 
+        }
+        $("#tab1").append("</ul>");
+        }
+    });
+    
+</script>
+</head>
+<body>
+<div class="tabs">
+    <ul id="tabs">
+        <li class="tab-nav-action">收藏的医生(<%=n%>)</li>
+        <li class="tab-nav">互动的医生</li>
+    </ul>
+</div>
+<div id="tabs-body" class="tabs-body">
+    <div id="tab1" style="display:block">
+    
+    </div>
+    <div style="display:none">
+   互动医生
+    </div>
+    <div style="display:none">
+   </div>
+</div>
+</body>
+</html>

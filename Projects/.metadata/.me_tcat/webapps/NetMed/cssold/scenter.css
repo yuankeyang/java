@@ -1,0 +1,484 @@
+.scenter-doc{ margin:0 auto; width:960px;background:url(http://i1.hdfimg.com/userspace/images/scenter03.gif) repeat-y;}
+.scenter-top{ height:10px; background:url(http://i1.hdfimg.com/userspace/images/scenter01.gif) no-repeat left top;}
+.scenter-bottom{ height:10px; background:url(http://i1.hdfimg.com/userspace/images/scenter02.gif) no-repeat left bottom;}
+.scenter-main{ padding:0 10px;}
+.scenter-notice{padding: 10px 15px;background: none repeat scroll 0 0 #FFF4DB;}
+
+.scenter-mainNav{ width:240px;}
+.scenter-corner-t,.scenter-corner-b{height:14px; background:#fff;}
+.scenter-mainNav-main{ background:#fff; padding:0 12px;}
+.scenter-mainNav-main h3{ font-size:14px; font-family:'Microsoft YaHei','SimHei';padding-left:20px;}
+.scenter-icon{ border:1px solid #ccc; width:61px; height:61px;}
+.scenter-detail{ overflow:hidden; zoom:1; width:130px; *left:-13px;}
+.scenter-pending{ background:url(http://i1.hdfimg.com/userspace/images/scenter05.jpg) no-repeat left bottom; width:216px; padding-bottom:4px;}
+.scenter-pending h3{ background:url(http://i1.hdfimg.com/userspace/images/scenter04.gif) no-repeat left top; height:28px; width:196px; line-height:28px;}
+.scenter-pendingMain-sf{ border:1px solid #ffdb91; background:#fff4db; border-top:none; border-bottom:none; padding:10px 15px 10px; color:#ff8400;}
+.scenter-pendingMain-sf li{ padding:0  0 5px 20px; background:url(http://i1.hdfimg.com/userspace/images/tip_todo.gif) no-repeat left 2px;}
+.scenter-nav-box{ padding-top:10px;}
+.scenter-nav-box h3{ background:url(http://i1.hdfimg.com/userspace/images/scenter08.gif) no-repeat; height:29px;line-height:29px;}
+.scenter-nav-box h3.scenter-nav-box-hover{ background:url(http://i1.hdfimg.com/userspace/images/scenter09.gif) no-repeat;}
+.scenter-nav-box h3.scenter-nav-box-click{ background:url(http://i1.hdfimg.com/userspace/images/scenter08.gif) no-repeat;}
+.scenter-nav-box h3.scenter-nav-box-hover1{ background:url(http://i1.hdfimg.com/userspace/images/scenter26.gif) no-repeat;}
+.scenter-nav-list{ padding-top:10px; }
+.scenter-nav-list li{ padding:4px 0 4px 15px; margin-left:3px;}
+.scenter-nav-list li.scenter-nav-list-active{ background:url(http://i1.hdfimg.com/userspace/images/scenter10.gif) no-repeat;font-weight:bold;}
+.scenter-serverTel{ background:url(http://i1.hdfimg.com/userspace/images/scenter37.gif) no-repeat; height:49px;width:216px; margin-top:15px; font: bold 14px 'Microsoft YaHei','SimHei';}
+.scenter-serverTel span{ line-height:49px; padding-left:37px;}
+/*
+*=scenter-mainContent
+*/
+.scenter-mainContent{ width:690px; margin-left:10px; background:#fff;}
+.scenter-mainContent h3{ font-size:14px; font-family:'Microsoft YaHei','SimHei';}
+.scenterMain{ padding:0px 6px;}
+.scenter-main-title{ background:url(http://i1.hdfimg.com/userspace/images/scenter11.gif) no-repeat; width:678px; height:33px; line-height:33px;}
+.scenter-review-title{ padding-left:55px; background:url(http://i1.hdfimg.com/userspace/images/scenter12.gif) no-repeat 33px 6px; font-size: 14px;}
+.scenter-talkToDoc{ background:url(http://i1.hdfimg.com/space/css/../doctor/global/icon_doctor.gif) no-repeat left center; padding:0 30px 0 15px;}
+.reviewCom{ padding-left:10px; font-weight:normal; cursor:pointer;}
+.review-success{ background:url(http://i1.hdfimg.com/userspace/images/scenter33.gif) no-repeat left center; width:109px; height:32px; line-height:32px; margin:10px 0 0 230px; cursor:pointer;}
+.review-success span{ padding-left:20px;  background:url(http://i1.hdfimg.com/userspace/images/scenter14.gif) no-repeat left center;   color:#fff; line-height:32px; font-weight:bold; margin-left:10px;}
+.scenter-review-options{ padding-bottom:10px;}
+.scenter-updata,.scenter-handing{ padding-left:20px; background:url(http://i1.hdfimg.com/userspace/images/scenter31.gif) no-repeat 5px center;}
+.scenter-bluebtn{ height:27px; line-height:27px; background:url(http://i1.hdfimg.com/userspace/images/scenter16.gif) repeat-x; margin:3px 5px 0 0; cursor:pointer;}
+.scenter-bluebtn span{ float:left; display:inline;}
+.scenter-bluebtn-l{ height:27px;background:url(http://i1.hdfimg.com/userspace/images/scenter15.gif) no-repeat; width:6px;}
+.scenter-bluebtn-c{ padding:0 3px 0 5px;}
+.scenter-bluebtn-r{ height:27px;background:url(http://i1.hdfimg.com/userspace/images/scenter17.gif) no-repeat right center; width:9px;}
+.scenter-diary-title{ padding-left:55px; background:url(http://i1.hdfimg.com/userspace/images/scenter13.gif) no-repeat 33px 6px;}
+.scenter-review-content{ font-size:14px; padding:15px 0 0 33px;}
+.scenter-review-content p{ line-height:190%;}
+.scenter-review-content1{ font-size:14px; padding:0 0 0 33px;}
+.scenter-review-content1 p{ line-height:190%;}
+.scenter-diary{ padding-top:2px;}
+.scenter-diary form{ font-size:14px; padding-top:10px;}
+.scenter-diary-content{ position:relative; background:#f2f2f2; width:670px; margin:0 auto; padding-bottom:20px;}
+.scenter-form-list{ padding:5px 0;}
+/*.scenter-form-list{ height:19px; line-height:19px; padding:5px 0;}*/
+.scenter-form-list label{ width:120px; text-align:right;padding-right:5px;}
+.scenter-form-input{ width:36px; height:17px; border:1px solid #bababa;line-height:17px;}
+#other-form-list{ width:84px; height:23px; line-height:23px; background:url(http://i1.hdfimg.com/userspace/images/scenter28.gif) no-repeat right center; border:1px solid #cbcbcb; padding-left:10px; cursor:pointer; position:absolute; right:30px; top:18px;}
+.other-form-content{ width:373px;padding:15px 15px 15px 16px; background:#f5f5f5; position:absolute; right:30px; top:55px;}
+.other-form-content li{ width:61px; height:22px; line-height:24px; text-align:center; border:1px solid #cbcbcb;float:left; display:inline; margin-right:14px; cursor:pointer;}
+.other-form-content li.other-form-lastLi{ margin:0px;}
+.other-form-content li.other-form-liHover{ color:#0077c3; border:1px solid #0077c3;}
+.other-form-content li.other-form-liActive{ background:#0077c3; color:#fff; border:1px solid #0077c3;}
+
+/*
+*=scenter-pillList
+*/
+.scenter-pillList{ padding:20px 15px 10px 15px;}
+.scenter-pillList table{ width:100%; cursor:pointer;}
+.scenter-pillList table th{background:#ebebeb;}
+.scenter-pillList table td{background:#f4f4f4;height:30px;border:2px solid #fff; text-align:center;padding-top:5px;padding-bottom:5px;}
+.scenter-pillList table td .tdHover{ display:inline-block; width:49px; height:28px; line-height:28px; background:url(http://i1.hdfimg.com/userspace/images/tdHover.gif?2011) no-repeat left center; cursor:pointer;}
+.scenter-pillList table td.s-pilltd-click{ padding-left:10px;}
+.scenter-pillList table .s-pilltdActive td{background:#edf6f3;}
+.scenter-pillList table th{ padding:7px 0 5px 0px; border:2px solid #fff;}
+.s-pillcon1{ width:21%;}
+.s-pillcon2{ width:10%;}
+.s-pillcon3{ width:11%;}
+.s-pillcon4{ width:18%;}
+.s-pillNum{ text-align:center;}
+.s-pillcon5,.s-pillcon6,.s-pillcon7,.s-pillcon8,.s-pillcon9{ width:8%;}
+.add-s-pillList{ background:#f4f4f4; padding:5px  0 5px 15px; border-left:2px solid #fff; border-right:2px solid #fff;}
+.add-s-pillList span{ padding-left:15px; background:url(http://i1.hdfimg.com/userspace/images/scenter18.gif) no-repeat left center; cursor:pointer;}
+/*
+*=scenter-nearly
+*/
+.scenter-nearly{ margin:0px 17px 10px 17px; background:#edf4f8; padding:15px 16px 15px 20px;}
+.scenter-nearly-details{ margin:0px 17px 10px 17px; padding:15px 16px 15px 10px;}
+.scenter-nearly h3{ font-size:14px; font-family:'Microsoft YaHei','SimHei';}
+.scenter-topic{ padding:10px 0 0 3px; margin-left:45px;}
+.scenter-topic textarea{ width:495px; height:45px; padding:5px; border:2px solid #a4c8d7;}
+.scenter-topic input{ background:url(http://i1.hdfimg.com/userspace/images/scenter32.gif) no-repeat; width:74px; height:58px; border:none; vertical-align:top; margin-left:10px; margin-top: 0px;}
+
+/*
+*css for pop
+*/
+.review-result-choose{ width:350px; height:98px; border:2px solid #3895d7; background:#fff; z-index:10;  padding:20px; position:absolute;}
+.review-result-ok{ background:url(http://i1.hdfimg.com/userspace/images/scenter34.gif) no-repeat; width:100px; height:32px; line-height:32px; text-align:center; color:#fff; font-weight:bold; margin:0 20px 0 5px; font-size:14px; cursor:pointer;}
+.review-result-no{ background:url(http://i1.hdfimg.com/userspace/images/scenter35.gif) no-repeat; width:100px; height:32px; line-height:32px; text-align:center; color:#fff; font-weight:bold; font-size:14px; cursor:pointer; margin-left:20px;}
+.review-result-clear{ background:url(http://i1.hdfimg.com/userspace/images/scenter33.gif) no-repeat; width:100px; height:32px; line-height:32px; text-align:center; color:#fff; font-weight:bold; font-size:14px; cursor:pointer;}
+.review-result-choose-close,.abnormalOptions-close{ position:absolute; top:5px; right:5px; cursor:pointer;}
+
+.abnormalOptions{ width:360px;  border:2px solid #3895d7; z-index:10; padding:15px; position:absolute; background:#fff;}
+.abnormalOptions-list{ padding-top:8px;}
+.abnormalOptions-list select{ height:20px; line-height:20px; border:1px solid #ddd; width:135px;}
+.abnormalOptions-list input{ width:88px; height:20px; border:1px solid #ddd; line-height:20px;}
+.abnormalOptions-listAdd{ padding-top:20px; cursor:pointer;}
+.abnormalOptions-listAdd span{ background:url(http://i1.hdfimg.com/userspace/images/scenter18.gif) no-repeat left center; padding-left:15px;}
+.review-pop-btn{ background:url(http://i1.hdfimg.com/userspace/images/scenter33.gif) no-repeat left center; width:100px; height:32px; line-height:32px; color:#fff; font-weight:bold; text-align:center; cursor:pointer; margin-left:20px;}
+.abnormalOptions-success{ margin-left:125px;}
+.review-drawal,.review-selfdrawal{ background:url(http://i1.hdfimg.com/userspace/images/scenter35.gif) no-repeat left center; width:100px; height:32px; line-height:32px; color:#fff; font-weight:bold; text-align:center; cursor:pointer; margin-left:10px;}
+#clickChangePill{ width:95px; height:97px; border:1px solid #3895d7; position:absolute; z-index:2px; background:#fff;}
+#clickChangePill .clickChangePill-hover{ font-weight:bold; color:#0077c3; background:#edf4f8;}
+.clickChangePill-A,.clickChangePill-B{ padding:4px; background:#fff; cursor:pointer;}
+#s-pillNumBox,#s-otherPill{ width:360px;  border:2px solid #3895d7; z-index:10; padding:15px; position:absolute; background:#fff;}
+#otherPillName{ width:105px; height:20px; border:1px solid #ddd; line-height:20px;}
+#otherPillNum{ width:53px; height:20px; border:1px solid #ddd; line-height:20px;}
+.review-pop-addBtn{ background:url(http://i1.hdfimg.com/userspace/images/scenter33.gif) no-repeat left center; width:100px; height:32px; line-height:32px; color:#fff; font-weight:bold; text-align:center; cursor:pointer; margin-left:125px; font-weight:14px;}
+
+/*
+*=css for scenterNotice html
+*/
+.scenterNotice-main-title{ background:url(http://i1.hdfimg.com/userspace/images/scenter11.gif) no-repeat; width:678px; height:33px; line-height:33px;}
+.scenterNotice-review-title{ padding-left:55px; background:url(http://i1.hdfimg.com/userspace/images/scenter38.gif) no-repeat 33px 11px;}
+.sn-suggest{ padding:15px; background:#f3f3f3; margin:0 10px;}
+.sn-iknow{ background:url(http://i1.hdfimg.com/userspace/images/scenter33.gif) no-repeat; width:100px; height:32px; border:none; line-height:32px; color:#fff; font-size:14px; font-weight:bold; margin-top:20px; cursor:pointer;}
+
+.scenter-pillList table td.needtdNode{background:#f1f1f1;border:none;}
+
+/*
+*=css for scenterHistory html
+*/
+.sHistoryDetails{ margin:10px 10px 0px;}
+.sHistoryDetails-title{ height:28px; line-height:28px; background:#f7f7f7; border-bottom:1px dotted #ababab; padding:0 10px;}
+.sHistoryDetails-content p{ line-height:140%;}
+.redCells{ background:url(http://i1.hdfimg.com/userspace/images/scenter39a.gif) no-repeat right center; padding-right:15px;}
+.whiteCells{ background:url(http://i1.hdfimg.com/userspace/images/scenter40a.gif) no-repeat right center; padding-right:15px;}
+.sHistoryDetails-content-line{ height:0px; border-bottom:1px dotted #ababab; width:290px; margin:15px 0 10px 0; overflow:hidden;}
+.sHistoryDetails-titleNotice{ background:#fff4db;}
+.sHistoryDetails-content a {
+    color: #098BCE;
+}
+/*
+*=css for scenterHealthDiary
+*/
+.scenterHealthDiary-review-title { padding-left:55px; background:url(http://i1.hdfimg.com/userspace/images/scenter13.gif) no-repeat 33px 6px;}
+
+.my_submit_button { background:url(http://i1.hdfimg.com/userspace/images/scenter33.gif) no-repeat left center; width:100px; height:32px; line-height:32px; cursor:pointer; border:none; font-weight:bold;font-size:14px;color:#fff;}
+
+x{ width:680px;}
+.nav-yz-box{ width:29.5%;}
+.min-sHistoryDetails-content{ width:68%;}
+
+.telDoc-share {
+    padding: 10px 0;
+}
+.telDoc-share-l {
+    width: 55px;
+}
+.telDoc-share-l img {
+    border: 1px solid #DDDDDD;
+}
+.telDoc-share-l p a {
+    background: url("http://i1.hdfimg.com/400/images/index/400_16.gif") no-repeat scroll left center transparent;
+    padding-left: 14px;
+}
+.telDoc-share-r {
+    width: 610px;
+}
+.telDoc-share-r a {
+    color: #098BCE;
+}
+.tel-saybox {
+    background: url(http://i1.hdfimg.com/userspace/images/yzll.gif) no-repeat scroll left top transparent;
+}
+.tel-saybox-cpadding {
+    padding: 3px 0 0 60px;
+}
+.tel-saybox-tr {
+    background: url(http://i1.hdfimg.com/userspace/images/yztr.gif) no-repeat scroll right top transparent;
+    height: 10px;
+}
+.tel-saybox-tc {
+    background: url(http://i1.hdfimg.com/userspace/images/yzcr.gif) repeat-y scroll right top transparent;
+}
+.tel-saybox-tc a {
+    color: #098BCE;
+}
+.tel-saybox-bl {
+    background: url(http://i1.hdfimg.com/userspace/images/yzlb.gif) no-repeat scroll left bottom transparent;
+    height: 10px;
+}
+.tel-saybox-br {
+    background: url(http://i1.hdfimg.com/userspace/images/yzbr.gif) no-repeat scroll right bottom transparent;
+    height: 10px;
+}
+.tel-saybox-conner {
+    left: -7px;
+    position: absolute;
+    top: 23px;
+    z-index: 2;
+}
+.tel-saybox-tconner {
+    left: 40px;
+    position: absolute;
+    top: -7px;
+    z-index: 2;
+}
+.yztop{left:0px; top:0px;}
+.yzbottom{right:0px; bottom:0px; _bottom:45px; _right:10px;}
+.min-yzbottom{ right:0px; bottom:0px; _bottom:85px; _right:10px;}
+.yellowarea{background: none repeat scroll 0 0 #FFF4DB;}
+/*
+**2011-11-4 
+*/
+.scenter-form-radio{ margin:0px 5px;}
+.scenter-form-lInput{ width:500px; height:25px; line-height:25px; border:1px solid #bababa; background:#fff;}
+.scenter-form-radioBox{ width:100px; float:left; display:inline; height:20px; overflow:hidden;}
+.scenter-form-textForbody{ width:500px; border:1px solid #bababa; height:50px; background:#fff;}
+.scenter-form-textForlive { width:500px; border:1px solid #bababa; height:50px; background:#fff;}
+/*
+**consent
+*/
+.consent-title{ width:653px; height:48px; line-height:48px; background:url(http://i1.hdfimg.com/userspace/images/consent.gif) no-repeat; font-weight:bold; font-size:18px;}
+/*
+**scenter-suggest
+*/
+.scenter-suggest-l{ width:15%;}
+.scenter-suggest-r{ width:83%;}
+.scenter-suggest-r-ta{ height:400px; width:100%; background:#fff; border:1px solid #ddd;}
+
+/*
+**.scenter-btn
+*/
+.scenter-btn{ width:100px; height:32px; line-height:32px;  font-weight:bold; color:#fff; text-align:center; font-size:14px;}
+.scenter-btn:hover{ text-decoration:none; color:#fff;}
+.scenter-blue-btn{ background:url(http://i1.hdfimg.com/userspace/css/../images/scenter33.gif) no-repeat;}
+.scenter-red-btn{ background:url(http://i1.hdfimg.com/userspace/images/scenter-rbtn.gif) no-repeat;}
+
+/*
+**remittance
+*/
+.scenter-remittance-box-title{ background:url(http://i1.hdfimg.com/userspace/images/scenter11.gif); height:33px; line-height:33px; width:678px;}
+.scenter-remittance-box-title-nbg{ background:none;}
+.scenter-remittance-stream{ background:url(http://i1.hdfimg.com/userspace/images/stream.gif) no-repeat 15px center; padding-left:60px;}
+.scenter-remittance-payment{ background:url(http://i1.hdfimg.com/userspace/images/remittance01.gif) no-repeat 25px center; padding-left:65px;}
+.scenter-remittance-wel{ background:url(http://i1.hdfimg.com/userspace/images/remittance02.gif) no-repeat 15px center; padding-left:60px;}
+.scenter-remittance-tel{ background:url(http://i1.hdfimg.com/userspace/images/stel.gif) no-repeat 15px center; padding-left:60px;}
+.scenter-remittance-bank{ padding:20px 0px 20px 20px;}
+.scenter-remittance-bank li{ float:left; display:inline; margin-right:20px;}
+.scenter-remittance-bankNum{ width:663px; margin:0 auto;}
+.scenter-remittance-bankNum p{ line-height:180%;}
+.scenter-remittance-callUs{ height:33px; line-height:33px; background:#fdf7cc;}
+
+/*
+ *common button
+ */
+.general-btn{ height:32px; display:inline-block; color:#fff; background:url(http://i1.hdfimg.com/userspace/images/general02.jpg) repeat-x; line-height:32px; cursor:pointer;}
+.general-btn:hover{ text-decoration:none;}
+.general-btn-l{ height:32px; display:inline-block; background:url(http://i1.hdfimg.com/userspace/images/general01.jpg) no-repeat left center;}
+.general-btn-r{ height:32px; display:inline-block; background:url(http://i1.hdfimg.com/userspace/images/general03.jpg) no-repeat right center;;}
+/*
+ * admin-index
+ */
+.admin-index{ height:29px; line-height:29px; width:216px; background:url(http://i1.hdfimg.com/userspace/images/scenterai.jpg);}
+.admin-index a{ padding-left:20px; font-weight:bold; font-size:14px;}
+.scenter-icon-box{ width:63px; height:63px; overflow:hidden; _height:64px;}
+.scenter-icon-revise{ display:block; height:18px; line-height:18px; color:#fff; text-align:center; background:#666; width:63px; bottom:-30px; left:0px;}
+
+
+.scenter-curve-title{ padding-left:55px; background:url(http://i1.hdfimg.com/userspace/images/healthcurve.gif) no-repeat 25px 7px;}
+.curve-menu li{ float:left;_display:inline; margin-right:5px; border:1px solid #f1f1f1; width: 72px; height:25px; line-height:25px; background:#fff; position:relative; bottom:-1px; overflow:hidden; cursor:pointer;}
+.curve-menu li a {padding:0px 10px; display:block; height:25px;}
+.curve-menu li.curve-menu-active{ border:1px solid #e7f0f6; background:#e7f0f6; font-weight:bold;}
+.curve-content{ background:#e7f0f6;}
+.curve-date { right: 10px; top: 0;}
+.curve-date select {border: 1px solid #DDDDDD; height: 20px;line-height: 20px;}
+.curve-view-btn {background: none repeat scroll 0 0 #769AC1;color: #FFFFFF;padding: 2px 8px; vertical-align: middle;}
+
+.scenter-review-vip{ padding-left:110px; background:url(http://i1.hdfimg.com/userspace/images/medicalhelpservice.gif) no-repeat 25px center;}
+.scenter-review-apply{ padding-left:70px; background:url(http://i1.hdfimg.com/userspace/images/vipservice03.gif) no-repeat 25px center;}
+.user-vip-t{ background: url("http://i1.hdfimg.com/userspace/images/scenter11.gif") repeat scroll 0 0 transparent; height: 33px; line-height: 33px;width: 678px;}
+.user-vip-t h3{ background:url(http://i1.hdfimg.com/userspace/images/medicalhelpservice.gif) no-repeat 20px center; padding-left:110px;}
+.user-vip-c{ padding:10px 8px;}
+.user-vip-c-cell{ border:1px solid #e0e0e0; background:#f4f6f4;} 
+.vipservice-corner{ height:12px;}
+.vipservice-corner-lt{ position:absolute; left:-1px; top:-1px;}
+.vipservice-corner-rt{ position:absolute; right:-1px; top:-1px;}
+.vipservice-corner-lb{ position:absolute; left:-1px; bottom:-1px;}
+.vipservice-corner-rb{ position:absolute; right:-1px; bottom:-1px;}
+    
+.scenter-assess-list{ background:#f0f0f0; padding:10px 0px 10px 15px; margin:10px}
+.scenter-assess-list li{ float:left; _display:inline; }
+.scenter-assess-list li a{ display:inline-block; height:30px; line-height:30px; width:142px; padding-left:6px; }
+.scenter-assess-list li a.active{ background:#0066CC; color:#fff; font-weight:bold;}
+.scenter-assess-details{ border:1px solid #ddd; }
+.scenter-assess-details-t{ height:36px; border-bottom:1px solid #ddd; background:#edf4f8; line-height:36px;}
+.scenter-assess-details-c{ margin:10px 15px 15px}
+.scenter-assess-details-c-date{ width:200px;}
+.scenter-assess-details-c-inner{ border:1px solid #ddd; background:#f0f0f0;}
+.scenter-assess-details-c-inner-cell{ padding:10px 15px; }
+.hasbb-solid{ border-bottom:1px solid #ddd;}
+
+
+/*
+**modify health diary
+**/
+.pill-change-box{ padding:8px 10px; background:#f2f2f2;}
+.pill-change-box-txt{ width:615px; height:55px; padding:5px; border:1px solid #ddd; background:#fff;}
+.pill-change-box-submit{  background: url(http://i1.hdfimg.com/userspace/images/scenter33.gif) no-repeat;height: 32px;line-height: 32px;text-align: center; width: 100px; display:block; color:#fff; font-weight:bold;}
+.pill-change-box-submit:hover{ color:#fff; text-decoration:none;}
+.use-pill-history-l{ width:165px;}
+.use-pill-history-r{ width:440px;}
+.pill-case-shell{ padding-top:10px;}
+
+/*
+ * ** for one user, more pateints
+ * */
+.scenterTitle{ width:678px; height:33px; line-height:33px; background:url(http://i1.hdfimg.com/userspace/images/scenter11.gif) no-repeat left center;}
+
+.pending h3{ 10px center no-repeat; padding-left:35px;}
+.pendingUl{ padding:10px 0px; margin:0px 20px; border-bottom:1px dashed #ddd;}
+
+.myAdvisory h3{ background:url(http://i1.hdfimg.com/userspace/images/user1_message.png) 10px center no-repeat; padding-left:35px;}
+.myAdvisory-menu{ border-bottom:1px solid #E7F0F6;}
+.myAdvisory-menu li {
+    background: none repeat scroll 0 0 #f9f9f9;
+    border: 1px solid #e0e0e0; border-radius:5px; margin:3px;
+    bottom: -1px;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    padding: 0 15px;
+    position: static;
+}
+.myAdvisory-menu li.myAdvisory-menu-active {
+    background: none repeat scroll 0 0 #E7F0F6;
+    border: 1px solid #E7F0F6;
+    font-weight: bold;
+}
+.myAdvisory-list{ margin:10px;}
+.myAdvisory-list li{ padding:5px 15px;}
+.myAdvisory-list li.odd{ background:#f4f4f4;}
+.myAdvisory-list-title{ background:url(http://i1.hdfimg.com/userspace/images/icondotgreen.gif) no-repeat left center;padding-left:10px; }
+
+.myPlus h3{ background:url(http://i1.hdfimg.com/space/booking/images/jiahao_03.gif) 10px center no-repeat; padding-left:35px;}
+.myItem-list td{ padding:5px 0px 5px 10px;}
+.myItem-list .tr_bg{ background:#f4f4f4;}
+.myTelAdvisory h3{ background:url(http://i1.hdfimg.com/www/images/icon_xxzxy_07.gif) 10px center no-repeat; padding-left:35px;}
+.myPF h3{ background:url(http://i1.hdfimg.com/userspace/images/residentevil.gif) 10px center no-repeat; padding-left:35px;}
+
+.myMsg h3{ background:url(http://i1.hdfimg.com/userspace/images/gear.png) 10px center no-repeat; padding-left:35px;}
+.myMsg-list table {
+    text-align: center;
+    width: 100%;
+}
+.myMsg-list table th {
+    background: none repeat scroll 0 0 #EBEBEB;
+    border: 2px solid #FFFFFF;
+    padding: 5px 8px;
+}
+.myMsg-list table td {
+    border: 2px solid #FFFFFF;
+    padding: 5px 8px;
+}
+.myMsg-list table tr.odd {
+    background: none repeat scroll 0 0 #F4F4F4;
+}
+.myMsg-list table tr.even {
+    background: none repeat scroll 0 0 #EDF6F3;
+}
+.save{ border:1px solid #ddd; background:#ebebeb; padding:3px 5px; margin-left:5px; cursor:pointer;}
+.num input{ height:20px; line-height:20px; border:1px solid #ddd; width:100px;}
+.myMsg-right{ text-align:right;}
+.checkPatients-msg-notice {
+    background: none repeat scroll 0 0 #FFF9E3;
+    border: 1px solid #F7D670;
+    font-weight: bold;
+    margin-bottom: 8px;
+    padding: 8px 10px;
+}
+.add-myMsg-box{ width:525px; margin-left:20px;}
+.add-myMsg-box input{ padding:2px;}
+.add-myMsg-box tr{height:30px; padding:2px;}
+.add-myMsg-box td{padding:5px;}
+/*-----index-present-------*/
+.user_presentOrder li{                                                               
+    padding:5px;                                                                         
+}                                                                                    
+.user_presentOrder_content_right{                                                    
+    background-color: #F1F0EA;                                                           
+    border: 1px solid #E3E1D5;                                                           
+    padding: 5px;                                                                        
+}                                                                                    
+.user_icon14{                                                                        
+    background: url(http://i1.hdfimg.com/score/images/presentIcon.gif) no-repeat 5px 0px;
+    padding-left: 24px;                                                                  
+}                                                                                    
+.user_presentOrder_wish{                                                             
+    width:450px;                                                                         
+}                                                                                    
+
+.doctor-instruction{ border:1px solid #cacbcb;}
+.doctor-instruction-t{ height:33px; line-height:33px; background:#d0dbe2;}
+.doctor-instruction-c{ padding:8px 30px;}
+.doctor-instruction-c-cell{ border-bottom:1px solid #ddd;}
+.doctor-instruction-clickBtn{ position:absolute; top:2px; right:40px;}
+.general-gray-btn {
+background: url("http://i1.hdfimg.com/userspace/images/centergraybtn03.gif") repeat-x scroll 0 0 transparent;
+cursor: pointer;
+display: inline-block;
+height: 32px;
+line-height: 32px;
+}
+.general-gray-btn-l {
+    background: url("http://i1.hdfimg.com/userspace/images/centergraybtn01.gif") no-repeat scroll left center transparent;
+    display: inline-block;
+    height: 32px;
+}
+.general-gray-btn-r {
+    background: url("http://i1.hdfimg.com/userspace/images/centergraybtn02.gif") no-repeat scroll right center transparent;
+    display: inline-block;
+    height: 32px;
+}
+.applyVip-box{ background: #FFFFFF; border: 2px solid #3895D7; padding:  8px 10px; width: 400px;z-index: 10; left:10px; top:10px;}
+.applyVip-success-box,.applyVip-start-box{ background: #FFFFFF; border: 2px solid #3895D7; padding:  20px 10px; width: 370px;z-index: 10; lef
+t:400px; top:500px;}
+.applyVip-box-link:hover{ color:#fff;}
+.closeBtn{  cursor: pointer; position: absolute; right: 5px; top: 5px;}
+.contactDate{ margin:8px 0px 10px 0px;}
+.rightnow{top:5px; right:0px;}
+
+
+/*
+**recharge
+*/
+.recharge{ font-family: '宋体';}
+.recharge-hd{ height:33px; background: url(http://i1.hdfimg.com/userspace/images/scenter11.gif) no-repeat; line-height: 33px;}
+.recharge-hd h3{ font-size: 14px; padding-left: 38px; background: url(../images/recharge01.jpg) no-repeat 15px center;}
+.recharge-bd{ padding:15px;}
+.recharge-bd-box{ border: 1px solid #bbd4e5;}
+.recharge-bd-box-t{ height:49px; line-height: 49px; border-bottom: 1px solid #bbd4e5;}
+.recharge-bd-box-t h4{ padding-left: 25px; background: url(../images/recharge02.png) no-repeat left center;}
+
+.serviceBtnBox{ height: 45px; overflow: hidden;}
+.serviceBtn{ display: inline-block; color: #fff; cursor: pointer;}
+.serviceBtn span{ float: left; display: inline; height:45px; line-height: 45px; background-image: url(../images/recharge03.png);}
+.serviceBtn-l{ width:5px; background-position: 0px 0px;  background-repeat: no-repeat;}
+.serviceBtn-r{ width:5px; background-position: 0px -45px;  background-repeat: no-repeat;}
+.serviceBtn-c{ background-position: 0px -90px;  background-repeat: repeat-x;}
+
+.serviceBtn:hover{ color: #fff; text-decoration: none;}
+.serviceBtn:hover .serviceBtn-l{ background-position: 0px -135px;  background-repeat: no-repeat;}
+.serviceBtn:hover .serviceBtn-r{ background-position: 0px -180px;  background-repeat: no-repeat;}
+.serviceBtn:hover .serviceBtn-c{ background-position: 0px -225px;  background-repeat: repeat-x;}
+
+.serviceBtnHover .serviceBtn-l{ background-position: 0px -135px;  background-repeat: no-repeat;}
+.serviceBtnHover .serviceBtn-r{ background-position: 0px -180px;  background-repeat: no-repeat;}
+.serviceBtnHover .serviceBtn-c{ background-position: 0px -225px;  background-repeat: repeat-x;}
+
+.buyZixun-hd{ height:37px; padding-left: 15px; line-height: 37px; color:#033333; background: #e1eef5;}
+.buyZixun-hd-corner{ color: #e1eef5; left:85px; top:-17px; font-size: 30px;}
+.buyZixun-bd-cell{ position: relative; padding:25px 15px; zoom:1;}
+.buyZixun-btn{ color: #fff; width:90px; height:30px; line-height: 30px; text-align: center; background: url(../images/recharge04.png) no-repeat; right:20px; bottom: 25px;}
+.buyZixun-btn:hover{ color: #fff;}
+
+.choiceList li{ line-height: 200%;}
+.inputNum{ border: 1px solid #999; height:18px; width: 44px; padding-left: 4px; margin-left: 7px; font-size: 14px;}
+#showError{ height:16px;}
+.buyZixunSubmit{ cursor:pointer; color: #fff; width:90px; height:30px; line-height: 30px; text-align: center; background: url(../images/recharge04.png) no-repeat; border: none; font-size: 14px;}
+
+.darkblue{ color: #033333;}
+.ml80{ margin-left: 80px;}
+.bb-d{ border-bottom: 1px dotted #bababa;}
+.va2{ vertical-align: -2px;}
+.nb{border: none;}
+.rechargeSos{bottom:0px;}
+
+.chart-box-l{ width:40px; margin-top:120px;}
+.chart-box-r{ width:40px; margin-top:120px;}
+.chart-box-c{ width:598px;}

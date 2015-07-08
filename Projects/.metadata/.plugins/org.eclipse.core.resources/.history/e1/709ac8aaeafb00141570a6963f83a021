@@ -1,0 +1,7 @@
+package com.netmed.dao;
+
+import com.netmed.pojo.Schedule;
+
+public class ScheduleDAO {
+	Schedule[] s=null;
+}

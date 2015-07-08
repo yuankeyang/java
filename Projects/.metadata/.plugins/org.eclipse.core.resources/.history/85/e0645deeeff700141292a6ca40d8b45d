@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="user" namespace="/user" extends="struts-default">
+		<action name="user-regi">
+			<result>/WEB-INF/jsp/user/register.jsp</result>
+		</action>
+		<action name="user-regi-chec" class="com.netmed.action.member.MembRegiAction">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="error">/test/error.jsp</result>
+		</action>
+		<!-- 会员中心结构-->
+		<action name="user-center">
+			<result>/WEB-INF/center/centerFrame.jsp</result>
+		</action>
+		<!-- 会员中心左边 -->
+		<action name="center-left">
+            <result>/WEB-INF/left/membLeft.jsp</result>
+        </action>
+        
+        <!-- ***********************会员中心Action结构*********************** -->
+        <!--                   @表示第一级菜单								  -->
+        <!--                   #表示第二级菜单								  -->
+        <!--                   $表示第三级菜单								  -->
+        <!-- ************************************************************ -->
+		<!--@ 我的中心 -->
+		<action name="wodeCen">
+			<result>/WEB-INF/memb/wodeCen.jsp</result>
+		</action>
+			<!-- #修改我的头像 -->
+			<action name="uploadImg" class="com.netmed.action.member.UserImgUploadAction" method="uploadHeadImg">
+				<result name="success" type="freemarker">/WEB-INF/memb/uploadSuccess.jsp</result>
+				<result name="input">/error.jsp</result>
+			</action>
+			
+        <!-- ********************************************** -->
+		<!--@ 医疗服务 -->
+		<!-- #我的医生 -->
+		<action name="wodeDoc">
+			<result>/WEB-INF/memb/yiliaoSer/wodeDoc.jsp</result>
+		</action>
+				<!-- $全部医生 -->
+				<action name="allDoctor">
+					<result>/WEB-INF/memb/yiliaoSer/opts/allDoctor.jsp</result>
+				</action>
+				<!-- $互动医生 -->
+				<action name="hudongDoctor">
+					<result>/WEB-INF/memb/yiliaoSer/opts/hudongDoctor.jsp</result>
+				</action>
+		<!-- #患友会 -->
+		<action name="huanyouSoc">
+			<result>/WEB-INF/memb/yiliaoSer/huanyouSoc.jsp</result>
+		</action>
+		<!-- #就医经验 -->
+		<action name="jiuyiExp">
+			<result>/WEB-INF/memb/yiliaoSer/jiuyiExp.jsp</result>
+		</action>
+		
+        <!-- ********************************************** -->
+		<!--@疾病管理 -->
+		<!--#疾病管理日志 -->
+		<action name="jibingMan">
+			<result>/WEB-INF/memb/jibingMan/JiBMan.jsp</result>
+		</action>
+		
+        <!-- ********************************************** -->
+		<!-- @养生天地 -->
+		<!-- #养生有道 -->
+		<action name="yangshengTao">
+			<result>/WEB-INF/memb/yangshengTao/yangshengTao.jsp</result>
+		</action>
+		<action name="dingyue">
+			<result>/WEB-INF/memb/yangshengTao/dingyue.jsp</result>
+		</action>
+		
+        <!-- ********************************************** -->
+		<!-- @收藏 -->
+		<!-- #我的收藏 -->
+		<action name="wodeCol">
+			<result>/WEB-INF/memb/collection/wodeCol.jsp</result>
+		</action>
+		<!-- #医生动态 -->
+		<action name="yishengAct">
+			<result>/WEB-INF/memb/collection/yishengAct.jsp</result>
+		</action>
+		
+        <!-- ********************************************** -->
+		<!-- @我的账户 -->
+		<!-- #财务管理 -->
+		<action name="caiwuMan">
+			<result>/WEB-INF/memb/wodeCount/caiwuMan.jsp</result>
+		</action>
+		<!-- #积分管理 -->
+		<action name="jifenMan">
+			<result>/WEB-INF/memb/wodeCount/jifenMan.jsp</result>
+		</action>
+		<!-- #个人信息管理 -->
+		<action name="gerenInfo">
+			<result>/WEB-INF/memb/wodeCount/gerenInfo.jsp</result>
+		</action>
+			<!-- $修改验证 -->
+			<action name="fixCheck">
+				<result>/WEB-INF/memb/wodeCount/opts/fixCheck.jsp</result>
+			</action>
+		<!-- #修改密码 -->
+		<action name="passChange">
+			<result>/WEB-INF/memb/wodeCount/passChange.jsp</result>
+		</action>
+			<!-- #修改密码 -->
+			<action name="passChange">
+				<result>/WEB-INF/memb/wodeCount/passChange.jsp</result>
+			</action>
+		
+        <!-- ********************************************** -->
+		<!-- @通知中心 -->
+		<!-- #收件箱 -->
+		<action name="inBox">
+			<result>/WEB-INF/memb/messages/inBox.jsp</result>
+		</action>
+		<!-- ***********************会员中心Action结束*********************** -->
+	</package>
+</struts>

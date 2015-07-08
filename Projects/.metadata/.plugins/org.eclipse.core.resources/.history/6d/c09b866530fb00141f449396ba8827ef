@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="网医" lastModify="2015-05-15-20:35">
+
+	<member name="杨元科">
+	<modifyPlace id="1">
+	com.netmed.action.member.MembLoginAction，优化，替换即可</modifyPlace>
+	<modifyPlace id="2">
+	com.netmed.dao.ExpeRegiDAO,方法regiExpe修改
+	</modifyPlace>
+	<modifyPlace id="3">
+	com.netmed.action.expe.ExpeRegiAction,方法execute修改
+	</modifyPlace>
+	<modifyPlace id="4">
+	com.netmed.dao.ExpeTypeDAO,方法SaveExpeType修改
+	</modifyPlace>
+	<modifyPlace id="5">
+	com.netmed.dao.ExpeRegiDAO,方法getExpeinfoById修改
+	</modifyPlace>
+	<modifyPlace id="6">
+	/WEB-INF/expe/register.jsp,63到68行增加了一个类别
+	</modifyPlace>
+	<modifyPlace id="7">
+	/jsold/register.js,129行左右input增加了name属性
+	</modifyPlace>
+	</member>
+		</project>

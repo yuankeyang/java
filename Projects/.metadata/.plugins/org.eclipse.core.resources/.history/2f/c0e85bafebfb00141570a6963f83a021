@@ -1,0 +1,13 @@
+package com.netmed.dao;
+
+import org.hibernate.Session;
+
+import com.netmed.hibernate.HibernateSessionFactory;
+import com.netmed.pojo.Schedule;
+
+public class ScheduleDAO {
+	Schedule[] s=null;
+	String hql="from Schedule schedule where schedule.expeRegi";
+	Session session=HibernateSessionFactory.getSession();
+	
+}

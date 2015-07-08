@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="s" uri="/struts-tags" %>
+<jsp:include page="../jsp/include/core/core_header.jsp"></jsp:include>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<jsp:include page="../include/topbarhead.jsp"></jsp:include>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>颐健通</title>
+</head>
+<body>
+<script>
+function exitFunc(){
+hobj=$.ajax({
+			url:'exit',
+			success:function(){
+				window.parent.location.href="welcome";
+			},
+			error:function(){alert("加载信息错误");},
+			async:false
+			});
+}
+function yijiantong(){
+	window.parent.location.href="welcome";
+}
+</script>
+<%
+String username=(String)session.getAttribute("username");
+
+if(username==null )//&& cookies==null)
+{
+	String expename=(String)session.getAttribute("expename");
+	if(expename==null){
+		String instname=(String)session.getAttribute("instname");
+		if(instname==null){
+%>
+<script type="text/javascript">
+$(document).load(function(){
+});
+</script>
+<!--顶端信息-->
+<div id="top">
+   <div id="leftTop"> <s:a namespace="/" action="welcome" onclick="yijiantong()">颐健通</s:a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" id="loginbtn">登录</a> </div>
+  <div id="rightTop">
+  <ul id="navul">
+  <li>
+   	<a href="#">注册</a>
+   	<ul>
+  	<li><s:a namespace="/user" action="user-regi">会员注册</s:a></li>
+  	<li><s:a namespace="/expe" action="expe-regi">专家注册</s:a></li>
+  	<li><s:a namespace="/inst" action="inst-regi">医疗注册</s:a></li>
+  	</ul>
+  </li>
+  </ul>
+   </div>
+</div><%}else{%>
+<div id="top">
+    <div id="leftTop"><label>你好！ <%=instname %></label>&nbsp;&nbsp;<span><a href="javascript:void(0)" onclick="exitFunc()">退出</a></span></div>
+     <div id="rightTop">
+     
+ 		<s:a namespace="/" action="welcome" onclick="yijiantong()">颐健通</s:a>
+ 		<span>|</span>
+ 		<s:a href="#">论坛</s:a>
+    </div>
+</div>
+	<%}
+}else{%>
+	<div id="top">
+    <div id="leftTop"><label>你好！ <%=expename %></label>&nbsp;&nbsp;<span><a href="javascript:void(0)" onclick="exitFunc()">退出</a></span></div>
+     <div id="rightTop">
+ 		<s:a namespace="/" action="welcome" onclick="yijiantong()">颐健通</s:a>
+ 		<span>|</span>
+ 		<s:a href="#">论坛</s:a>
+    </div>
+  </div>
+	<%} %>
+<%}else{%>
+<div id="top">
+    <div id="leftTop"><label>你好！ <%=username %></label>&nbsp;&nbsp;<span><a href="javascript:void(0)" onclick="exitFunc()">退出</a></span></div>
+     <div id="rightTop">
+ 		<s:a namespace="/" action="welcome" onclick="yijiantong()">颐健通</s:a>
+ 		<span>|</span>
+ 		<s:a href="#">论坛</s:a>
+    </div>
+</div>
+
+<%}%>
+</body>
+</html>

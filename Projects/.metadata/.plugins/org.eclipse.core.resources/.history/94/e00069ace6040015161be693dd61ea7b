@@ -1,0 +1,156 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+String templateUrl = request.getScheme() + "://" + request.getHeader("host") +request.getContextPath();
+request.setAttribute("url", templateUrl);
+//String search_str=request.getParameter("search_str");
+String search_str=new String(request.getParameter("search_str").getBytes("utf-8"),"utf-8");
+String searchSelect = request.getParameter("searchSelect");
+%>
+<jsp:include page="../../include/core_head.jsp"></jsp:include>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<jsp:include page="../../include/topbarhead.jsp"></jsp:include>
+<link href="${url}/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${url}/view/css/doctor.css" rel="stylesheet" />
+<link href="${url}/css/pagination.css" rel="stylesheet" />
+<link rel="stylesheet" href="${url}/css/main.css" />
+<script type="text/javascript" src="${url}/js/jquery.js"></script>
+<script type="text/javascript" src="${url}/js/js.js"></script>
+<script type="text/javascript" src="${url}/js/jquery.pagination.js"></script>
+
+<script charset="utf-8" type="text/javascript">
+$(document).ready(function(){
+    //搜索类型为医生时
+	if("<%=search_str%>"!=""&&"<%=searchSelect%>"=="qiuyi"){
+		search_doctor();
+	}
+});
+function search_doctor(){
+  $.ajax({
+	  url : '<%=templateUrl%>/MediKnowServletAction?search_str=<%=search_str%>',
+	  type : 'POST',
+    // data:"search_str="+encodeURI("<//%=search_str%>"),//传参编码问题
+//     contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+	dataType : 'json',
+	timeout : 20000,
+	cache : true,
+	beforeSend : LoadFunction, //加载执行方法  
+	error : erryFunction, //错误执行方法  
+	complete : conFunction,
+	success : succFunction
+			//成功执行方法  
+	});
+	function LoadFunction() {
+	   // alert("dfdfd");
+		
+		// $(".pager").hide();
+	}
+	function erryFunction() {
+	    alert("error");
+	}
+	function conFunction() {
+		// $(".pager").show();
+	}
+	function succFunction(data) {
+	   // alert(data);
+	   //$("#mediknowcont").html("sdsds");
+			  //alert(data.nullInfo);
+	   $("#mediknowcont").html("<p>   "+data.mediknow[0].knowCont+"</p>");
+    }    
+// 			  $.each(data.knowidArray, function(index) {		
+// 				 $("#mediknowcont").html($("#mediknowcont").html()+"<p>"+data.knowidArray[index].knowCont+"</p><br>");
+				 
+// 				});
+}
+</script>
+
+<title>医学解释</title>
+</head>
+
+<body>
+	<jsp:include page="../../include/topbar.jsp"></jsp:include>
+	<div class="clear"></div>
+	<!--中上部分-->
+	<div id="middle">
+		<!--左端logo-->
+		<div id="leftMid">
+			<a href="welcome"><img src="image/logo.png" /></a> 
+		</div>
+		<!--左端logo-->
+		<!--右端输入框-->
+		<div id="rightMid">
+			<form method="get" id="searchForm" >
+				<br /> <input type="radio" checked="checked" name="searchSelect"
+					value="qiuyi" /> <label>求医</label> <input type="radio"
+					name="searchSelect" value="wenyao" /> <label>问药</label> <input
+					type="radio" name="searchSelect" value="yangsheng" /> <label>养生</label>
+				<!--搜索-->
+				<br /> <br />
+				<div id="searchIn">
+					<input type="text" name="search_str" id="search_str" maxlength=200
+						value="<%=search_str%>" /> <a href="javascript:void(0)"> <img
+						src="image/normalbutton_a.png" /> </a>
+				</div>
+				<input style="display:none" />
+			</form>
+			<div class="clear"></div>
+
+		</div>
+		<!--右端输入框-->
+	</div>
+	<!--中上部分-->
+
+	<!--询问框-->
+	<div id="checkInfo">
+		<h2>
+			您是不是要找&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)"><%=search_str%></a>
+		</h2>
+	</div>
+	<!--询问框-->
+
+	<!--查询信息-->
+	<div id="searchInfo">
+		<!--left-->
+		<div id="leftSearchInfo">
+			<h1><%=search_str%></h1>
+
+			<div class="container"  >
+			 <div id="mediknowcont" style="width:80%;padding-right: 30px"></div>
+			</div>
+			<!--     <p id="mediknowcont"></p>        搜索结果的详细内容，医学解释  -->
+
+			<div id="buttongrp">
+			<div style="float: left;">
+				<!--智能查询-->
+				<form action="intelligent_query" id="intelligent_query_form" method="get">
+                    <input type="hidden" name="search_str" id="search_str" value="<%=search_str%>" />
+                    <input type="hidden" name="searchSelect" id="searchSelect" value="<%=searchSelect%>" />
+					<input type="image" src="image/largebutton_a.png" />
+				</form>
+            </div>
+            <div style="float: right;">
+				<form action="expert_recommendation" id="expert_recommendation_form"
+					method="get">
+					<!--专家推荐-->
+					<input type="text" style="display: none" name="search_str"	value="<%=search_str%>" />
+				    <input type="hidden" name="searchSelect" id="searchSelect" value="<%=searchSelect%>" /> 
+						<input type="image"
+						src="image/largebutton_b.png" />
+				</form>
+            </div>
+			</div>
+		</div>
+
+		<!--right-->
+<%--		<div id="rightSearchInfo" style="float:left">--%>
+<%--			<img src="image/sleep.png" width="300px" />--%>
+<%--		</div>--%>
+
+	</div>
+	<!--查询信息-->
+	<jsp:include page="/WEB-INF/bottom/footer.jsp"></jsp:include>
+</body>
+</html>

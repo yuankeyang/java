@@ -1,0 +1,19 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.netmed.dao.MembRegiDAO"><rhs name\="com.netmed.dao.MembRegiDAO"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/><rhs name\="net.sf.json.JSONArray"/></lhs><lhs name\="java.util.RandomAccess"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/><rhs name\="net.sf.json.JSONArray"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/><rhs name\="net.sf.json.JSONArray"/></lhs><lhs name\="java.util.AbstractList"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.AbstractCollection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.ArrayList"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="com.netmed.pojo.ExpeType"><rhs name\="com.netmed.pojo.ExpeType"/></lhs><lhs name\="com.netmed.pojo.ExpeTypeComp"><rhs name\="com.netmed.pojo.ExpeTypeComp"/></lhs><lhs name\="com.netmed.dao.ExpeTypeDAO"><rhs name\="com.netmed.dao.ExpeTypeDAO"/></lhs><lhs name\="com.netmed.pojo.Schedule"><rhs name\="com.netmed.pojo.Schedule"/></lhs><lhs name\="com.netmed.dao.ScheduleDAO"><rhs name\="com.netmed.dao.ScheduleDAO"/></lhs><lhs name\="net.sf.json.JSON"><rhs name\="net.sf.json.JSONArray"/><rhs name\="net.sf.json.JSONObject"/></lhs><lhs name\="java.util.Map"><rhs name\="net.sf.json.JSONObject"/></lhs><lhs name\="net.sf.json.AbstractJSON"><rhs name\="net.sf.json.JSONArray"/><rhs name\="net.sf.json.JSONObject"/></lhs><lhs name\="com.netmed.dao.ExpeServPricDAO"><rhs name\="com.netmed.dao.ExpeServPricDAO"/></lhs><lhs name\="org.json.JSONObject"><rhs name\="org.json.JSONObject"/></lhs></history>
+content_assist_number_of_computers=17
+content_assist_proposals_background=204,232,207
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+fontPropagated=true
+org.eclipse.jdt.ui.editor.tab.width=
+org.eclipse.jdt.ui.formatterprofiles.version=12
+org.eclipse.jdt.ui.javadoclocations.migrated=true
+org.eclipse.jdt.ui.text.code_templates_migrated=true
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.templates_migrated=true
+org.eclipse.jface.textfont=1|Consolas|15.75|0|WINDOWS|1|-21|0|0|0|400|0|0|0|0|3|2|1|49|Consolas;
+proposalOrderMigrated=true
+spelling_locale_initialized=true
+tabWidthPropagated=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true
