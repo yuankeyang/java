@@ -1,4 +1,4 @@
-网医工程
+网医工程Projects/NetMed
 开发技术：
 		开发语言，	java
 		服务器，  	Tomcat6.0+
@@ -10,3 +10,7 @@
 		与后台交互，Ajax
 
 访问网址：http://www.yuankeyang.wang:8080/NetMed/
+
+/******************************************************/
+java设计模式学习
+单例模式：SingletonClass.java
