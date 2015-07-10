@@ -9,7 +9,7 @@
 	与后台交互，Ajax
 	访问网址：http://www.yuankeyang.wang:8080/NetMed/
 	
-/******************************************************/ 
+
 
 #java设计模式学习 
 单例模式：SingletonClass.java
