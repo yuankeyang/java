@@ -1,16 +1,13 @@
-ÍøÒ½¹¤³ÌProjects/NetMed
-¿ª·¢¼¼Êõ£º
-		¿ª·¢ÓïÑÔ£¬	java
-		·şÎñÆ÷£¬  	Tomcat6.0+
-		¿ò¼Ü£¬	 	SSH£¨structs+spring+hibernate£©
-		Êı¾İ¿â£¬  	MySql
-		IDE,	  	MyEclipse
-		ºóÌ¨ÓïÑÔ£¬	java
-		Ç°Ì¨£¬	  	jQuery+HTML+CSS
-		ÓëºóÌ¨½»»¥£¬Ajax
-
-·ÃÎÊÍøÖ·£ºhttp://www.yuankeyang.wang:8080/NetMed/
-
-/******************************************************/
-javaÉè¼ÆÄ£Ê½Ñ§Ï°
-µ¥ÀıÄ£Ê½£ºSingletonClass.java
+ï»¿ç½‘åŒ»å·¥ç¨‹Projects/NetMed å¼€å‘æŠ€æœ¯ï¼š
+	å¼€å‘è¯­è¨€ï¼Œ java 
+	æœåŠ¡å™¨ï¼Œ Tomcat6.0+
+	æ¡†æ¶ï¼Œ SSHï¼ˆstructs+spring+hibernateï¼‰
+	æ•°æ®åº“ï¼Œ MySql
+	IDE, MyEclipse
+	åå°è¯­è¨€ï¼Œ java
+	å‰å°ï¼Œ jQuery+HTML+CSS
+	ä¸åå°äº¤äº’ï¼ŒAjax
+	è®¿é—®ç½‘å€ï¼šhttp://www.yuankeyang.wang:8080/NetMed/
+	
+/******************************************************/ 
+javaè®¾è®¡æ¨¡å¼å­¦ä¹  å•ä¾‹æ¨¡å¼ï¼šSingletonClass.java
