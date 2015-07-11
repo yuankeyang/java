@@ -1,0 +1,7 @@
+/**
+ * @ClassName:MyArrayList
+ * @author Ô¶¿Í
+ * @version V1.0
+ */
+public class MyArrayList extends MyAbstractList{
+}

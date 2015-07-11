@@ -1,0 +1,19 @@
+/**   
+ * @Title: MyList.java 
+ * @Package  
+ * @Description: TODO(用一句话描述该文件做什么) 
+ * @author yang yangyuanke35_gmail_com   
+ * @date 2015年7月11日 上午12:48:57 
+ * @version V1.0   
+ */
+
+/** 
+ * @ClassName: MyList 
+ * @Description: TODO(这里用一句话描述这个类的作用) 
+ * @author yang yangyuanke35_gmail_com 
+ * @date 2015年7月11日 上午12:48:57 
+ *  
+ */
+public interface MyList {
+
+}

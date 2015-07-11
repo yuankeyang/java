@@ -1,0 +1,42 @@
+/** 
+ * @ClassName: MyList 
+ * @Description: 线性表公共接口 
+ * @author yang yangyuanke35_gmail_com 
+ * @date 2015年7月11日 上午12:49:56 
+ *  
+ */
+public interface MyList {
+	/** 
+	* @Title: add 
+	* @Description: 在list的末尾添加一个新元素 
+	* @param 
+	* @return void    返回类型 
+	* @throws 
+	*/
+	public void add(Object o);
+	
+	/**
+	 * @Description:在指定位置添加一个新元素
+	 * @param index
+	 * @param o
+	 */
+	public void add(int index,Object o);
+	/**
+	 * @Description:清空list
+	 */
+	public void clear();
+	/**
+	 * @Description:如果list包含元素o返回true
+	 * @param o
+	 * @return
+	 */
+	public boolean contains(Object o);
+	public Object get(int index);
+	public int indexOf(Object o);
+	public boolean isEmpty();
+	public int lastIndexOf(Object o);
+	public boolean remove(Object o);
+	public Object remvove(int index);
+	public Object set(int index,Object o);
+	public int size();
+}
