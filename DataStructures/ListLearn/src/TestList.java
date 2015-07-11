@@ -7,7 +7,7 @@
 public class TestList {
 
 	public static void main(String[] args) {
-		MyList list=new MyArrayList();
+		MyList list=new MyLinkedList();
 		list.add("America");
 		System.out.println("(1)"+list);
 		list.add(0,"China");

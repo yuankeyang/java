@@ -4,6 +4,13 @@
  */
 public class MyLinkedList extends MyAbstractList{
 	private Node first,last;
+	private static class Node{
+		Object element;
+		Node next;
+		public Node(Object o){
+			element=o;
+		}
+	}
 	public MyLinkedList(){}
 	public MyLinkedList(Object[] objects){
 		super(objects);
@@ -45,7 +52,7 @@ public class MyLinkedList extends MyAbstractList{
 
 	@Override
 	public void add(int index, Object o) {
-		if(size==0) addFirst(o);
+		if(index==0) addFirst(o);
 		else if(index>=size) addLast(o);
 		else{
 			Node current=first;
@@ -105,33 +112,67 @@ public class MyLinkedList extends MyAbstractList{
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
+		Node current=first;
+		for(int i=0;i<size;i++){
+			if(o.equals(current.element)) return true;
+			current=current.next;
+		}
 		return false;
 	}
 
 	@Override
 	public Object get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		if((index<0)||(index>=size)) return null;
+		else{
+		Node current=first;
+		for(int i=0;i<index;i++)
+			current=current.next;
+		return current;
+		}
 	}
 
 	@Override
 	public int indexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		Node current=first;
+		for(int i=0;i<size;i++){
+			if(o.equals(current.element)) return i;
+			else current=current.next;
+		}
+		return -1;
 	}
 
 	@Override
 	public int lastIndexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		for(int i=size-1;i>=0;i--)
+			if(o.equals(get(i))) return i;
+		return -1;
 	}
 
 
 	@Override
 	public Object set(int index, Object o) {
-		// TODO Auto-generated method stub
-		return null;
+		Node current=first;
+		Object old=null;
+		for(int i=0;i<index;i++)
+			current=current.next;
+		old=current.element;
+		current.element=o;
+		return old;
 	}
+	@Override
+	public String toString() {
+		StringBuffer result=new StringBuffer("[");
+		Node current=first;
+		for(int i=0;i<size;i++){
+			result.append(current.element);
+			current=current.next;
+			if(current!=null)
+				result.append(",");
+			else
+				result.append("]");
+		}
+		return result.toString();
+	}
+	
 	
 }
