@@ -67,7 +67,7 @@ public class Client extends JFrame {
 			try {
 				//get the radius from the text field
 				double radius=Double.parseDouble(jtf.getText().trim());
-				System.out.println("radius="+radius);
+//				System.out.println("radius="+radius);
 				//send radius to the server
 				toServer.writeDouble(radius);
 				toServer.flush();
