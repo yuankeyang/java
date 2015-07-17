@@ -31,12 +31,12 @@ $(document).ready(function(){
     '</S:Envelope>';
 		$.ajax({
 			type:"POST",
-			url:"http://localhost:8083/Exm1/services/Hello.HelloHttpEndpoint/hello",
-// 			data:messagews,
-// 			contentType:'text/xml; charset="utf-8"',
+			url:"http://localhost:8083/Exm1/services/GetInfoService.GetInfoServiceHttpEndpoint",
+			data:messagews,
+			contentType:'text/xml; charset="utf-8"',
 			dataType:'text',
 			success:function(result){
-				alert(result);
+				$("#result").html(result);
 				//xmlDoc = $.parseXML(result);
 // 				jsonobj=$(result).find("soapenv:Envelope")
 // 						.find("soapenv:Body")
@@ -66,6 +66,8 @@ $(document).ready(function(){
 <label>学号</label><input type="text" class="form-control" id="sno" placeholder="请输入学号">
 <button id="query" class="btn btn-default">查询</button>
 </div>
+</div>
+<div class="form-inline">
 <div class="form-group">
 <label>结果:</label><div id="result"></div>
 </div>
