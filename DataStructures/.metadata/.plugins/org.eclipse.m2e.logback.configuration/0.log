@@ -448,3 +448,6 @@ java.io.InvalidClassException: org.eclipse.m2e.core.internal.project.registry.Ba
 2015-07-15 21:05:30,849 [Worker-2] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Collecting project info '/pom.xml' F:\GitHub\java\DataStructures\web_mvn\pom.xml
 2015-07-15 21:05:39,898 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: maven:web_mvn:0.0.1-SNAPSHOT @ F:\GitHub\java\DataStructures\web_mvn\pom.xml.
 2015-07-15 21:06:46,264 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: maven:web_mvn:0.0.1-SNAPSHOT @ F:\GitHub\java\DataStructures\web_mvn\pom.xml.
+2015-07-18 13:49:30,227 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-8.1.14.v20131031
+2015-07-18 13:49:30,305 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started SelectChannelConnector@127.0.0.1:50261
+2015-07-18 14:03:54,467 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - stopped o.e.j.s.ServletContextHandler{/help,null}
