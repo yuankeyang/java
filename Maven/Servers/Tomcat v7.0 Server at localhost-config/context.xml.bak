@@ -31,7 +31,6 @@
     -->
     <Resource 
     	name="jdbc/mypool"
-    	auth="Container"
     	type="javax.sql.DataSource"
     	driverClassName="com.mysql.jdbc.Driver"
     	maxIdle="2"

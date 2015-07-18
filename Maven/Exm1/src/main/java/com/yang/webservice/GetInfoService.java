@@ -9,11 +9,19 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+
+import javax.sql.DataSource;
+
 import net.sf.json.JSONObject;
 
 
 public class GetInfoService {
-	public String getInfo(String sno) throws SQLException{
+	public String getInfo(String sno) throws SQLException, NamingException{
+		/*
 		String sDBDriver = "com.mysql.jdbc.Driver";
 		String sConnStr = "jdbc:mysql://localhost:3306/tms_db";
 		try {
@@ -21,10 +29,15 @@ public class GetInfoService {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		Connection connect = null;
 		ResultSet rs = null;
-		connect = DriverManager.getConnection(sConnStr,"root","xianggen");
+		//新建Context
+		Context ctx=new InitialContext();
+		//查找数据源
+		DataSource ds=(DataSource)ctx.lookup("java:comp/env/jdbc/mypool");
+		//connect = DriverManager.getConnection(sConnStr,"root","xianggen");
+		connect=ds.getConnection();
 		Statement stmt = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 		String sql="select * from student where Sno='"+sno+"'";
 		rs = stmt.executeQuery(sql);

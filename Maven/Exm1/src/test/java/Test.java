@@ -26,7 +26,6 @@ public class Test {
 			String result =call.invoke( new Object[]{"201208010127"}).toString();
 			System.out.println(result);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
