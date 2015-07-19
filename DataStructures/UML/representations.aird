@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style" xmi:id="_Z9tzcC0QEeWL0839vhgrzg" selectedViews="_anmd8C0QEeWL0839vhgrzg _aoHbUC0QEeWL0839vhgrzg _aoZvMC0QEeWL0839vhgrzg _aoensC0QEeWL0839vhgrzg _aonxoC0QEeWL0839vhgrzg _azNRAC0QEeWL0839vhgrzg" version="8.1.1">
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style" xmi:id="_Z9tzcC0QEeWL0839vhgrzg" selectedViews="_anmd8C0QEeWL0839vhgrzg _aoHbUC0QEeWL0839vhgrzg _aoZvMC0QEeWL0839vhgrzg _aoensC0QEeWL0839vhgrzg _aonxoC0QEeWL0839vhgrzg _azNRAC0QEeWL0839vhgrzg" version="8.1.1">
   <models xmi:type="uml:Model" href="model.uml#_afiuIC0QEeWL0839vhgrzg"/>
   <models xmi:type="viewpoint:DAnalysis" href="#_Z9tzcC0QEeWL0839vhgrzg"/>
+  <models xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+  <models xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+  <models xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+  <models xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  <models xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+  <models xmi:type="uml:Model" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#_0"/>
+  <models xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  <models xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+  <models xmi:type="ecore:EPackage" href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+  <models xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#_0"/>
   <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_anmd8C0QEeWL0839vhgrzg" initialized="true">
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Reused']"/>
   </ownedViews>
@@ -17,6 +27,9 @@
             <children xmi:type="notation:Node" xmi:id="_tOjVhC0REeWL0839vhgrzg" type="7004">
               <children xmi:type="notation:Node" xmi:id="_tLT-0C0SEeWL0839vhgrzg" type="3010" element="_tLKN0C0SEeWL0839vhgrzg">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_tLT-0S0SEeWL0839vhgrzg"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_hr38cC3VEeW3mKAbH3CBzw" type="3010" element="_hrkacC3VEeW3mKAbH3CBzw">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_hr38cS3VEeW3mKAbH3CBzw"/>
               </children>
               <styles xmi:type="notation:SortingStyle" xmi:id="_tOjVhS0REeWL0839vhgrzg"/>
               <styles xmi:type="notation:FilteringStyle" xmi:id="_tOjVhi0REeWL0839vhgrzg"/>
@@ -49,6 +62,17 @@
             <description xmi:type="style:SquareDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_ReusedMappingForFeatures']/@subNodeMappings[name='CD_Property']/@style"/>
             <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_tLKN0y0SEeWL0839vhgrzg"/>
             <color xmi:type="viewpoint:RGBValues" xmi:id="_tLKN1C0SEeWL0839vhgrzg" red="136" green="136" blue="136"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_ReusedMappingForFeatures']/@subNodeMappings[name='CD_Property']"/>
+        </ownedElements>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_hrkacC3VEeW3mKAbH3CBzw" name="myToken : EChar [1]">
+          <target xmi:type="uml:Property" href="model.uml#_U251IC3VEeW3mKAbH3CBzw"/>
+          <semanticElements xmi:type="uml:Property" href="model.uml#_U251IC3VEeW3mKAbH3CBzw"/>
+          <ownedStyle xmi:type="diagram:Square" xmi:id="_hrkacS3VEeW3mKAbH3CBzw" labelAlignment="LEFT">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_hrkaci3VEeW3mKAbH3CBzw"/>
+            <description xmi:type="style:SquareDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_ReusedMappingForFeatures']/@subNodeMappings[name='CD_Property']/@style"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_hrkacy3VEeW3mKAbH3CBzw"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_hrkadC3VEeW3mKAbH3CBzw" red="136" green="136" blue="136"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_ReusedMappingForFeatures']/@subNodeMappings[name='CD_Property']"/>
         </ownedElements>

@@ -4,5 +4,9 @@
     <ownedAttribute xmi:id="_gCd5QC0SEeWL0839vhgrzg" name="myTurn" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_U251IC3VEeW3mKAbH3CBzw" name="myToken" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EChar"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bISToC3VEeW3mKAbH3CBzw" value="1"/>
+    </ownedAttribute>
   </packagedElement>
 </uml:Model>
