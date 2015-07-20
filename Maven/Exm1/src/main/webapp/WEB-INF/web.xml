@@ -3,36 +3,81 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
- 
-  <servlet>
-  	<servlet-name>AxisServlet</servlet-name>
-  	<display-name>Apache-Axis Servlet</display-name>
-  	<servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>AxisAdminServlet</servlet-name>
-  	<display-name>Apache-Axis Admin Servlet Web Admin</display-name>
-  	<servlet-class>org.apache.axis2.transport.http.AxisAdminServlet</servlet-class>
-  	<load-on-startup>100</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>AxisServlet</servlet-name>
-  	<url-pattern>/servlet/AxisServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>AxisServlet</servlet-name>
-  	<url-pattern>*.jws</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>AxisServlet</servlet-name>
-  	<url-pattern>/services/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>AxisAdminServlet</servlet-name>
-  	<url-pattern>/axis2-admin/*</url-pattern>
-  </servlet-mapping>
-  <welcome-file-list>
-  <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
+
+
+
+	<display-name>Archetype Created Web Application</display-name>
+
+	<servlet>
+		<servlet-name>AxisServlet</servlet-name>
+		<display-name>Apache-Axis Servlet</display-name>
+		<servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AxisAdminServlet</servlet-name>
+		<display-name>Apache-Axis Admin Servlet Web Admin</display-name>
+		<servlet-class>org.apache.axis2.transport.http.AxisAdminServlet</servlet-class>
+		<load-on-startup>100</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminServlet</servlet-name>
+		<display-name>Axis Admin Servlet</display-name>
+		<servlet-class>org.apache.axis.transport.http.AdminServlet</servlet-class>
+		<load-on-startup>100</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>/servlet/AxisServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>*.jws</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AxisAdminServlet</servlet-name>
+		<url-pattern>/axis2-admin/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminServlet</servlet-name>
+		<url-pattern>/servlet/AdminServlet</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+
+	<filter>
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowOrigin</param-name>
+			<param-value>*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedMethods</param-name>
+			<param-value>GET, POST, HEAD, PUT, DELETE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedHeaders</param-name>
+			<param-value>Accept, Origin, X-Requested-With, Content-Type,
+				Last-Modified</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.exposedHeaders</param-name>
+			<param-value>Set-Cookie</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportsCredentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CORS</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

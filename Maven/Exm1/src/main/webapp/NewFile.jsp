@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,24 +40,11 @@ $(document).ready(function(){
     '</S:Envelope>';
 		$.ajax({
 			type:"POST",
-			url:"http://localhost:8083/Exm1/services/GetInfoService.GetInfoServiceHttpEndpoint",
-			data:messagews,
-			contentType:'text/xml; charset="utf-8"',
+			url:"http://localhost:8090",
+			contentType:'text/html; charset="utf-8"',
 			dataType:'text',
 			success:function(result){
 				$("#result").html(result);
-				//xmlDoc = $.parseXML(result);
-// 				jsonobj=$(result).find("soapenv:Envelope")
-// 						.find("soapenv:Body")
-// 						.find("ns:getInfoResponse")
-// 						.find("ns:return");
-// 				alert(jsonobj.toString());
-// 				alert(result);
-// 				jsonstr=$(result).find("ns:return").text();
-// 				alert(jsonstr);
-// 				json=JSON.stringify(jsonstr);
-// 				alert(json);
-
 			},
 			error:function(){
 				alert("请求失败！");
