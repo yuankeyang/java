@@ -1,0 +1,36 @@
+2015/06/30 21:43:21 [emerg] 5860#756: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2015/06/30 21:43:23 [emerg] 4664#3780: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2015/06/30 21:43:49 [emerg] 5456#8104: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2015/06/30 21:45:03 [error] 2408#6908: *1 CreateFile() "E:\softwares\nginx-1.9.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1:8090", referrer: "http://127.0.0.1:8090/"
+2015/07/20 10:53:16 [error] 3256#6684: *1 CreateFile() "F:\softwares\nginx-1.9.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1:8090", referrer: "http://127.0.0.1:8090/"
+2015/07/20 11:15:45 [error] 3244#4992: *5 CreateFile() "E:\nginx-1.9.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8090", referrer: "http://localhost:8090/"
+2015/07/20 11:29:42 [notice] 3780#5692: signal process started
+2015/07/20 11:29:42 [error] 3780#5692: OpenEvent("Global\ngx_reload_1016") failed (2: The system cannot find the file specified)
+2015/07/20 11:30:25 [notice] 4160#2824: signal process started
+2015/07/20 11:30:25 [error] 4160#2824: OpenEvent("Global\ngx_reopen_1016") failed (2: The system cannot find the file specified)
+2015/07/20 11:34:15 [notice] 3464#2456: signal process started
+2015/07/20 11:37:28 [notice] 5068#1180: signal process started
+2015/07/20 11:39:47 [error] 6296#3540: *8 CreateFile() "E:\nginx-1.9.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8090"
+2015/07/20 11:39:47 [error] 6296#3540: *8 CreateFile() "E:\nginx-1.9.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8090"
+2015/07/20 11:51:19 [notice] 6716#476: signal process started
+2015/07/20 11:53:46 [error] 5180#4796: *13 CreateFile() "E:\nginx-1.9.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1:8090"
+2015/07/20 11:53:46 [error] 5180#4796: *13 CreateFile() "E:\nginx-1.9.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1:8090"
+2015/07/20 11:54:33 [notice] 6004#5756: signal process started
+2015/07/20 11:58:33 [notice] 5780#2828: signal process started
+2015/07/20 11:59:13 [notice] 7388#7392: signal process started
+2015/07/20 12:08:21 [notice] 7868#7876: signal process started
+2015/07/20 12:10:31 [notice] 6084#8164: signal process started
+2015/07/20 12:26:25 [notice] 2772#7840: signal process started
+2015/07/20 15:10:38 [error] 7868#8016: *28 CreateFile() "E:\nginx-1.9.2/html/www.baidu.com" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "POST /www.baidu.com HTTP/1.1", host: "localhost:8090", referrer: "http://localhost:8090/"
+2015/07/20 15:12:01 [error] 7868#8016: *29 CreateFile() "E:\nginx-1.9.2/html/www.baidu.com" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "POST /www.baidu.com HTTP/1.1", host: "localhost:8090", referrer: "http://localhost:8090/"
+2015/07/20 15:26:51 [error] 7868#8016: *31 CreateFile() "E:\nginx-1.9.2/html/www.baidu.com" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /www.baidu.com?_=1437377210967 HTTP/1.1", host: "localhost:8090", referrer: "http://localhost:8090/"
+2015/07/20 15:36:28 [notice] 7784#7576: signal process started
+2015/07/20 15:38:13 [notice] 5260#7628: signal process started
+2015/07/20 15:55:35 [notice] 2480#2600: signal process started
+2015/07/20 16:04:55 [notice] 7300#7296: signal process started
+2015/07/20 16:05:15 [notice] 6004#2400: signal process started
+2015/07/20 16:06:00 [notice] 5248#488: signal process started
+2015/07/20 16:21:56 [notice] 9104#9036: signal process started
+2015/07/20 16:24:01 [notice] 8268#8336: signal process started
+2015/07/20 16:48:58 [notice] 8804#8700: signal process started
+2015/07/20 16:50:06 [notice] 4024#8176: signal process started
