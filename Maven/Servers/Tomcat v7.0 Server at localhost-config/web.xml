@@ -26,8 +26,7 @@
   <!-- WARNING:  Do not configure application-specific resources here!      -->
   <!-- They should go in the "/WEB-INF/web.xml" file in your application.   -->
 
-  
-  
+
   <!-- ================== Built In Servlet Definitions ==================== -->
 
 
@@ -502,7 +501,6 @@
         <url-pattern>*.shtml</url-pattern>
     </filter-mapping>
 -->
-
 
 
   <!-- ==================== Default Session Configuration ================= -->
